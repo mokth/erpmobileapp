@@ -1,0 +1,28 @@
+/* Add mobile styles for the component here.  */
+.page{
+    padding: 40px;  
+ }
+.icon {
+    font-family: 'IcoMoon-Free' ;
+    font-size: 20;
+    text-align:center;   
+    margin-top: 30px;
+}
+.caption{
+    color:white;
+}
+.caption-number{
+    text-align:right;
+}
+.even {
+ background-color: #F4F6F6;
+
+}
+
+.selected {
+    background-color: #126EE0;
+    color: white;
+}
+:disabled {
+    opacity: 0.5;
+  }

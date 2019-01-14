@@ -1,0 +1,87 @@
+/* Add mobile styles for the component here.  */
+.page{
+  padding: 40px;    
+ }
+
+.icon {
+    font-family: 'IcoMoon-Free' ;
+    font-size: 20;
+    text-align:center;
+    color: blue;
+    margin-top: 30px;
+}
+
+.icon2 {
+    font-family: 'IcoMoon-Free' ;
+    font-size: 20;
+    text-align:center;
+    color: darkred;
+    margin-top: 30px;
+}
+
+.faclass{
+    font-size: 24;
+    text-align:center;
+    margin-top: 20px;
+}
+
+.faclass-spinner {
+    font-size: 24;
+    text-align: left;
+    margin-top: 20px;
+}
+.faclass-spinner-enable{
+    font-family: Font Awesome 5 Free, fa-solid-900;
+    font-weight: 900; 
+    font-size: 24;
+    text-align: left;
+    margin-top: 20px;
+    color:#CD5C5C;
+}
+.faclass-spinner-disable{
+    font-family: Font Awesome 5 Free, fa-solid-900;
+    font-weight: 900; 
+    font-size: 24;
+    text-align: left;
+    margin-top: 20px;
+    color:gray;
+}
+
+.isNotEnabled{
+    color:gray;
+}
+
+.faclass-item{
+    font-size: 24;
+    text-align:center;
+    margin-top: 10px;
+}
+.grid-title{
+   background-color:#566573;
+   padding-top:5px;
+   padding-bottom:5px;
+}
+.item-amount {
+  padding-right: 5px;  
+}
+.item-entry {
+    background-color: #F5F8FC;
+    border: 1px solid #9CC7FC;
+}
+.caption{
+    text-align:right;
+    color:white;
+}
+.caption-left{
+    padding-left: 10px;
+    color:white;
+}
+
+.caption-number{
+    text-align:right;
+}
+
+.list-item{
+    padding-top:5px;
+    padding-bottom:5px;
+}

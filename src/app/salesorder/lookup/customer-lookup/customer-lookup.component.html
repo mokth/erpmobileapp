@@ -1,0 +1,53 @@
+<ActionBar title="Customers">
+</ActionBar>
+<Page class="page">
+    <StackLayout orientation="vertical">
+        <GridLayout rows="auto,auto,auto,*">
+            <StackLayout class="form" row="0" orientation="horizontal" width="100%">
+                <TextField hint="Search..." class="input"
+                           id= "searchstr"  
+                           [isEnabled]="!processing"
+                          [(ngModel)]="searchstr" 
+                           width="80%"></TextField>
+                <Button class="btn-sm btn-primary btn-active" 
+                        id="btnSearch" 
+                        [isEnabled]="!processing"
+                        (tap)="onSearchTap($event)"
+                        width="20%" height="40" >
+                    <FormattedString>
+                        <Span [text]="iconval" class="icon"></Span>
+                    </FormattedString>  
+                </Button>
+            </StackLayout>
+            <StackLayout row="1" orientation="horizontal" width="100%" backgroundcolor="#566573">
+                    <Label text="CODE" width="25%" class="caption"></Label>
+                    <Label text="NAME" width="75%" class="caption"></Label>                    
+            </StackLayout>
+            <StackLayout *ngIf="isBusy" row="2" orientation="vertical" width="100%">
+                    <ActivityIndicator #activityIndicator [busy]="isBusy" 
+                                   width="100%" 
+                                   height="100%" 
+                                   class="activity-indicator"></ActivityIndicator>
+            </StackLayout>   
+            <ScrollView row="3">
+                <!-- <PullToRefresh [refreshing]="isRefresh" (refresh)="refreshList($event)"> -->
+                    <ListView [items]="items">                          
+                        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">  
+                           <StackLayout [class.selected]="item.custCode===selectedCode"
+                                        [class.even]="even"
+                                        class="item-row"
+                                        (tap)="onItemTap(item)"                                    
+                                        orientation="horizontal" width="100%">
+                                <Label [text]="item.custCode" width="25%"></Label>
+                                <Label [text]="item.custName" width="75%"></Label>
+                           </StackLayout>
+                        </ng-template>                        
+                    </ListView>
+                <!-- </PullToRefresh> -->
+          </ScrollView>
+          <!-- <ActivityIndicator [busy]="isRefresh" rowSpan="3"></ActivityIndicator> -->
+        </GridLayout>
+    </StackLayout>
+
+</Page>
+        

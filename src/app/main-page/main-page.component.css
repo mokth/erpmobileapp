@@ -1,0 +1,146 @@
+/* Add mobile styles for the component here.  */
+.page {
+    padding: 40px;
+}
+
+.icon {
+    font-family: 'IcoMoon-Free';
+    font-size: 32px;
+}
+
+.menu-item {
+    padding-right: 40px;
+}
+
+.menu-container {
+    margin-left: 15;
+    text-align: left;
+    padding: 15px;
+    font-size: 24px;
+    color: white;
+}
+
+.main-container {
+    background-color: #ffffff;
+    padding:50px;
+    height: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+.side-drawer-panel {
+    background-color: #374c5d;
+}
+
+.button-item {
+    text-align: center;
+    color: black;
+}
+
+.drawer-content-in {
+    animation-name: openDrawer;
+    animation-direction: normal;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
+}
+
+.drawer-content-out {
+    animation-name: openDrawer;
+    animation-direction: reverse;
+    animation-duration: 250ms;
+    animation-fill-mode: forwards;
+}
+
+@keyframes openDrawer {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-200);
+    }
+
+    20% {
+        opacity: 0.2;
+        transform: translateX(-150);
+    }
+
+    40% {
+        opacity: 0.4;
+        transform: translateX(-100);
+    }
+
+    60% {
+        opacity: 0.6;
+        transform: translateX(-50);
+    }
+
+    80% {
+        transform: translateX(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(200);
+    }
+
+    20% {
+        opacity: 0.2;
+        transform: translateX(150);
+    }
+
+    40% {
+        opacity: 0.4;
+        transform: translateX(100);
+    }
+
+    60% {
+        opacity: 0.6;
+        transform: translateX(50);
+    }
+
+    80% {
+        transform: translateX(1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+.main-title{
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    font-size: 36px;
+    font-weight: 900;
+    color:blue;
+    letter-spacing: 0.05px;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+.sub-title{
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 700;
+    color:blue;
+    letter-spacing: 0.1px;
+    animation: moveInRight 1s ease-out;
+}

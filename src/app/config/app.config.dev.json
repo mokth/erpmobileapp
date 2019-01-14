@@ -1,0 +1,6 @@
+{
+    "appType": "Ns",
+    "apiEndpoint": "http://wincom2cloud.com/ERP6Service/",
+    "loggingEnabled": true,
+    "loggingLevel": "Error"
+}
