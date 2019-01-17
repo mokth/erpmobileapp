@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular';
 import { RadSideDrawer, SideDrawerLocation } from 'nativescript-ui-sidedrawer';
 import { NavigationService } from '../core/services/navigation.service';
 import { AuthService } from '../core/services/auth-service';
+//import { AndroidApplication, AndroidActivityBackPressedEventData } from 'tns-core-modules/application/application';
+//import * as application from "tns-core-modules/application";
 
 @Component({
   selector: 'ns-main-page',
@@ -10,7 +12,7 @@ import { AuthService } from '../core/services/auth-service';
   styleUrls: ['./main-page.component.css'],
   moduleId: module.id,
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit,AfterViewInit {
 
   @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
   private drawer: RadSideDrawer;
@@ -28,8 +30,8 @@ export class MainPageComponent implements OnInit {
 
   ngAfterViewInit() {
     this.drawer = this.drawerComponent.sideDrawer;
-    this.drawer.drawerLocation = SideDrawerLocation.Right;
-}
+    this.drawer.drawerLocation = SideDrawerLocation.Right;   
+  }
 
   showSlideout() {
       this.drawer.mainContent.className = 'drawer-content-in';
@@ -59,6 +61,7 @@ export class MainPageComponent implements OnInit {
 
     onLogOut(){
       this.auth.signOut();      
-      this.navigationService.navigate(['/login']);
+      this.navigationService.navigate(['/login'],{clearHistory:true});
+     
     }
 }

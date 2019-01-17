@@ -26,8 +26,8 @@ export class APIService {
   }
 
   getCustomer(): Observable<CustProfileLight> {
-    
-    const url = this.config.apiEndpoint + "api/customer";
+    const userid =this.auth.getUserID();
+    const url = this.config.apiEndpoint + "api/customer/"+userid;
     return this.http.get<CustProfileLight>(url,{headers:this.getAuthHeader()});
   }
 
@@ -37,7 +37,8 @@ export class APIService {
   }
 
   getSalesOrder(): Observable<SalesOder> {
-    const url = this.config.apiEndpoint + "api/salesorder";
+    const userid =this.auth.getUserID();
+    const url = this.config.apiEndpoint + "api/salesorder/"+userid;
     return this.http.get<SalesOder>(url,{headers:this.getAuthHeader()});
   }
 
@@ -45,5 +46,14 @@ export class APIService {
     let encodedkey = encodeURI(key);
     const url = this.config.apiEndpoint + "api/salesorder/order/"+encodedkey;
     return this.http.get<SalesOder>(url,{headers:this.getAuthHeader()});
+  }
+  
+  postSaleOrder(order:SalesOder):Observable<any>{
+    let headers = new HttpHeaders()
+    .set('Content-Type',"application/json")
+    .set('Authorization', this.auth.tokenGetter());
+    let body: string = JSON.stringify(order);
+    const url = this.config.apiEndpoint + "api/salesorder/save/";
+    return this.http.post(url, body, { headers: headers });
   }
 }

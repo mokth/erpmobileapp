@@ -1,18 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import * as ModalPicker from 'nativescript-modal-datetimepicker';
 import { ListViewEventData } from 'nativescript-ui-listview';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ObservableArray } from "tns-core-modules/data/observable-array";
 import { SnackBar } from "nativescript-snackbar";
 import { Color } from 'tns-core-modules/color/color';
 import {BarcodeScanner} from 'nativescript-barcodescanner';
+import * as ModalPicker from 'nativescript-modal-datetimepicker';
+import { alert } from "tns-core-modules/ui/dialogs";
 
 import { itemCode } from './item-code';
 import { NavigationService } from '~/app/core/services/navigation.service';
 import { UtilService, APIService } from '~/app/core/services';
-import { CustProfileLight } from '../../../../platforms/android/app/src/main/assets/app/app/core/model/customer';
-import { ItemMaster } from '../../../../platforms/android/app/src/main/assets/app/app/core/model/item-master';
-import { SalesOder, SOItem } from '~/app/core/model';
+import { SalesOder, SOItem, CustProfileLight, ItemMaster } from '~/app/core/model';
 import { ActivatedRoute } from '@angular/router';
 import { DataTable } from '~/app/core/enums';
 
@@ -90,6 +89,7 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
     this.custSubscription= this.selectedCust$.subscribe(resp=>{
         if (resp.type==DataTable.customer){
             this.order.custname= resp.data.custName;
+            this.order.custcode = resp.data.custCode;
             this.customer= resp.data;
         }else if (resp.type==DataTable.masteritem){
             //this.itemcode= resp.data.iCode;
@@ -111,6 +111,7 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
           if (resp){
              this.order = resp;
              this.items = this.order.items;
+             this.calculateTotal();
           }
         });
   }
@@ -209,13 +210,23 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
     this.editedItem.qty = this.fd_qty;
     this.editedItem.amount =  this.editedItem.qty * this.editedItem.price;
   }
-
+ 
+  calculateTotal(){
+    this.ttlQty = 0;
+    this.ttlAmt =0;
+    this.items.map(itm=>{
+      this.ttlQty = (this.ttlQty *1) +(itm.qty *1);
+      this.ttlAmt = (this.ttlAmt *1) + (itm.qty * itm.price); 
+    });
+  }
   OnAddItem(){
       if (!this.validateItem())
         return;
       
       let soitem:SOItem;
       if (this.isEditMode){
+         this.ttlQty = (this.ttlQty *1) - (this.editedItem.qty *1);
+         this.ttlAmt = (this.ttlAmt *1) - (this.editedItem.qty * this.editedItem.price);  
          this.setEditItem();
          soitem = this.editedItem;
       }else {
@@ -265,11 +276,14 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
   }
 
   OnSaveTap(e){
-    this.navigationService.backToPreviousPage();
+    this.saveOrder();
+
+    //this.navigationService.backToPreviousPage();
   }
 
   OnCancelTap(e){
-    this.navigationService.backToPreviousPage();
+    this.navigationService.navigate(['/saleslist'],{clearHistory:true});
+    //this.navigationService.backToPreviousPage();
   }
   
   //scanner
@@ -298,4 +312,35 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
     );
   }
   
+  saveOrder(){
+     if (this.editmode=="New"){
+        this.order.sono="AUTO";
+        this.order.status="new";
+        this.order.custrel=1;
+        this.order.items= [...this.items];
+     }
+
+     this.order.grossamt= this.ttlAmt;
+     this.order.amount= this.ttlAmt;
+     this.order.taxes =0.00;
+     console.log(this.order);
+     this.serv.postSaleOrder(this.order).subscribe(resp=>{
+        console.log(resp);
+        if(resp.ok=='yes'){
+          this.alertMsg(resp. error);
+        }
+     });     
+  }
+
+  alertMsg(msg) {
+      let options = {
+        title: "Message",
+        message: msg,
+        okButtonText: "OK"
+      };
+
+    alert(options).then(() => {
+      this.navigationService.navigate(['/saleslist'],{clearHistory:true});
+    });
+  }
 }

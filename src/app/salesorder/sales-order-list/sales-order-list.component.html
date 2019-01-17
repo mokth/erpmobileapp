@@ -1,9 +1,11 @@
 <ActionBar title="Sales Order">
    <GridLayout rows="auto" >
         <StackLayout row="0" orientation="horizontal" width="100%">
-             <Label text="Sales Order" class="action-title" width="70%" ></Label>   
+             <Label text="Sales Order" class="action-title" width="50%" ></Label>   
              <Label [text]="iconAdd"  width="10%"  class="fas faclass action-bar-new" (tap)="OnAddItem()"></Label>
-             <Label text="New" width="20%" (tap)="OnAddItem()" class="action-bar-new" ></Label>   
+             <Label text="New" width="15%" (tap)="OnAddItem()" class="action-bar-new" ></Label>   
+             <Label [text]="iconHome"  width="10%"  class="fas faclass action-bar-new" (tap)="onBack($event)"></Label>
+             <Label text="Home" width="15%" (tap)="onBack($event)" class="action-bar-new" ></Label> 
         </StackLayout>        
    </GridLayout>          
 </ActionBar>
@@ -45,7 +47,13 @@
                     </ng-template>                        
                 </ListView>
             </ScrollView>
-            
+            <!-- <StackLayout row="4" orientation="horizontal" width="100%">
+                <Button class="btn btn-primary btn-active" with="100%" id="button" (tap)="onBack($event)">
+                    <FormattedString>
+                        <Span [text]="iconHome" class="fas faclass"></Span>
+                    </FormattedString>
+                </Button>
+            </StackLayout> -->
         </GridLayout>
     </StackLayout>
 </Page>>

@@ -17,6 +17,7 @@ export class SalesOrderListComponent implements OnInit {
   orderlist:any;
   isBusy:boolean=true;
   iconAdd:string;
+  iconHome:string;
   constructor(private serv:APIService,
               private utilser:UtilService,
               private navigationService: NavigationService) {
@@ -24,6 +25,8 @@ export class SalesOrderListComponent implements OnInit {
 
   ngOnInit() {
     this.iconAdd = String.fromCharCode(0xf055);
+    this.iconHome = String.fromCharCode(0xf015);
+    
     this.serv.getSalesOrder().subscribe(resp=>{
       this.orderlist = resp;     
       this.isBusy=false;
@@ -38,10 +41,14 @@ export class SalesOrderListComponent implements OnInit {
 
   onItemTap(item){
     const sono = item.sono+"@"+item.custrel;
-    this.navigationService.navigate(['/sales',sono]);
+    this.navigationService.navigate(['/sales',sono],{clearHistory:true});
   }
 
   OnAddItem(){
-    this.navigationService.navigate(['/sales']);
+    this.navigationService.navigate(['/sales'],{clearHistory:true});
+  }
+
+  onBack(e){
+    this.navigationService.backToPreviousPage();
   }
 }

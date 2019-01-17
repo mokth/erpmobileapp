@@ -1,13 +1,14 @@
 import { Inject, Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs';
-import * as ApplicationSettings from 'application-settings';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { APP_CONFIG } from "~/app/config/app-config.module";
 import { AppConfig, UserInfo } from "../model";
 import { StoreService } from "./store-service";
 import { AuthTerm } from "../enums";
 
+const jwthelper = new JwtHelperService();
 @Injectable({
     providedIn: 'root'
   })
@@ -52,10 +53,22 @@ import { AuthTerm } from "../enums";
     }
 
     isAuthenticated():boolean{
-      return this.store.getBoolean(AuthTerm.authenticated);
+        let jsonString = this.store.getString(AuthTerm.token);  
+        //console.log(jsonString);
+        if (jsonString=='')
+            return false;
+
+        const isExpired = jwthelper.isTokenExpired(jsonString);
+        if (isExpired){
+            this.removeToken();
+            return false;
+        }
+        console.log("isExpired "+isExpired);
+      return this.store.getBoolean(AuthTerm.authenticated) ;
     }
 
     getUserID():string{
+        console.log(AuthTerm.userid+" "+ this.store.getString(AuthTerm.userid));
         return this.store.getString(AuthTerm.userid);
       }
 }

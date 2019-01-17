@@ -19,6 +19,7 @@ import { AppComponent } from "./app.component";
 
 import { registerElement } from "nativescript-angular/element-registry";
 import { BarcodeScanner } from "nativescript-barcodescanner";
+import { AuthguardService } from "./auth/authguard/auth-guard-service";
 registerElement("BarcodeScanner", () => require("nativescript-barcodescanner").BarcodeScannerView);
 
 //registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
@@ -62,6 +63,7 @@ export function tokenGetter() {
         MainPageComponent
     ],
     providers: [
+        AuthguardService,
         ModalDatetimepicker,
         BarcodeScanner
         
