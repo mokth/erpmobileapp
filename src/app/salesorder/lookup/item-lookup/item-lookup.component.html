@@ -6,12 +6,12 @@
             <StackLayout class="form" row="0" orientation="horizontal" width="100%">
                 <TextField hint="Search..." class="input"
                            id= "searchstr"  
-                           [isEnabled]="!processing"
+                          
                           [(ngModel)]="searchstr" 
                            width="80%"></TextField>
                 <Button class="btn-sm btn-primary btn-active" 
                         id="btnSearch" 
-                        [isEnabled]="!processing"
+                      
                         (tap)="onSearchTap($event)"
                         width="20%" height="40" >
                     <FormattedString>

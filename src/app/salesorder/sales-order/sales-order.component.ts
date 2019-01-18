@@ -30,6 +30,8 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
   fd_icode:string="";
   fd_qty:number=0;
   fd_price:number=0.00;
+  fd_deldate:Date;
+  fd_remark:string="";
 
   items:SOItem[];
 
@@ -61,6 +63,8 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
                 private serv:APIService,
                 private barcodeScanner: BarcodeScanner   ) {
       this.order = new SalesOder();
+      this.order.sono='AUTO';
+      this.order.sodate = new Date();
       this.order.items =[];  
       this.soitem = new SOItem();    
       this.items=[];            
@@ -140,21 +144,25 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
     return this._dataItems;
  }
    
-  pickDate() {
+  pickDate(option:number) {
     const picker = new ModalPicker.ModalDatetimepicker();
     picker.pickDate({
       theme: 'dark',
       //maxDate: new Date(),
       is24HourView: false
     }).then((result) => {
-      console.log(result);
-      this.order.sodate = this.getSoDate(result);
+      if (option==1){
+          this.order.sodate = this.getDateResult(result);
+      }else if (option==2){
+        this.fd_deldate = this.getDateResult(result);
+     }
     }).catch((error) => {
       console.log('Error: ' + error);
+      (new SnackBar()).simple(error);
     });
   }
 
-  getSoDate(result:any){
+  getDateResult(result:any){
     return new Date(result['year'],result['month']-1,result['day']);    
   }
 
@@ -162,11 +170,11 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
      this.navigationService.navigate(['/lookcust']);
   }
 
-  onItemTap(e){
+  onItemTap(){
     this.navigationService.navigate(['/lookitem']);
   }
 
-  onScannerTap(e){
+  onScannerTap(){
     this.barcodeScanner.hasCameraPermission().then(resp=>{
           if (resp){
               this.onScan() ;
@@ -197,6 +205,8 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
       soitem.idec = this.itemMaster.iDesc;
       soitem.icode= this.fd_icode;
       soitem.price = this.fd_price;
+      soitem.deldate = this.fd_deldate;
+      soitem.remark = this.fd_remark;
       soitem.idec = soitem.line+" "+ this.itemMaster.iDesc;
       soitem.uom = this.itemMaster.sellingUOM;
       soitem.packsize = this.itemMaster.stdPackSize;
@@ -206,6 +216,8 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
   }
   
   setEditItem(){
+    this.editedItem.deldate = this.fd_deldate;
+    this.editedItem.remark = this.fd_remark;
     this.editedItem.price =  this.fd_price;
     this.editedItem.qty = this.fd_qty;
     this.editedItem.amount =  this.editedItem.qty * this.editedItem.price;
@@ -244,6 +256,8 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
     this.fd_icode=item.icode;
     this.fd_price = item.price;
     this.fd_qty = item.qty;
+    this.fd_deldate = item.deldate;
+    this.fd_remark = item.remark;
     this.isEditMode=true;
     this.editedItem = item;
   }
@@ -271,6 +285,8 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
     this.fd_icode="";
     this.fd_price =0.00;
     this.fd_qty =0;
+    this.fd_remark ="";
+    this.fd_deldate = null;
     this.isEditMode=false;
     this.editedItem=null;
   }

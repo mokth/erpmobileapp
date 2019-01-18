@@ -4,7 +4,7 @@ import { NavigationService } from '~/app/core/services/navigation.service';
 import { SalesOder } from '../../core/model/sales-order';
 import { ListViewEventData } from 'nativescript-ui-listview';
 import { Color } from 'tns-core-modules/color/color';
-import { delay } from '../../../../platforms/android/app/build/intermediates/merged_assets/debug/mergeDebugAssets/out/app/tns_modules/rxjs/src/internal/operators/delay';
+
 
 @Component({
   selector: 'ns-sales-order-list',
@@ -49,6 +49,8 @@ export class SalesOrderListComponent implements OnInit {
   }
 
   onBack(e){
-    this.navigationService.backToPreviousPage();
+    console.log('back to saleslist');
+     this.navigationService.navigate(['/main'],{clearHistory:true});
+     //this.navigationService.back();
   }
 }

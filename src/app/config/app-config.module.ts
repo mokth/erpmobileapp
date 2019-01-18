@@ -1,9 +1,17 @@
 import { NgModule, InjectionToken } from '@angular/core';
-import { environment } from '../environments/environment';
+
 import { AppConfig } from '../core/model/app-config.model';
+import { environment } from '../environments/environment';
 
 
-const appConfig = <AppConfig>require(environment.appConfigFile);
+
+//const appConfig = <AppConfig>require(environment.appConfigFile);
+
+ const appConfig:AppConfig = {
+     appType: "Ns",
+     apiEndpoint: "http://wincom2cloud.com/ERP6Service/",
+     loggingEnabled: true
+ }
 
 export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
 
@@ -12,4 +20,6 @@ export const APP_CONFIG = new InjectionToken<AppConfig>('app.config');
         { provide: APP_CONFIG, useValue: appConfig }
     ]
 })
-export class AppConfigModule { }
+export class AppConfigModule {
+    
+ }

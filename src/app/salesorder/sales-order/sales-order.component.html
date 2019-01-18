@@ -2,7 +2,7 @@
 </ActionBar>
 <Page class="page">
     <StackLayout orientation="vertical">
-        <GridLayout rows="auto,auto,auto,auto,*,auto,auto">
+        <GridLayout rows="auto,auto,auto,auto,auto,auto,*,auto,auto">
             <StackLayout row="0" orientation="horizontal" width="100%">
                 <TextField hint="S/O #" [class.isNotEnabled]="!isControlEnable" 
                                         [(ngModel)]="order.sono" 
@@ -28,7 +28,7 @@
                         'faclass-spinner-disable': !isControlEnable
                        }" 
                        width="10%" 
-                       (tap)="pickDate()"></Label>
+                       (tap)="pickDate(1)"></Label>
             </StackLayout>
             <StackLayout row="1" orientation="horizontal" width="100%">
                 <TextField hint="Select Customer.." 
@@ -46,7 +46,14 @@
                        [isEnabled]="isControlEnable"
                        (tap)="OnCustomerTap()"></Label>
             </StackLayout>
-            <StackLayout class="item-entry" row="2" orientation="horizontal" width="100%">
+            <StackLayout row="2" orientation="horizontal" width="100%">
+                <TextField hint="Order Remark" 
+                    [(ngModel)]="order.remark" 
+                    width="100%" 
+                    [editable]="isControlEnable">
+                </TextField>
+            </StackLayout>
+            <StackLayout row="3" class="item-entry"  orientation="horizontal" width="100%">
                 <TextField hint="Select Item..." 
                            [(ngModel)]="fd_icode" 
                            [class.isNotEnabled]="!isEditMode" 
@@ -63,18 +70,42 @@
                        (tap)="onItemTap()">
                 </Label>
                 <Label [text]="iconQR" [isEnabled]="!isEditMode" width="8%" class="fas faclass-spinner" (tap)="onScannerTap()"></Label>
-                <TextField keyboardType="number" hint="Qty" [(ngModel)]="fd_qty" width="10%"></TextField>
-                <TextField keyboardType="number" hint="Price" [(ngModel)]="fd_price" width="14%"></TextField>
+                <TextField keyboardType="number" 
+                           hint="Qty" 
+                           [(ngModel)]="fd_qty" 
+                           width="10%"></TextField>
+                <TextField keyboardType="number" 
+                           hint="Price" [(ngModel)]="fd_price" 
+                           width="14%"></TextField>
                 <Label [text]="iconAdd" class="fas faclass" width="8%" (tap)="OnAddItem()"></Label>
-
             </StackLayout>
-            <StackLayout row="3" orientation="horizontal" width="100%" class="grid-title">
+            <StackLayout row="4" orientation="horizontal" width="100%">
+                    <TextField hint="Del Date" 
+                               [class.isNotEnabled]="!isControlEnable" 
+                               text="{{fd_deldate | date:'dd-MM-yyyy'}}" 
+                               editable="false" 
+                               width="26%">
+                    </TextField>
+                    <Label [text]="iconSpin" 
+                           class="fas faclass-spinner"
+                           [ngClass]="{
+                            'faclass-spinner-enable': isControlEnable
+                           }" 
+                           width="10%" 
+                           (tap)="pickDate(2)">
+                    </Label>
+                    <TextField hint="Item Remark"
+                               [(ngModel)]="fd_remark" 
+                               width="64%">
+                    </TextField>    
+            </StackLayout>
+            <StackLayout row="5" orientation="horizontal" width="100%" class="grid-title">
                 <Label text="Item Code" width="55%" class="caption-left"></Label>
                 <Label text="Qty" width="10%" class="caption"></Label>
                 <Label text="Price" width="15%" class="caption"></Label>
                 <Label text="Amount" width="20%" class="caption"></Label>
             </StackLayout>
-            <ScrollView row="4" tkExampleTitle tkToggleNavButton>
+            <ScrollView row="6" tkExampleTitle tkToggleNavButton>
                 <RadListView [items]="items" (itemLoading)="onItemLoading($event)">
                     <ListViewLinearLayout tkListViewLayout scrollDirection="Vertical" itemInsertAnimation="Slide"
                         itemDeleteAnimation="Slide"></ListViewLinearLayout>
@@ -95,13 +126,13 @@
                     </ng-template>
                 </RadListView>
             </ScrollView>
-            <StackLayout row="5" orientation="horizontal" width="100%" class="grid-title">
+            <StackLayout row="7" orientation="horizontal" width="100%" class="grid-title">
                 <Label text="Total " width="55%" class="caption"></Label>
                 <Label [text]="ttlQty | number: '1.0-0'" width="10%" class="caption"></Label>
                 <Label text="" width="15%" class="caption"></Label>
                 <Label [text]="ttlAmt | number : '1.2-2'" width="20%" class="caption item-amount"></Label>
             </StackLayout>
-            <StackLayout row="6" orientation="horizontal" width="100%">
+            <StackLayout row="8" orientation="horizontal" width="100%">
                 <Button class="btn-sm btn-primary btn-active" 
                         id="btnSave" 
                         text="Save" 

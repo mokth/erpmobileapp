@@ -1,6 +1,6 @@
 <Page>
 <ActionBar title="WINCOM ERP MOBILE">
-    <ActionItem (tap)="showSlideout($event)" ios.position="right">
+    <ActionItem (tap)="showSlideout()" ios.position="right">
         <StackLayout class="navbar_image_wrapper" ios:horizontalAlignment="right">
             <!-- <Image src="res://iconelipseswhite"></Image> -->
             <Label [text]="iconAdd" class="icon menu-item"></Label>
@@ -8,29 +8,29 @@
     </ActionItem>
 </ActionBar>
 
-<RadSideDrawer (drawerClosing)="onDrawerClosing($event)">
+<RadSideDrawer (drawerClosing)="onDrawerClosing()">
     <StackLayout tkDrawerContent>
-        <GridLayout rows="auto,auto,auto,auto,auto,auto,*,100" class="side-drawer-panel">
+        <GridLayout rows="auto,auto,auto,auto,auto,*,100" class="side-drawer-panel">
             <StackLayout row="0">               
                <Label [text]="iconlogo" (tap)="onCloseMenu($event)" class="icon menu-container"></Label>
                 <!-- <Image src="res://rpslogo" class="slide-out-img" stretch="aspectFit"></Image> -->
             </StackLayout>
             <StackLayout row="1" class="menu-container">
-                    <Label text="Sales Order List" (tap)="onTabMenu('saleslist')"></Label>
+                    <Label text="Sales Order" (tap)="onTabMenu('saleslist')"></Label>
             </StackLayout>
-            <StackLayout row="2" class="menu-container">
+            <!-- <StackLayout row="2" class="menu-container">
                <Label text="Sales Order" (tap)="onTabMenu('sales')"></Label>
-            </StackLayout>
-            <StackLayout row="3" class="menu-container">
+            </StackLayout> -->
+            <StackLayout row="2" class="menu-container">
                 <Label text="Customer" (tap)="onTabMenu('cust')"></Label>
              </StackLayout>
-             <StackLayout row="4" class="menu-container">
+             <StackLayout row="3" class="menu-container">
                 <Label text="Item Codes" (tap)="onTabMenu('item')"></Label>
              </StackLayout>
-             <StackLayout row="5" class="menu-container">
+             <StackLayout row="4" class="menu-container">
                 <Label text=""></Label>
              </StackLayout>
-            <StackLayout row="6" class="menu-container">
+            <StackLayout row="5" class="menu-container">
                 <Button text="Logout" (tap)="onLogOut()" class="button-item"></Button>
             </StackLayout>
           

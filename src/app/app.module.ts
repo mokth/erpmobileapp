@@ -1,13 +1,13 @@
-import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { NgModule, NO_ERRORS_SCHEMA, NgModuleFactoryLoader } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-import { JwtModule } from '@auth0/angular-jwt';
 
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular';
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { ModalDatetimepicker } from "nativescript-modal-datetimepicker";
-import * as ApplicationSettings from 'application-settings';
+import { NSModuleFactoryLoader } from "nativescript-angular";
+//import * as ApplicationSettings from 'application-settings';
 
 import { LoginComponent } from './auth/login/login.component';
 import { AppConfigModule } from "./config/app-config.module";
@@ -24,21 +24,20 @@ registerElement("BarcodeScanner", () => require("nativescript-barcodescanner").B
 
 //registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 
-export function tokenGetter() {
-    let jsonString = ApplicationSettings.getString("token");
-    if (jsonString){
-        let authobj = JSON.parse(jsonString);
-        let token ="Bearer "+ authobj.auth_token;
-        //console.log(token);
-        return token;
-    }
-    return "";
-  }
+// export function tokenGetter() {
+//     let jsonString = ApplicationSettings.getString("token");
+//     if (jsonString){
+//         let authobj = JSON.parse(jsonString);
+//         let token ="Bearer "+ authobj.auth_token;
+//         //console.log(token);
+//         return token;
+//     }
+//     return "";
+//   }
 
 @NgModule({
     bootstrap: [
-        AppComponent,
-        
+        AppComponent        
     ],
     imports: [
         NativeScriptModule,
@@ -65,7 +64,8 @@ export function tokenGetter() {
     providers: [
         AuthguardService,
         ModalDatetimepicker,
-        BarcodeScanner
+        BarcodeScanner,
+        {provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader}
         
     ],
     schemas: [

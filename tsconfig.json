@@ -4,7 +4,7 @@
         "target": "es5",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "noEmitHelpers": true,
+        "noEmitHelpers": false,
         "noEmitOnError": true,
         "skipLibCheck": true, //For tns-platform-declarations
         "lib": [
@@ -25,6 +25,7 @@
     },
     "exclude": [
         "node_modules",
-        "platforms"
+        "platforms",
+        "**/*.aot.ts"
     ]
 }
