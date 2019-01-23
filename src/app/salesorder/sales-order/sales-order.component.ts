@@ -61,7 +61,8 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
                 private utilserv:UtilService,
                 private activatedRoute: ActivatedRoute,
                 private serv:APIService,
-                private barcodeScanner: BarcodeScanner   ) {
+                private barcodeScanner: BarcodeScanner   
+                ) {
       this.order = new SalesOder();
       this.order.sono='AUTO';
       this.order.sodate = new Date();
@@ -187,8 +188,6 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
       );          
   }
 
-  
-
   getItemLineNo():number{
     let lineno:number=1;
     if (this.items.length>0){  
@@ -286,7 +285,7 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
     this.fd_price =0.00;
     this.fd_qty =0;
     this.fd_remark ="";
-    this.fd_deldate = null;
+    //this.fd_deldate = null;
     this.isEditMode=false;
     this.editedItem=null;
   }

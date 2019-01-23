@@ -1,0 +1,342 @@
+Skipping node_modules folder! Use the syncAllFiles option to sync files from this folder.
+Searching for devices...
+Executing before-liveSync hook from D:\nativescripts\ERPMobileApp\hooks\before-liveSync\nativescript-angular-sync.js
+Executing before-watchPatterns hook from D:\nativescripts\ERPMobileApp\hooks\before-watchPatterns\nativescript-dev-typescript.js
+Executing before-watchPatterns hook from D:\nativescripts\ERPMobileApp\hooks\before-watchPatterns\nativescript-dev-webpack.js
+Executing before-watch hook from D:\nativescripts\ERPMobileApp\hooks\before-watch\nativescript-dev-typescript.js
+Hook skipped because bundling is in progress.
+Executing before-watch hook from D:\nativescripts\ERPMobileApp\hooks\before-watch\nativescript-dev-webpack.js
+Running webpack for Android...
+File change detected. Starting incremental webpack compilation...
+
+webpack is watching the files…
+
+Hash: 0ddeb161041da0d37f1d
+Version: webpack 4.27.1
+Time: 34242ms
+Built at: 01/19/2019 1:49:12 PM
+                                                              Asset       Size  Chunks             Chunk Names
+                                   App_Resources/Android/app.gradle  569 bytes          [emitted]  
+                 App_Resources/Android/src/main/AndroidManifest.xml   1.46 KiB          [emitted]  
+    App_Resources/Android/src/main/res/drawable-hdpi/background.png   3.42 KiB          [emitted]  
+          App_Resources/Android/src/main/res/drawable-hdpi/icon.png    6.8 KiB          [emitted]  
+          App_Resources/Android/src/main/res/drawable-hdpi/logo.png   32.4 KiB          [emitted]  
+    App_Resources/Android/src/main/res/drawable-ldpi/background.png   1.31 KiB          [emitted]  
+          App_Resources/Android/src/main/res/drawable-ldpi/icon.png   3.23 KiB          [emitted]  
+          App_Resources/Android/src/main/res/drawable-ldpi/logo.png   9.95 KiB          [emitted]  
+    App_Resources/Android/src/main/res/drawable-mdpi/background.png   1.89 KiB          [emitted]  
+          App_Resources/Android/src/main/res/drawable-mdpi/icon.png   3.42 KiB          [emitted]  
+          App_Resources/Android/src/main/res/drawable-mdpi/logo.png   15.8 KiB          [emitted]  
+App_Resources/Android/src/main/res/drawable-nodpi/splash_screen.xml  311 bytes          [emitted]  
+   App_Resources/Android/src/main/res/drawable-xhdpi/background.png   5.26 KiB          [emitted]  
+         App_Resources/Android/src/main/res/drawable-xhdpi/icon.png   10.4 KiB          [emitted]  
+         App_Resources/Android/src/main/res/drawable-xhdpi/logo.png     54 KiB          [emitted]  
+  App_Resources/Android/src/main/res/drawable-xxhdpi/background.png   10.3 KiB          [emitted]  
+        App_Resources/Android/src/main/res/drawable-xxhdpi/icon.png   20.3 KiB          [emitted]  
+        App_Resources/Android/src/main/res/drawable-xxhdpi/logo.png    116 KiB          [emitted]  
+ App_Resources/Android/src/main/res/drawable-xxxhdpi/background.png   3.87 KiB          [emitted]  
+       App_Resources/Android/src/main/res/drawable-xxxhdpi/icon.png   73.8 KiB          [emitted]  
+       App_Resources/Android/src/main/res/drawable-xxxhdpi/logo.png    193 KiB          [emitted]  
+           App_Resources/Android/src/main/res/values-v21/colors.xml  107 bytes          [emitted]  
+           App_Resources/Android/src/main/res/values-v21/styles.xml  924 bytes          [emitted]  
+               App_Resources/Android/src/main/res/values/colors.xml  243 bytes          [emitted]  
+               App_Resources/Android/src/main/res/values/styles.xml   1.73 KiB          [emitted]  
+                                                          bundle.js   80.8 KiB       0  [emitted]  bundle
+                                             fonts/IcoMoon-Free.ttf    127 KiB          [emitted]  
+                                            fonts/fa-brands-400.ttf    131 KiB          [emitted]  
+                                           fonts/fa-regular-400.ttf   39.1 KiB          [emitted]  
+                                             fonts/fa-solid-900.ttf    204 KiB          [emitted]  
+                                                       package.json   82 bytes          [emitted]  
+                                                         starter.js   39 bytes          [emitted]  
+                                                tns-java-classes.js    0 bytes          [emitted]  
+                                                          vendor.js   1.95 MiB       1  [emitted]  vendor
+Entrypoint bundle = vendor.js bundle.js
+  [4] ../node_modules/@angular/router/fesm5/router.js + 14 modules 242 KiB {1} [built]
+      |    15 modules
+  [5] ../node_modules/rxjs/_esm5/internal/Observable.js + 1 modules 4.75 KiB {1} [built]
+      |    2 modules
+ [11] ../node_modules/rxjs/_esm5/internal/Subscription.js + 2 modules 5.56 KiB {1} [built]
+      |    3 modules
+ [33] ../node_modules/rxjs/_esm5/internal/observable/from.js + 5 modules 6.17 KiB {1} [built]
+      |    6 modules
+ [64] ../node_modules/rxjs/_esm5/index.js + 40 modules 74.2 KiB {1} [built]
+      |    41 modules
+[160] ./package.json 87 bytes {0} [optional] [built]
+[228] ../$$_lazy_route_resource lazy namespace object 160 bytes {0} [built]
+[264] ./app/app.module.ngfactory.js + 37 modules 130 KiB {0} [built]
+      | ./app/app.module.ngfactory.js 12.3 KiB [built]
+      | ./app/app.module.ts 731 bytes [built]
+      | ./app/app.component.ts 140 bytes [built]
+      | ./app/core/services/store-service.ts 1.68 KiB [built]
+      | ./app/config/app-config.module.ts 482 bytes [built]
+      | ./app/core/services/auth-service.ts 2.53 KiB [built]
+      | ./app/auth/login/login.component.ts 1.54 KiB [built]
+      | ./app/auth/login/login.component.ngfactory.js 7.51 KiB [built]
+      | ./app/core/services/navigation.service.ts 652 bytes [built]
+      | ./app/core/services/api.service.ts 2.23 KiB [built]
+      | ./app/core/services/util-services.ts 1.04 KiB [built]
+      | ./app/salesorder/sales-order-list/sales-order-list.component.ts 1.67 KiB [built]
+      | ./app/salesorder/sales-order-list/sales-order-list.component.ngfactory.js 9.04 KiB [built]
+      | ./app/salesorder/sales-order/sales-order.component.ts 11.8 KiB [built]
+      | ./app/salesorder/sales-order/sales-order.component.ngfactory.js 29.8 KiB [built]
+      |     + 23 hidden modules
+[265] ../node_modules/@auth0/angular-jwt/index.js + 3 modules 9.16 KiB {1} [built]
+      |    4 modules
+[266] ./main.ts 1.18 KiB {0} [built]
+[299] ./app.css 1.42 KiB {0} [built]
+[346] ../node_modules/rxjs/_esm5/internal/operators/share.js + 1 modules 1.92 KiB {1} [built]
+      |    2 modules
+    + 416 hidden modules
+Webpack compilation complete. Watching for file changes.
+Webpack build done!
+Executing before-shouldPrepare hook from D:\nativescripts\ERPMobileApp\hooks\before-shouldPrepare\nativescript-dev-webpack.js
+Skipping prepare.
+Successfully transferred all files on device b1b34b4.
+Refreshing application on device b1b34b4...
+Successfully synced application org.nativescript.erpmobile on device b1b34b4.
+ActivityManager: Start proc org.nativescript.erpmobile for activity org.nativescript.erpmobile/com.tns.NativeScriptActivity: pid=12257 uid=10480 gids={50480, 9997, 1028, 1015, 1023, 3003} abi=armeabi-v7a
+JS: NSModuleFactoryLoader is deprecated! You no longer need to provide it as a module loader.
+JS: Angular is running in the development mode. Call enableProdMode() to enable the production mode.
+JS: isExpired false
+JS: isExpired false
+JS: isExpired false
+JS: userid Wincom
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+JS: isExpired false
+JS: ERROR Error: Uncaught (in promise): TypeError: t is not a constructor
+JS: TypeError: t is not a constructor
+JS:     at file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199856
+JS:     at Cy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:200110)
+JS:     at wy (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:199292)
+JS:     at e.get (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:210845)
+JS:     at fm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:215053)
+JS:     at lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:214104)
+JS:     at sm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:212869)
+JS:     at Um (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:224559)
+JS:     at Lm (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:223318)
+JS:     at Lg (file:///data/data/org.nativescript.erpmobile/files/app/vendor.js:1:241507)
+JS:     at Object.rg [as createRootView] (file:///data/data/org.na...
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-typescript.js
+Executing after-watch hook from D:\nativescripts\ERPMobileApp\hooks\after-watch\nativescript-dev-webpack.js
+Stopping webpack watch
+Terminate batch job (Y/N)? 

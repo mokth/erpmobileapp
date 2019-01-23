@@ -44,7 +44,7 @@ export class SalesOrderListComponent implements OnInit {
     this.navigationService.navigate(['/sales',sono],{clearHistory:true});
   }
 
-  OnAddItem(){
+  OnAddItem(e){
     this.navigationService.navigate(['/sales'],{clearHistory:true});
   }
 

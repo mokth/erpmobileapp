@@ -56,6 +56,9 @@ export class MainPageComponent implements OnInit,AfterViewInit {
     } else if (arg=="item"){
       this.navigationService.navigate(['/lookitem']);
     }
+    else if (arg=="daily"){
+      this.navigationService.navigate(['/daily']);
+    }
       this.drawer.closeDrawer();
     }    
 

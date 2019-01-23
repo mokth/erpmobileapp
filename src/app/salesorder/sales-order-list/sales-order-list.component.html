@@ -2,8 +2,8 @@
    <GridLayout rows="auto" >
         <StackLayout row="0" orientation="horizontal" width="100%">
              <Label text="Sales Order" class="action-title" width="50%" ></Label>   
-             <Label [text]="iconAdd"  width="10%"  class="fas faclass action-bar-new" (tap)="OnAddItem()"></Label>
-             <Label text="New" width="15%" (tap)="OnAddItem()" class="action-bar-new" ></Label>   
+             <Label [text]="iconAdd"  width="10%"  class="fas faclass action-bar-new" (tap)="OnAddItem($event)"></Label>
+             <Label text="New" width="15%" (tap)="OnAddItem($event)" class="action-bar-new" ></Label>   
              <Label [text]="iconHome"  width="10%"  class="fas faclass action-bar-new" (tap)="onBack($event)"></Label>
              <Label text="Home" width="15%" (tap)="onBack($event)" class="action-bar-new" ></Label> 
         </StackLayout>        

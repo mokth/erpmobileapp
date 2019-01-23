@@ -10,6 +10,7 @@ import { MainPageComponent } from "./main-page/main-page.component";
 import { ItemLookupComponent } from "./salesorder/lookup/item-lookup/item-lookup.component";
 import { SalesOrderListComponent } from "./salesorder/sales-order-list/sales-order-list.component";
 import { AuthguardService } from "./auth/authguard/auth-guard-service";
+import { DailyOutputComponent } from "./production/daily-output/daily-output.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/login", pathMatch: "full" },
@@ -19,7 +20,8 @@ const routes: Routes = [
     { path: "sales/:sono", component: SalesOrderComponent,canActivate: [AuthguardService] },
     { path: "lookcust", component: CustomerLookupComponent,canActivate: [AuthguardService] },
     { path: "lookitem", component: ItemLookupComponent,canActivate: [AuthguardService] },
-    { path: "main", component: MainPageComponent,canActivate: [AuthguardService] }
+    { path: "main", component: MainPageComponent,canActivate: [AuthguardService] },
+    { path: "daily", component: DailyOutputComponent,canActivate: [AuthguardService] }
         
 ];
 

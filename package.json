@@ -24,6 +24,7 @@
         "@auth0/angular-jwt": "^2.1.0",
         "nativescript-angular": "~7.1.0",
         "nativescript-barcodescanner": "^3.0.0",
+        "nativescript-filterable-listpicker": "^2.2.3",
         "nativescript-localstorage": "^2.0.0",
         "nativescript-modal-datetimepicker": "^1.1.12",
         "nativescript-pulltorefresh": "^2.2.0",

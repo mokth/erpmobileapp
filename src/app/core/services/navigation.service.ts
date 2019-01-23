@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
-import { RouterExtensions } from 'nativescript-angular';
+//import { RouterExtensions } from 'nativescript-angular';
+import {RouterExtensions} from "nativescript-angular/router";
 import { NavigationOptions } from 'nativescript-angular/router/ns-location-strategy';
 
 @Injectable()
