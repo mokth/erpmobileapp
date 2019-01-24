@@ -2,13 +2,12 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { APP_CONFIG } from '../../config/app-config.module';
-import { AppConfig } from '../model/app-config.model';
-
-import { CustProfileLight, ItemMaster, SalesOder } from '../model';
 import { AuthService } from './auth-service';
-import { DailyWorkOrder } from '../model/dailly-work-order';
-import { DailyInput } from '../model/daily-input';
+import { APP_CONFIG } from '../../config/app-config.module';
+import { AppConfig, DailyInput, DailyWorkOrder, 
+         RefCode, CustProfileLight, ItemMaster, SalesOder } 
+         from '../model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +62,12 @@ export class APIService {
     const userid =this.auth.getUserID();
     const url = this.config.apiEndpoint + "api/dailyprod";
     return this.http.get<DailyWorkOrder>(url,{headers:this.getAuthHeader()});
+  }
+
+  getProdRefCodes(): Observable<RefCode> {
+    const userid =this.auth.getUserID();
+    const url = this.config.apiEndpoint + "api/dailyprod/refcode";
+    return this.http.get<RefCode>(url,{headers:this.getAuthHeader()});
   }
 
   postDailyInput(daily:DailyInput):Observable<any>{

@@ -1,4 +1,4 @@
-<ActionBar title="Daily Outpur">
+<ActionBar title="Daily Output">
 </ActionBar>
 <Page class="page" #myContainer>
     <StackLayout orientation="vertical" class="form">
@@ -196,19 +196,19 @@
                 </GridLayout>    
                 <StackLayout class="input-field" width="50%">
                         <Label text="Output Qty" class="label font-weight-bold m-b-5"></Label>
-                        <TextField class="input"  [(ngModel)]="fd_good"  ></TextField>
+                        <TextField class="input" key keyboardType="number"  [(ngModel)]="fd_good"  ></TextField>
                         <StackLayout class="hr-light"></StackLayout>
                     </StackLayout>
             </StackLayout>
             <StackLayout row="6" orientation="horizontal"  width="100%">
                     <StackLayout class="input-field" width="50%">
                             <Label text="Reject Qty" class="label font-weight-bold m-b-5"></Label>
-                            <TextField class="input"  [(ngModel)]="fd_reject" ></TextField>
+                            <TextField class="input" keyboardType="number"  [(ngModel)]="fd_reject" ></TextField>
                             <StackLayout class="hr-light"></StackLayout>
                      </StackLayout>   
                     <StackLayout class="input-field" width="50%">
                             <Label text="Scrap Qty" class="label font-weight-bold m-b-5"></Label>
-                            <TextField class="input"  [(ngModel)]="fd_scrap" ></TextField>
+                            <TextField class="input" keyboardType="number" [(ngModel)]="fd_scrap" ></TextField>
                             <StackLayout class="hr-light"></StackLayout>
                      </StackLayout>
                 </StackLayout>

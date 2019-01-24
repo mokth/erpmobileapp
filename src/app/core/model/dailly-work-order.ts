@@ -13,3 +13,9 @@ export interface splinObject{
     title:string;
     
 }
+
+export interface RefCode{
+    code:string;
+    name:string;
+    codeType:string;    
+}

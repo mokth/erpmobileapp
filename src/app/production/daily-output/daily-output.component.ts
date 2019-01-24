@@ -1,13 +1,15 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {registerElement} from "nativescript-angular/element-registry";
-import { APIService } from '~/app/core/services';
-import { DailyWorkOrder } from '../../../../platforms/android/app/src/main/assets/app/app/core/model/dailly-work-order';
-import { splinObject } from '~/app/core/model/dailly-work-order';
-import { filter } from '../../../../platforms/android/app/build/intermediates/merged_assets/debug/mergeDebugAssets/out/app/tns_modules/rxjs/src/internal/operators/filter';
+
 import * as ModalPicker from 'nativescript-modal-datetimepicker';
 import { SnackBar } from 'nativescript-snackbar';
-import { DailyInput } from '../../core/model/daily-input';
+
+import { APIService } from '~/app/core/services';
 import { NavigationService } from '~/app/core/services/navigation.service';
+
+import { RefCode,DailyInput,splinObject } from '../../core/model';
+
+
 import { BarcodeScanner } from 'nativescript-barcodescanner';
 registerElement("FilterableListpicker", () => require("nativescript-filterable-listpicker").FilterableListpicker);
 
@@ -29,6 +31,9 @@ export class DailyOutputComponent implements OnInit {
   proclistitems:splinObject[]=[];
   macclistitems:splinObject[]=[];
   wolist:any;
+  refcodes:any;
+  maccodes:RefCode[]=[];
+  oprcodes:splinObject[]=[];
   _lookoption:string;
   
   fd_date:Date;
@@ -64,8 +69,20 @@ export class DailyOutputComponent implements OnInit {
                });
             }
           });
-          
-
+      });
+      this.apiser.getProdRefCodes().subscribe(resp=>{
+         this.refcodes = resp;
+         if (this.refcodes){
+            this.refcodes.map(x=>{
+                if (x.codeType=="mac"){
+                   this.maccodes.push(x); 
+                }else if (x.codeType=="opr"){
+                   this.oprcodes.push({
+                      title:x.code
+                   });                   
+                }
+            })
+         }
       });
   }
 
@@ -78,7 +95,11 @@ export class DailyOutputComponent implements OnInit {
       console.log(this._lookoption)
       switch(this._lookoption) {
         case "wo":
-          this.fd_wo = args.selectedItem.title;
+          this.fd_wo = args.selectedItem.title;     
+          this.wolist.filter(w=>w.scheCode==this.fd_wo)
+              .map(x=>{
+                 this.fd_prod = x.prodCode;
+              });               
           break;
         case "center":
           this.fd_wccode = args.selectedItem.title;
@@ -93,6 +114,7 @@ export class DailyOutputComponent implements OnInit {
           this.fd_macact = args.selectedItem.title;
           break;
         case "operator":
+          this.fd_operator = args.selectedItem.title;
           break;
       }
   }
@@ -123,13 +145,14 @@ export class DailyOutputComponent implements OnInit {
         this.spinWork.nativeElement.source=this.wclistitems;
         break;
       case "actMac":
-        this.getWorkMachine();
+        this.getWorkAllMachine();
         this.spinWork.nativeElement.hintText="Actual Machine.."
         this.spinWork.nativeElement.source=this.wclistitems;
         break;
       case "operator":
+        this.getOperators();
         this.spinWork.nativeElement.hintText="Operator.."
-        this.spinWork.nativeElement.source=this.listitems;
+        this.spinWork.nativeElement.source=this.wclistitems;
         break;
     }
     this.spinWork.nativeElement.show(this.myContainer.nativeElement);
@@ -159,6 +182,11 @@ export class DailyOutputComponent implements OnInit {
     });
   }
 
+  getOperators(){
+    this.wclistitems= [];
+    this.wclistitems=[...this.oprcodes];    
+  }
+
   getWorkMachine(){
     this.wclistitems=[];
     this.wolist.filter(w=>w.scheCode==this.fd_wo &&
@@ -168,6 +196,19 @@ export class DailyOutputComponent implements OnInit {
           if (this.wclistitems.findIndex(y=>y.title==x.machineCode)< 0){
             this.wclistitems.push({
                 title:x.machineCode
+            });
+          }
+    });
+  }
+
+  getWorkAllMachine(){
+    this.wclistitems=[];
+    console.log(this.maccodes);
+    this.maccodes.filter(w=>w.name==this.fd_procee)
+      .map(x=>{
+          if (this.wclistitems.findIndex(y=>y.title==x.code)< 0){
+            this.wclistitems.push({
+                title:x.code
             });
           }
     });
@@ -227,17 +268,35 @@ export class DailyOutputComponent implements OnInit {
     }).then((result) => {
     // Note that this Promise is never invoked when a 'continuousScanCallback' function is provided
         console.log(result); 
-        this.fd_wo="INC17060005";
-        this.fd_wccode="OIL";
-        this.fd_procee="OIL";
-        this.fd_macplan ="MACHINE1";
-        this.fd_macact ="MACHINE1";
-        this.fd_operator="MOK";       
+        this.checkValidScanResult(result.text);        
     }, (errorMessage) => {
         console.log("No scan. " + errorMessage);
         this.barcodeScanner.stop();
-    });
- 
+    }); 
+ }
+
+ checkValidScanResult(scanText:string){
+  let data= scanText.split('+');
+  if (data.length>5){        
+    let workorder = this.wolist.filter
+                     (x=>x.scheCode==data[0] &&
+                         x.relNo ==data[1] &&
+                         x.wcCode== data[2] &&
+                         x.wciCode == data[3] &&
+                         x.nextProcess==data[4]);
+      if (workorder){                   
+          this.fd_wo=data[0];
+          this.fd_wccode=data[2];
+          this.fd_procee=data[4];
+          this.fd_macplan =data[5];
+          this.fd_macact =data[5];
+          this.fd_prod =data[5];
+          this.fd_operator="";       
+      }else{
+        (new SnackBar()).simple("Work Order info not found...");
+      }
+
+  }
  }
   
   OnSaveTap(e){
@@ -278,6 +337,8 @@ export class DailyOutputComponent implements OnInit {
         daily.wCCode = this.fd_wccode;
         daily.processCode= this.fd_procee;
         daily.machineCode = this.fd_macplan;
+        daily.machineCodeAct = this.fd_macact;
+        daily.operatorAct = this.fd_operator;
         daily.qtyAct = this.fd_good|| 0;
         daily.qtyScrap = this.fd_scrap || 0;
         daily.qtyReject = this.fd_reject || 0;
@@ -289,6 +350,7 @@ export class DailyOutputComponent implements OnInit {
         if (workorder){
             daily.wCICode = workorder[0].wciCode;
             daily.prodCode = workorder[0].prodCode;
+            daily.operator = workorder[0].operator;
             console.log(daily);
         }else{
           console.log('Invalid work order info...');
