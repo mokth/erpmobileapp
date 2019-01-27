@@ -20,7 +20,9 @@
                     <Label text="Date" class="label font-weight-bold m-b-5"></Label>
                     <GridLayout columns="*,auto" >
                         <TextField class="input"
-                            text="{{fd_date | date:'dd-MM-yyyy'}}">
+                                   editable="false" 
+                                   required
+                                   text="{{fd_date | date:'dd-MM-yyyy'}}">
                         </TextField>   
                         <Label col="1" [text]="iconSpin"
                                (tap)="pickDate()"
@@ -33,7 +35,9 @@
                     <Label text="Time" class="label font-weight-bold m-b-5"></Label>
                     <GridLayout columns="*,auto" >
                         <TextField class="input"
-                            text="{{fd_time | date:'HH:mm'}}">
+                                   editable="false" 
+                                   required
+                                   text="{{fd_time | date:'HH:mm'}}">
                         </TextField>   
                         <Label col="1" [text]="iconSpin"
                                (tap)="pickTime()"
@@ -48,10 +52,13 @@
                             </Label>                            
                            <GridLayout columns="*,auto" >
                                 <TextField col="0" 
-                                    [(ngModel)]="fd_wo" 
-                                     class="input" >                                
+                                          #wo="ngModel"
+                                          [(ngModel)]="fd_wo" 
+                                          required
+                                          class="input" >                                
                                 </TextField>
-                                <Label col="1" [text]="iconSpin"
+                                <Label col="1"
+                                       [text]="iconSpin"
                                        (tap)="showPicker('wo')"
                                        class="fas faclass-spinner">
                                 </Label>
@@ -70,7 +77,11 @@
             <StackLayout row="2" orientation="horizontal"  width="100%">
                 <StackLayout class="input-field" width="100%">
                     <Label text="Product" class="label font-weight-bold m-b-5"></Label>
-                    <TextField class="input" [(ngModel)]="fd_prod"  ></TextField>
+                    <TextField class="input" 
+                               #prod="ngModel"
+                               [(ngModel)]="fd_prod"
+                               required>
+                    </TextField>
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
             </StackLayout>
@@ -80,7 +91,9 @@
                         <Label text="Work Center" class="label font-weight-bold m-b-5"></Label>
                         <GridLayout columns="*,auto">
                                 <TextField col="0" 
+                                           #wccode="ngModel"
                                            [(ngModel)]="fd_wccode" 
+                                           required
                                            class="input" > 
                                 </TextField>
                                 <Label col="1" [text]="iconSpin"  width="10%"
@@ -103,7 +116,9 @@
                             <Label text="Work Process" class="label font-weight-bold m-b-5"></Label>
                             <GridLayout columns="*,auto">
                                     <TextField col="0" 
+                                       #procee="ngModel"
                                        [(ngModel)]="fd_procee" 
+                                       required
                                        class="input" >                                
                                     </TextField>
                                     <Label col="1" [text]="iconSpin" 
@@ -128,6 +143,8 @@
                             <Label text="Plan Machine" class="label font-weight-bold m-b-5"></Label>
                             <GridLayout columns="*,auto">
                                     <TextField col="0" 
+                                              #macplan="ngModel"
+                                              required
                                               [(ngModel)]="fd_macplan" 
                                               class="input" >                                
                                     </TextField>
@@ -196,7 +213,12 @@
                 </GridLayout>    
                 <StackLayout class="input-field" width="50%">
                         <Label text="Output Qty" class="label font-weight-bold m-b-5"></Label>
-                        <TextField class="input" key keyboardType="number"  [(ngModel)]="fd_good"  ></TextField>
+                        <TextField class="input"
+                                   #good="ngModel"
+                                   key keyboardType="number"
+                                   required 
+                                   [(ngModel)]="fd_good"
+                                   ></TextField>
                         <StackLayout class="hr-light"></StackLayout>
                     </StackLayout>
             </StackLayout>
@@ -213,12 +235,26 @@
                      </StackLayout>
                 </StackLayout>
             <StackLayout row="7" orientation="horizontal" width="100%">
-                    <Button class="btn-sm btn-primary btn-active" 
+                    <Button class="btn-sm btn-active" 
                             id="btnSave" 
                             text="Save" 
                             (tap)="OnSaveTap($event)"
                             width="50%"                         
-                            height="40">
+                            height="40"
+                            [ngClass]="{'btn-primary': wo.valid && 
+                                                     wccode.valid &&  
+                                                     procee.valid && 
+                                                     macplan.valid && 
+                                                     prod.valid && 
+                                                     good.valid
+                                       }"
+                            [isEnabled]="wo.valid && 
+                                        wccode.valid &&  
+                                        procee.valid && 
+                                        macplan.valid && 
+                                        prod.valid && 
+                                        good.valid"
+                            >
                     </Button>
                     <Button class="btn-sm text-danger btn-active" 
                             id="btnCancel" 

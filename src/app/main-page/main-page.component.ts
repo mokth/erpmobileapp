@@ -10,7 +10,7 @@ import { AuthService } from '../core/services/auth-service';
   selector: 'ns-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css'],
-  moduleId: module.id,
+  moduleId: module.id.toString(),
 })
 export class MainPageComponent implements OnInit,AfterViewInit {
 
@@ -52,9 +52,9 @@ export class MainPageComponent implements OnInit,AfterViewInit {
     } else if (arg=="sales"){
        this.navigationService.navigate(['/sales']);
     } else if (arg=="cust"){
-        this.navigationService.navigate(['/lookcust']);
+        this.navigationService.navigate(['/saleslist/lookcust']);
     } else if (arg=="item"){
-      this.navigationService.navigate(['/lookitem']);
+      this.navigationService.navigate(['/saleslist/sales']);
     }
     else if (arg=="daily"){
       this.navigationService.navigate(['/daily']);

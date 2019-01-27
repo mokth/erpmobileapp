@@ -1,26 +1,29 @@
 import { NgModule, NO_ERRORS_SCHEMA, NgModuleFactoryLoader } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
+import { NSModuleFactoryLoader } from "nativescript-angular/router";
+import { NativeScriptRouterModule } from "nativescript-angular/router";
 
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular';
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular/side-drawer-directives";
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { ModalDatetimepicker } from "nativescript-modal-datetimepicker";
-import { NSModuleFactoryLoader } from "nativescript-angular";
+
 //import * as ApplicationSettings from 'application-settings';
+import "./bundle-config";
 
 import { LoginComponent } from './auth/login/login.component';
 import { AppConfigModule } from "./config/app-config.module";
 import { CoreModule } from "./core/core.module";
-import { SalesorderModule } from "./salesorder/salesorder.module";
 import { MainPageComponent } from './main-page/main-page.component';
-import { AppRoutingModule } from "./app-routing.module";
+//import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
 import { registerElement } from "nativescript-angular/element-registry";
 import { BarcodeScanner } from "nativescript-barcodescanner";
 import { AuthguardService } from "./auth/authguard/auth-guard-service";
 import { ProductionModule } from "./production/production.module";
+import { routing } from "./app-routing.module";
 //registerElement("BarcodeScanner", () => require("nativescript-barcodescanner").BarcodeScannerView);
 
 export function createBarcodeScanner() {
@@ -45,15 +48,16 @@ export function createBarcodeScanner() {
     ],
     imports: [
         NativeScriptModule,
-        AppRoutingModule,
+        routing,
         AppConfigModule,
         CoreModule,
-        SalesorderModule,
+       // SalesorderModule,
         ProductionModule,
         NativeScriptFormsModule,
         NativeScriptHttpClientModule,
         NativeScriptUIListViewModule,
         NativeScriptUISideDrawerModule,
+        NativeScriptRouterModule,
         // JwtModule.forRoot({
         //     config: {
         //       tokenGetter: tokenGetter,
@@ -61,6 +65,7 @@ export function createBarcodeScanner() {
         //     }
         //   })   
     ],
+    exports: [NativeScriptRouterModule],
     declarations: [
         AppComponent,     
         LoginComponent,
@@ -71,7 +76,7 @@ export function createBarcodeScanner() {
         ModalDatetimepicker,
        // BarcodeScanner,
         { provide: BarcodeScanner, useFactory: (createBarcodeScanner) },
-        {provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader}
+        // {provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader}
         
     ],
     schemas: [

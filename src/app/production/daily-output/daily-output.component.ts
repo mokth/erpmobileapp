@@ -4,8 +4,8 @@ import {registerElement} from "nativescript-angular/element-registry";
 import * as ModalPicker from 'nativescript-modal-datetimepicker';
 import { SnackBar } from 'nativescript-snackbar';
 
-import { APIService } from '~/app/core/services';
-import { NavigationService } from '~/app/core/services/navigation.service';
+import { APIService } from '../../core/services';
+import { NavigationService } from '../../core/services/navigation.service';
 
 import { RefCode,DailyInput,splinObject } from '../../core/model';
 
@@ -17,7 +17,7 @@ registerElement("FilterableListpicker", () => require("nativescript-filterable-l
   selector: 'ns-daily-output',
   templateUrl: './daily-output.component.html',
   styleUrls: ['./daily-output.component.css'],
-  moduleId: module.id,
+  moduleId: module.id.toString(),
 })
 export class DailyOutputComponent implements OnInit {
  
@@ -86,7 +86,7 @@ export class DailyOutputComponent implements OnInit {
       });
   }
 
-  cancelFilterableList() {
+  cancelFilterableList(e) {
       console.log('canceled');
   }
 

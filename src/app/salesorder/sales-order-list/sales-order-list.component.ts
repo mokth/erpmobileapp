@@ -1,16 +1,17 @@
+
 import { Component, OnInit } from '@angular/core';
-import { UtilService, APIService } from '~/app/core/services';
-import { NavigationService } from '~/app/core/services/navigation.service';
-import { SalesOder } from '../../core/model/sales-order';
+import { UtilService, APIService } from '../../core/services';
+//import { NavigationService } from '~/app/core/services/navigation.service';
+//import { SalesOder } from '../../core/model/sales-order';
 import { ListViewEventData } from 'nativescript-ui-listview';
 import { Color } from 'tns-core-modules/color/color';
-
+import { NavigationService } from "../../core/services/navigation.service";
 
 @Component({
   selector: 'ns-sales-order-list',
   templateUrl: './sales-order-list.component.html',
   styleUrls: ['./sales-order-list.component.css'],
-  moduleId: module.id,
+  moduleId: module.id.toString(),
 })
 export class SalesOrderListComponent implements OnInit {
 
@@ -41,11 +42,11 @@ export class SalesOrderListComponent implements OnInit {
 
   onItemTap(item){
     const sono = item.sono+"@"+item.custrel;
-    this.navigationService.navigate(['/sales',sono],{clearHistory:true});
+    this.navigationService.navigate(['/saleslist/sales',sono],{clearHistory:true});
   }
 
   OnAddItem(e){
-    this.navigationService.navigate(['/sales'],{clearHistory:true});
+    this.navigationService.navigate(['/saleslist/sales','new'],{clearHistory:true});
   }
 
   onBack(e){

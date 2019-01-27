@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-import { APP_CONFIG } from "~/app/config/app-config.module";
+import { APP_CONFIG } from "../../config/app-config.module";
 import { AppConfig, UserInfo } from "../model";
 import { StoreService } from "./store-service";
 import { AuthTerm } from "../enums";

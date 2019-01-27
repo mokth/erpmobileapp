@@ -16,3 +16,8 @@
 .lb-spin{
     color:black;
 }
+
+.isInvalid{
+    background-color: lightgrey;
+    color: grey;
+}

@@ -9,10 +9,12 @@
                                         [editable]="isControlEnable" 
                                         width="32%">
                 </TextField>
-                <TextField hint="P/O #" [class.isNotEnabled]="!isControlEnable" 
-                                        [(ngModel)]="order.pono" 
-                                        [editable]="isControlEnable" 
-                                        width="32%">
+                <TextField #pono="ngModel" required
+                           hint="P/O #" 
+                           [class.isNotEnabled]="!isControlEnable" 
+                           [(ngModel)]="order.pono" 
+                           [editable]="isControlEnable" 
+                           width="32%">
                 </TextField>
                 <TextField hint="S/O Date" 
                            [class.isNotEnabled]="!isControlEnable" 
@@ -31,8 +33,10 @@
                        (tap)="pickDate(1)"></Label>
             </StackLayout>
             <StackLayout row="1" orientation="horizontal" width="100%">
-                <TextField hint="Select Customer.." 
+                <TextField #cust="ngModel"
+                           hint="Select Customer.." 
                            [(ngModel)]="order.custname" 
+                           required
                            width="90%" 
                            [class.isNotEnabled]="!isControlEnable" 
                            [enabled]="false">
@@ -54,7 +58,9 @@
                 </TextField>
             </StackLayout>
             <StackLayout row="3" class="item-entry"  orientation="horizontal" width="100%">
-                <TextField hint="Select Item..." 
+                <TextField #icode="ngModel"
+                           required
+                           hint="Select Item..." 
                            [(ngModel)]="fd_icode" 
                            [class.isNotEnabled]="!isEditMode" 
                            editable="false" 
@@ -70,17 +76,31 @@
                        (tap)="onItemTap()">
                 </Label>
                 <Label [text]="iconQR" [isEnabled]="!isEditMode" width="8%" class="fas faclass-spinner" (tap)="onScannerTap()"></Label>
-                <TextField keyboardType="number" 
+                <TextField #qty="ngModel"
+                           required
+                           keyboardType="number" 
                            hint="Qty" 
                            [(ngModel)]="fd_qty" 
                            width="10%"></TextField>
                 <TextField keyboardType="number" 
                            hint="Price" [(ngModel)]="fd_price" 
                            width="14%"></TextField>
-                <Label [text]="iconAdd" class="fas faclass" width="8%" (tap)="OnAddItem()"></Label>
+                <Label [text]="iconAdd" class="fas faclass" 
+                       *ngIf="icode.valid &&
+                              qty.valid && 
+                              fd_deldate"
+                       width="8%" (tap)="OnAddItem()">
+                </Label> 
+                <!-- <Label [text]="iconAdd" class="fas faclass"  
+                       *ngIf="!icode.valid ||
+                              !qty.valid ||
+                              !fd_deldate"
+                        width="8%">
+                 </Label>  -->
             </StackLayout>
             <StackLayout row="4" orientation="horizontal" width="100%">
-                    <TextField hint="Del Date" 
+                    <TextField required
+                               hint="Del Date" 
                                [class.isNotEnabled]="!isControlEnable" 
                                text="{{fd_deldate | date:'dd-MM-yyyy'}}" 
                                editable="false" 
@@ -138,7 +158,18 @@
                         text="Save" 
                         (tap)="OnSaveTap($event)"
                         width="50%"                         
-                        height="40">
+                        height="40"
+                        [ngClass]="{'btn-primary': pono.valid && 
+                                                    cust.valid && 
+                                                    order.sodate &&
+                                                    items.length>0
+                                       }"
+                        [isEnabled]="pono.valid && 
+                                     cust.valid && 
+                                     order.sodate &&
+                                     items.length>0
+                                    "
+                        >
                 </Button>
                 <Button class="btn-sm text-danger btn-active" 
                         id="btnCancel" 

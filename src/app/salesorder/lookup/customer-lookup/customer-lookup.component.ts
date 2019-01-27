@@ -1,16 +1,16 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ListViewEventData } from 'nativescript-ui-listview';
 import { Color } from 'tns-core-modules/color/color';
-import { APIService, UtilService } from '~/app/core/services';
-import { NavigationService } from '~/app/core/services/navigation.service';
-import { DataTable } from '~/app/core/enums';
+import { APIService, UtilService } from '../../../core/services';
+import { NavigationService } from '../../../core/services/navigation.service';
+import { DataTable } from '../../../core/enums';
 
 
 @Component({
   selector: 'ns-customer-lookup',
   templateUrl: './customer-lookup.component.html',
   styleUrls: ['./customer-lookup.component.css'],
-  moduleId: module.id,
+  moduleId: module.id.toString(),
 })
 export class CustomerLookupComponent implements OnInit  {
   

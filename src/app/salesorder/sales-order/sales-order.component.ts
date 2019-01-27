@@ -4,22 +4,22 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { ObservableArray } from "tns-core-modules/data/observable-array";
 import { SnackBar } from "nativescript-snackbar";
 import { Color } from 'tns-core-modules/color/color';
+import { ActivatedRoute } from '@angular/router';
 import {BarcodeScanner} from 'nativescript-barcodescanner';
 import * as ModalPicker from 'nativescript-modal-datetimepicker';
 import { alert } from "tns-core-modules/ui/dialogs";
 
 import { itemCode } from './item-code';
-import { NavigationService } from '~/app/core/services/navigation.service';
-import { UtilService, APIService } from '~/app/core/services';
-import { SalesOder, SOItem, CustProfileLight, ItemMaster } from '~/app/core/model';
-import { ActivatedRoute } from '@angular/router';
-import { DataTable } from '~/app/core/enums';
+import { NavigationService } from '../../core/services/navigation.service';
+import { UtilService, APIService } from '../../core/services';
+import { SalesOder, SOItem, CustProfileLight, ItemMaster } from '../../core/model';
+import { DataTable } from '../../core/enums';
 
 @Component({
   selector: 'ns-sales-order',
   templateUrl: './sales-order.component.html',
   styleUrls: ['./sales-order.component.css'],
-  moduleId: module.id,
+  moduleId: module.id.toString(),
 })
 export class SalesOrderComponent implements OnInit,OnDestroy {
   customer:CustProfileLight;
@@ -57,10 +57,11 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
 
   private _dataItems: ObservableArray<itemCode>;
 
-   constructor( private navigationService: NavigationService,
+   constructor( 
                 private utilserv:UtilService,
                 private activatedRoute: ActivatedRoute,
                 private serv:APIService,
+                private navigationService: NavigationService,
                 private barcodeScanner: BarcodeScanner   
                 ) {
       this.order = new SalesOder();
@@ -74,21 +75,23 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.ttlAmt=0;
     this.ttlQty=0;
-    this.setIConCode();    
+    this.setIConCode();  
     this.activatedRoute.params.subscribe(params => {
-      const sono = params['sono'];
-      if (sono) {
-         console.log('param '+sono);
-         let keys= (sono+"").split('@');
-         if (keys.length==2){
-             this._sono=keys[0];
-             this._sorel=keys[1];
-             this.editmode="Edit";
-             this.isControlEnable=false;
-             this.loadSalesOrder();
-         }
-      }
-    });
+          const sono = params['sono'];
+          if (sono) {
+            console.log('param '+sono);
+            if (sono!='new'){
+                let keys= (sono+"").split('@');
+                if (keys.length==2){
+                    this._sono=keys[0];
+                    this._sorel=keys[1];
+                    this.editmode="Edit";
+                    this.isControlEnable=false;
+                    this.loadSalesOrder();
+                }
+            }
+          }
+        });
     
     this.selectedCust$=this.utilserv.getBehaviorSubject();
     this.custSubscription= this.selectedCust$.subscribe(resp=>{
@@ -168,11 +171,11 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
   }
 
   OnCustomerTap(){
-     this.navigationService.navigate(['/lookcust']);
+     this.navigationService.navigate(['/saleslist/lookcust']);
   }
 
   onItemTap(){
-    this.navigationService.navigate(['/lookitem']);
+    this.navigationService.navigate(['/saleslist/lookitem']);
   }
 
   onScannerTap(){
