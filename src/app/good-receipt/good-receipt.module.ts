@@ -1,28 +1,33 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NativeScriptCommonModule } from 'nativescript-angular/common';
-import { DailyOutputComponent } from './daily-output/daily-output.component';
 import { NativeScriptFormsModule, NativeScriptRouterModule } from 'nativescript-angular';
+
+import { GrnEntryComponent } from './grn-entry/grn-entry.component';
+
 import { BarcodeScanner } from "nativescript-barcodescanner";
-import { prdroutes } from './production-routes';
+import { grnroutes } from './good-receipt-routes';
+
 
 export function createBarcodeScanner() {
   return new BarcodeScanner();
 }
 
 @NgModule({
-  declarations: [DailyOutputComponent],
+  declarations: [
+    GrnEntryComponent
+  ],
   imports: [
     NativeScriptCommonModule,
     NativeScriptFormsModule,
     NativeScriptRouterModule,
-    NativeScriptRouterModule.forChild(prdroutes),
+    NativeScriptRouterModule.forChild(grnroutes),
   ],
   providers:[
     { provide: BarcodeScanner, useFactory: (createBarcodeScanner) }
   ],
   exports:[
-    DailyOutputComponent
+    GrnEntryComponent
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })
-export class ProductionModule { }
+export class GoodReciptModule { }

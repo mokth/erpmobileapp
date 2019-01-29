@@ -8,11 +8,13 @@ import { AuthguardService } from "./auth/authguard/auth-guard-service";
 export const routes: Routes = [
     { path: "", redirectTo: "/login", pathMatch: "full" },
     { path: "login", component: LoginComponent },
-    { path: "saleslist",
-      loadChildren: "./salesorder/salesorder.module#SalesorderModule"},
-       { path: "main", component: MainPageComponent,canActivate: [AuthguardService] },
-    { path: "daily",
-       loadChildren: "./production/production.module#ProductionModule"},
+    { path: "saleslist",canActivate: [AuthguardService],
+            loadChildren: "./salesorder/salesorder.module#SalesorderModule"},
+    { path: "daily",canActivate: [AuthguardService],
+            loadChildren: "./production/production.module#ProductionModule"},
+    { path: "grn",canActivate: [AuthguardService],
+            loadChildren: "./good-receipt/good-receipt.module#GoodReciptModule"},
+    { path: "main", component: MainPageComponent,canActivate: [AuthguardService] }
         
 ];
 

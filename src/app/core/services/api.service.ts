@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth-service';
 import { APP_CONFIG } from '../../config/app-config.module';
 import { AppConfig, DailyInput, DailyWorkOrder, 
-         RefCode, CustProfileLight, ItemMaster, SalesOder } 
+         RefCode, CustProfileLight, ItemMaster, 
+         SalesOder, GRNPOInfo, GRNPOItem, GRNReceive } 
          from '../model';
 
 
@@ -17,7 +18,6 @@ export class APIService {
   constructor(private http: HttpClient,
               private auth:AuthService,
               @Inject(APP_CONFIG) private config: AppConfig) {
-
   }
 
   getAuthHeader():HttpHeaders{
@@ -76,6 +76,29 @@ export class APIService {
     .set('Authorization', this.auth.tokenGetter());
     let body: string = JSON.stringify(daily);
     const url = this.config.apiEndpoint + "api/dailyprod/create";
+    return this.http.post(url, body, { headers: headers });
+  }
+
+  getGRNPOlist(): Observable<GRNPOInfo> {
+    const userid =this.auth.getUserID();
+    const url = this.config.apiEndpoint + "api/grn/po";
+    return this.http.get<GRNPOInfo>(url,{headers:this.getAuthHeader()});
+  }
+
+  getPOItems(pono:string,porel:string): Observable< GRNPOItem> {
+    const userid =this.auth.getUserID();
+    const url = this.config.apiEndpoint 
+                + "api/grn/poitem?pono="+pono+"&porel="+porel;
+    console.log(url);
+    return this.http.get< GRNPOItem>(url,{headers:this.getAuthHeader()});
+  }
+
+  postGRNReceipt(grnrec:GRNReceive):Observable<any>{
+    let headers = new HttpHeaders()
+    .set('Content-Type',"application/json")
+    .set('Authorization', this.auth.tokenGetter());
+    let body: string = JSON.stringify(grnrec);
+    const url = this.config.apiEndpoint + "api/grn/receipt";
     return this.http.post(url, body, { headers: headers });
   }
 }

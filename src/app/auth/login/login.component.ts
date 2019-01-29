@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
             this.auth.saveToken(resp.data);
             this.router.navigate(["/main"], { clearHistory: true });
           }else {
+            (new SnackBar()).simple("Invalid User ID / password.");
             this.auth.removeToken();              
         }
          

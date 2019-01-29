@@ -51,7 +51,7 @@ export class DailyOutputComponent implements OnInit {
 
   constructor(private apiser:APIService,
               private barcodeScanner: BarcodeScanner,
-              private navigationService: NavigationService,) {
+              private navigationService: NavigationService) {
      this.fd_date = new Date();
      this.fd_time = new Date();
   }

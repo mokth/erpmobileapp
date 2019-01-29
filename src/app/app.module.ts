@@ -19,16 +19,16 @@ import { MainPageComponent } from './main-page/main-page.component';
 //import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
-import { registerElement } from "nativescript-angular/element-registry";
-import { BarcodeScanner } from "nativescript-barcodescanner";
+//import { registerElement } from "nativescript-angular/element-registry";
+//import { BarcodeScanner } from "nativescript-barcodescanner";
 import { AuthguardService } from "./auth/authguard/auth-guard-service";
 import { ProductionModule } from "./production/production.module";
 import { routing } from "./app-routing.module";
 //registerElement("BarcodeScanner", () => require("nativescript-barcodescanner").BarcodeScannerView);
 
-export function createBarcodeScanner() {
-    return new BarcodeScanner();
-  }
+// export function createBarcodeScanner() {
+//     return new BarcodeScanner();
+//   }
 //registerElement("PullToRefresh", () => require("nativescript-pulltorefresh").PullToRefresh);
 
 // export function tokenGetter() {
@@ -75,7 +75,7 @@ export function createBarcodeScanner() {
         AuthguardService,
         ModalDatetimepicker,
        // BarcodeScanner,
-        { provide: BarcodeScanner, useFactory: (createBarcodeScanner) },
+     //   { provide: BarcodeScanner, useFactory: (createBarcodeScanner) },
         // {provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader}
         
     ],

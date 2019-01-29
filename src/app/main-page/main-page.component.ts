@@ -47,18 +47,21 @@ export class MainPageComponent implements OnInit,AfterViewInit {
   }
 
   onTabMenu(arg){
-    if (arg=="saleslist"){
-      this.navigationService.navigate(['/saleslist']);
-    } else if (arg=="sales"){
-       this.navigationService.navigate(['/sales']);
-    } else if (arg=="cust"){
-        this.navigationService.navigate(['/saleslist/lookcust']);
-    } else if (arg=="item"){
-      this.navigationService.navigate(['/saleslist/sales']);
-    }
-    else if (arg=="daily"){
-      this.navigationService.navigate(['/daily']);
-    }
+      if (arg=="saleslist"){
+        this.navigationService.navigate(['/saleslist']);
+      } else if (arg=="sales"){
+        this.navigationService.navigate(['/sales']);
+      } else if (arg=="cust"){
+          this.navigationService.navigate(['/saleslist/lookcust']);
+      } else if (arg=="item"){
+        this.navigationService.navigate(['/saleslist/lookitem']);
+      }
+      else if (arg=="daily"){
+        this.navigationService.navigate(['/daily']);
+      }
+      else if (arg=="grn"){
+        this.navigationService.navigate(['/grn']);
+      }
       this.drawer.closeDrawer();
     }    
 
