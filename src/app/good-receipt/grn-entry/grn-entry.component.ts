@@ -12,6 +12,7 @@ import 'rxjs/add/operator/debounceTime';
 import { APIService } from '../../core/services/api.service';
 import { NavigationService } from '../../core/services/navigation.service';
 import { splinObject, GRNPOItem, GRNReceive } from '../../core/model';
+import { AuthService } from '../../core/services/auth-service';
 
 
 @Component({
@@ -51,13 +52,17 @@ export class GrnEntryComponent
   fd_poqty:number;
   fd_balance:number;
   fd_recqty:number;
-  
+  fd_ttlrec:number;
+
   $qtyListener:any;
   isRecQtyValid:boolean;
-
+  
+  userid:string;
   constructor(private apiser:APIService,
+              private auth:AuthService,
               private barcodeScanner: BarcodeScanner,
               private navigationService: NavigationService) {
+     this.userid = auth.getUserID();
   }
  
   ngAfterViewInit(): void {
@@ -101,7 +106,14 @@ export class GrnEntryComponent
   }
   
   ngOnDestroy(): void {
-    this.$qtyListener.unsubscribe();
+     try{
+      if (this.$qtyListener){
+        console.log('qtyListener unsubscribe');
+        this.$qtyListener.unsubscribe();
+      }
+    }catch(e){
+      console.log(e);
+    }
   }
 
   pickDate() {
@@ -166,6 +178,7 @@ export class GrnEntryComponent
                this.fd_puruom =x.purchaseUOM,
                this.fd_balance =x.balanceQty,
                this.fd_line = x.line,
+               this.fd_ttlrec = x.receivedQty,
                this.poitem=x            
             });
        this.receiptQty.nativeElement.focus();
@@ -187,28 +200,126 @@ export class GrnEntryComponent
   }
 
   OnScan(){
-
+    //[PONo]+'+'+[PORelNo]+'+'+[VendCode]+'+'+[ICode]+'+'+[Line]+'+'+[POQty]+'+'+[PurchaseUOM]
+    this.barcodeScanner.scan({
+      formats: "QR_CODE, EAN_13",
+      cancelLabel: "EXIT. Also, try the volume buttons!", // iOS only, default 'Close'
+      cancelLabelBackgroundColor: "#333333", // iOS only, default '#000000' (black)
+      message: "Use the volume buttons for extra light", // Android only, default is 'Place a barcode inside the viewfinder rectangle to scan it.'
+      showFlipCameraButton: true,   // default false
+      preferFrontCamera: false,     // default false
+      showTorchButton: true,        // default false
+      beepOnScan: true,             // Play or Suppress beep on scan (default true)
+      torchOn: false,               // launch with the flashlight on (default false)
+      closeCallback: () => { console.log("Scanner closed")}, // invoked when the scanner was closed (success or abort)
+      resultDisplayDuration: 500,   // Android only, default 1500 (ms), set to 0 to disable echoing the scanned text
+    // orientation: orientation,     // Android only, default undefined (sensor-driven orientation), other options: portrait|landscape
+      openSettingsIfPermissionWasPreviouslyDenied: true // On iOS you can send the user to the settings app if access was previously denied
+    }).then((result) => {
+    // Note that this Promise is never invoked when a 'continuousScanCallback' function is provided
+        console.log(result); 
+        this.checkValidScanResult(result.text);        
+    }, (errorMessage) => {
+        console.log("No scan. " + errorMessage);
+        this.barcodeScanner.stop();
+    }); 
   }
+
+  checkValidScanResult(scanText:string){
+    let data= scanText.split('+');
+    if (data.length>5){        
+      let pohdr = this.polist.filter
+                       ( x=>x. poNo==data[0] &&x.poRelNo ==data[1]);
+      if (pohdr.length>0){                          
+         console.log('found PO');
+         console.log(pohdr[0]);
+         this.fd_pono = pohdr[0].poNo;
+         this.fd_relno = pohdr[0].poRelNo;  
+         this.fd_vcode = pohdr[0].vendCode;
+         this.fd_vname = pohdr[0].vendName;
+         
+         let podtl= null;
+         if (this.poitemlist){  
+               podtl = this.poitemlist.find
+                       (x=>x.poNo==pohdr[0].poNo &&
+                           x.poRelNo == pohdr[0].poRelNo &&
+                           x.iCode== data[3] &&
+                           x.line == data[4] );
+         }
+         if (podtl){
+             //use existing poitem
+             this.displyItem(podtl);
+         }else {
+           //not found fetch from server
+           this.getPOItemsFrScan(pohdr[0].poNo,pohdr[0].poRelNo,data);
+         }
+      }       
   
+    }
+   }
+  
+   getPOItemsFrScan(pono,relno,data){
+    this.listpoitems=[];
+   // console.log('get po item');
+    this.apiser.getPOItems(pono,relno)
+        .subscribe(resp=>{
+           this.poitemlist= resp;
+           this.poitemlist.map(x=>{
+              this.listpoitems.push({
+                  title:x.line+'.'+x.iCode,
+              });            
+           });
+           let podtl = this.poitemlist.find
+                       (x=>x.poNo==pono &&
+                           x.poRelNo ==relno &&
+                           x.iCode== data[3] &&
+                           x.line == data[4] );
+           this.displyItem(podtl);        
+        });
+  }
+
+  displyItem(podtl){
+    try{
+     if (podtl){
+        console.log('found item') ;        
+        this.fd_icode = podtl.iCode;         
+        this.fd_idesc= podtl.iDes;
+        this.fd_poqty = podtl.poPurQty;
+        this.fd_puruom =podtl.purchaseUOM;
+        this.fd_balance =podtl.balanceQty;
+        this.fd_line = podtl.line;
+        this.fd_ttlrec = podtl.receivedQty;
+        this.poitem=podtl;
+     }else {
+       console.log('item not found');
+     }
+    }catch(e) {
+       console.log(e);
+    }
+  }
+
   onValidRecQty(qtyrec:number){
     const tolerance = +this.poitem.tolerance;
+    //received but not posted yet
+    const receivedQty = this.poitem.receivedQty; 
+    const ttlRecv = qtyrec+ receivedQty;
     let tolqty=0;
     if (tolerance>0){
        tolqty = Math.trunc( this.fd_poqty * (tolerance/100));
     }
     let canRecQty =  this.fd_balance+ tolqty;
-    return (qtyrec <= canRecQty);
+    return (ttlRecv <= canRecQty);
   }
 
   OnSaveTap(e){
     if (this.fd_recqty==0 ){
-      this.isRecQtyValid=false;
+      (new SnackBar()).simple("Invalid Qty...");
       return;
     }
     let item:GRNReceive= this.populateGRNReceive();
     this.apiser.postGRNReceipt(item).subscribe(resp=>{
       console.log(resp);
-      if (resp.ok=="yes"){
+      if (resp.save=="yes"){
         (new SnackBar()).simple("Successfully uploaded...");
         this.resetInput();
       }else{
@@ -234,7 +345,7 @@ export class GrnEntryComponent
   
   populateGRNReceive():GRNReceive{
      let item:GRNReceive = new GRNReceive();
-     item.createdBy ='MOk';
+     item.createdBy =this.userid;
      item.dateRec = this.fd_date;
      item.dono = this.fd_dono;
      item.iCode = this.fd_icode;

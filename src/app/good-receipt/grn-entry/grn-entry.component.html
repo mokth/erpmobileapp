@@ -34,8 +34,9 @@
                     </StackLayout>
                 </GridLayout> 
                     <GridLayout width="50%">
-                        <StackLayout class="input-field">
-                                <Label text="DO No." class="label font-weight-bold m-b-5">
+                        <StackLayout class="input-field input-field2">
+                                <Label text="DO No.*" 
+                                 class="label font-weight-bold m-b-5">
                                 </Label>                            
                                <GridLayout columns="*,auto" >
                                     <TextField col="0" 
@@ -52,10 +53,10 @@
             </StackLayout>
             <StackLayout row="2" orientation="horizontal"  width="100%">
                     <GridLayout  width="50%">
-                        <StackLayout class="input-field">
+                        <StackLayout class="input-field input-field2">
                             <Label text="PO No." class="label font-weight-bold m-b-5"></Label>
                             <GridLayout columns="*,auto">
-                                    <TextField col="0" 
+                                    <TextField  
                                                #pono="ngModel"
                                                [(ngModel)]="fd_pono" 
                                                required
@@ -74,7 +75,7 @@
                         <StackLayout class="input-field">                    
                                 <Label text="Vendor Code" class="label font-weight-bold m-b-5"></Label>
                                 <GridLayout columns="*">
-                                        <TextField col="0" 
+                                        <TextField
                                            [text]="fd_vcode" 
                                            editable="false" 
                                            class="input" >                                
@@ -97,8 +98,8 @@
             </StackLayout>
             <StackLayout row="4" orientation="horizontal"  width="100%">
                     <GridLayout  width="50%">
-                        <StackLayout class="input-field">
-                            <Label text="Item Code" class="label font-weight-bold m-b-5"></Label>
+                        <StackLayout class="input-field input-field2">
+                            <Label text="Item Code*" class="label font-weight-bold m-b-5"></Label>
                             <GridLayout columns="*,auto">
                                     <TextField col="0" 
                                                #icode="ngModel"
@@ -114,10 +115,21 @@
                             </GridLayout>
                             <StackLayout class="hr-light"></StackLayout>
                         </StackLayout>
-                    </GridLayout>    
-                    <GridLayout  width="50%">
+                    </GridLayout>  
+                    <GridLayout  width="30%">
+                        <StackLayout class="input-field">
+                            <Label text="PO Qty" class="label font-weight-bold m-b-5"></Label>
+                            <TextField col="0" 
+                                       text="{{fd_poqty}}"
+                                       editable="false" 
+                                       class="input" > 
+                            </TextField>                            
+                                <StackLayout class="hr-light"></StackLayout>
+                            </StackLayout>
+                     </GridLayout>      
+                    <GridLayout  width="30%">
                         <StackLayout class="input-field">                    
-                                <Label text="Receive UOM" class="label font-weight-bold m-b-5"></Label>
+                                <Label text="UOM" class="label font-weight-bold m-b-5"></Label>
                                 <GridLayout columns="*">
                                         <TextField col="0" 
                                            [text]="fd_puruom" 
@@ -143,20 +155,20 @@
             <StackLayout row="6" orientation="horizontal"  width="100%">
                 <GridLayout  width="30%">
                     <StackLayout class="input-field">
-                        <Label text="PO Qty" class="label font-weight-bold m-b-5"></Label>
-                        <TextField col="0" 
-                                   text="{{fd_poqty}}"
-                                   editable="false" 
-                                   class="input" > 
-                        </TextField>                            
+                        <Label text="Balance" class="label font-weight-bold m-b-5"></Label>
+                            <TextField col="0" 
+                                       text="{{fd_balance}}"
+                                       editable="false" 
+                                       class="input" > 
+                            </TextField>                                   
                             <StackLayout class="hr-light"></StackLayout>
                         </StackLayout>
                  </GridLayout>    
                  <GridLayout  width="30%">
                         <StackLayout class="input-field">
-                            <Label text="Balance" class="label font-weight-bold m-b-5"></Label>
+                            <Label text="Ttl Received" class="label font-weight-bold m-b-5"></Label>
                             <TextField col="0" 
-                                       text="{{fd_balance}}"
+                                       text="{{fd_ttlrec}}"
                                        editable="false" 
                                        class="input" > 
                             </TextField>                            
@@ -164,8 +176,9 @@
                             </StackLayout>
                  </GridLayout>    
                  <GridLayout  width="40%">
-                    <StackLayout class="input-field">                    
-                        <Label text="Receive Qty" class="label font-weight-bold m-b-5"></Label>
+                    <StackLayout class="input-field input-field2">                    
+                        <Label text="Receive Qty*" 
+                               class="label font-weight-bold m-b-5"></Label>
                         <GridLayout columns="*">
                             <TextField col="0" 
                                        #revqrt
@@ -193,14 +206,12 @@
                             [ngClass]="{'btn-primary': dono1.valid && 
                                                        pono.valid &&  
                                                        icode.valid && 
-                                                       revqrt2.valid && 
-                                                       isRecQtyValid 
+                                                       revqrt2.valid 
                                         }"
                             [isEnabled]="dono1.valid && 
                                          pono.valid &&  
                                          icode.valid && 
-                                         revqrt2.valid && 
-                                         isRecQtyValid" 
+                                         revqrt2.valid" 
                             >
                     </Button>
                     <Button class="btn-sm text-danger btn-active" 

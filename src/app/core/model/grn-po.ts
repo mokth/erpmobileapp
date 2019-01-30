@@ -16,6 +16,8 @@ export interface GRNPOItem {
     poQty:number;
     poPurQty:number;
     recvQty:number;
+    receivedQty:number;
+    //recievedQty:number;
     balanceQty:number;
     packSz:number;
     stdUOM:string;

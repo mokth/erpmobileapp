@@ -62,6 +62,9 @@ export class MainPageComponent implements OnInit,AfterViewInit {
       else if (arg=="grn"){
         this.navigationService.navigate(['/grn']);
       }
+      else if (arg=="Logout"){
+        this.onLogOut();
+      }
       this.drawer.closeDrawer();
     }    
 
