@@ -1,0 +1,139 @@
+<ActionBar title="CYCLE COUNT">
+</ActionBar>
+<Page class="page" #myContainer>
+    <StackLayout orientation="vertical" class="form">
+        <GridLayout rows="auto,auto,auto,auto,auto,*" width="100%">
+            <StackLayout row="0">
+                <Label [text]="iconQR" (tap)="OnScan()" class="fas faclass-barcode"></Label>
+            </StackLayout>
+            <StackLayout row="1" orientation="horizontal" width="100%">
+                <GridLayout width="50%">
+                    <StackLayout class="input-field">
+                        <Label text="DOC NO." class="label font-weight-bold m-b-5"></Label>
+                        <GridLayout columns="*,auto">
+                            <TextField class="input"
+                                       editable="false" 
+                                       #cycid="ngModel"
+                                       [(ngModel)]="fd_cycid" 
+                                       required 
+                                       >
+                            </TextField>
+                        </GridLayout>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+                </GridLayout>
+                <GridLayout width="50%">
+                    <StackLayout class="input-field">
+                        <Label text="ITEM CODE" class="label font-weight-bold m-b-5"></Label>
+                        <GridLayout columns="*,auto">
+                            <TextField class="input"
+                                       editable="false" 
+                                       #icode="ngModel"
+                                       [(ngModel)]="fd_icode" 
+                                       required 
+                                       >
+                            </TextField>
+                        </GridLayout>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+                </GridLayout>
+            </StackLayout>
+            <StackLayout row="2" orientation="horizontal" width="100%">
+                <StackLayout class="input-field" width="100%">
+                    <Label text="DESCRIPTION" class="label font-weight-bold m-b-5"></Label>
+                    <TextField class="input"
+                               [text]="fd_idesc" 
+                               editable="false">
+                    </TextField>
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout row="3" orientation="horizontal" width="100%">
+                <GridLayout width="50%">
+                    <StackLayout class="input-field">
+                        <Label text="WAREHOUSE" class="label font-weight-bold m-b-5"></Label>
+                        <GridLayout columns="*,auto">
+                            <TextField class="input" 
+                               editable="false" 
+                               required 
+                               #whcode="ngModel"
+                               [(ngModel)]="fd_whcode" 
+                               >
+                            </TextField>
+                        </GridLayout>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+                </GridLayout>
+                <GridLayout width="50%">
+                    <StackLayout class="input-field">
+                        <Label text="LOT NO" class="label font-weight-bold m-b-5"></Label>
+                        <GridLayout columns="*,auto">
+                            <TextField 
+                                    class="input" 
+                                    editable="false" 
+                                    #lotno="ngModel"
+                                    [(ngModel)]="fd_lotno" 
+                                    required 
+                                    >
+                            </TextField>
+                        </GridLayout>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+                </GridLayout>
+            </StackLayout>
+            <StackLayout row="4" orientation="horizontal" width="100%">
+                <GridLayout width="50%">
+                    <StackLayout class="input-field">
+                        <Label text="LOC CODE" class="label font-weight-bold m-b-5"></Label>
+                        <GridLayout columns="*,auto">
+                            <TextField class="input" 
+                                      editable="false" 
+                                      required 
+                                      text="{{fd_loccode}}">
+                            </TextField>
+                        </GridLayout>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+                </GridLayout>
+                <GridLayout width="50%">
+                    <StackLayout class="input-field  input-field2">
+                        <Label text="PYHISICAL QTY" class="label font-weight-bold m-b-5"></Label>
+                        <GridLayout columns="*,auto">
+                            <TextField class="input" 
+                                       #qty="ngModel"
+                                       [(ngModel)]="fd_qty" 
+                                       required 
+                                       keyboardType="number" 
+                                       text="{{fd_qty}}">
+                            </TextField>
+                        </GridLayout>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+                </GridLayout>
+
+            </StackLayout>
+            <StackLayout row="5" orientation="horizontal" width="100%">
+                <Button class="btn-sm btn-active" 
+                        id="btnSave" 
+                        text="Save" 
+                        (tap)="OnSaveTap($event)" 
+                        width="50%" 
+                        height="40"
+                        [ngClass]="{'btn-primary': cycid.valid && 
+                                                   icode.valid &&  
+                                                   whcode.valid &&                                                    
+                                                   qty.valid
+                                    }"
+                        [isEnabled]="cycid.valid && 
+                                     icode.valid &&  
+                                     whcode.valid && 
+                                     qty.valid" 
+                        >
+                </Button>
+                <Button class="btn-sm text-danger btn-active" id="btnCancel" text="Cancel" (tap)="OnCancelTap($event)"
+                    width="50%" height="40">
+                </Button>
+            </StackLayout>
+        </GridLayout>
+    </StackLayout>
+</Page>

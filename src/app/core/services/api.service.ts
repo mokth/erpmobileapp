@@ -6,7 +6,7 @@ import { AuthService } from './auth-service';
 import { APP_CONFIG } from '../../config/app-config.module';
 import { AppConfig, DailyInput, DailyWorkOrder, 
          RefCode, CustProfileLight, ItemMaster, 
-         SalesOder, GRNPOInfo, GRNPOItem, GRNReceive } 
+         SalesOder, GRNPOInfo, GRNPOItem, GRNReceive, CycleCountItem } 
          from '../model';
 
 
@@ -100,5 +100,41 @@ export class APIService {
     let body: string = JSON.stringify(grnrec);
     const url = this.config.apiEndpoint + "api/grn/receipt";
     return this.http.post(url, body, { headers: headers });
+  }
+
+  postIsCycleCountValid(item:CycleCountItem):Observable<any>{
+    let headers = new HttpHeaders()
+    .set('Content-Type',"application/json")
+    .set('Authorization', this.auth.tokenGetter());
+    let body: string = JSON.stringify(item);
+    const url = this.config.apiEndpoint + "api/cyclecount/check";
+    return this.http.post(url, body, { headers: headers });
+  }
+
+  postIsCycleCountValidEx(item:CycleCountItem):Observable<any>{
+    let headers = new HttpHeaders()
+    .set('Content-Type',"application/json")
+    .set('Authorization', this.auth.tokenGetter());
+    let body: string = JSON.stringify(item);
+    const url = this.config.apiEndpoint + "api/cyclecount/check2";
+    return this.http.post(url, body, { headers: headers });
+  }
+
+  putCycleCountItem(item:CycleCountItem):Observable<any>{
+    let headers = new HttpHeaders()
+    .set('Content-Type',"application/json")
+    .set('Authorization', this.auth.tokenGetter());
+    let body: string = JSON.stringify(item);
+    const url = this.config.apiEndpoint + "api/cyclecount/update";
+    return this.http.put(url, body, { headers: headers });
+  }
+
+  putCycleCountItemEx(item:CycleCountItem):Observable<any>{
+    let headers = new HttpHeaders()
+    .set('Content-Type',"application/json")
+    .set('Authorization', this.auth.tokenGetter());
+    let body: string = JSON.stringify(item);
+    const url = this.config.apiEndpoint + "api/cyclecount/update2";
+    return this.http.put(url, body, { headers: headers });
   }
 }

@@ -57,10 +57,16 @@ export class MainPageComponent implements OnInit,AfterViewInit {
         this.navigationService.navigate(['/saleslist/lookitem']);
       }
       else if (arg=="daily"){
-        this.navigationService.navigate(['/daily']);
+        this.navigationService.navigate(['/daily'],{clearHistory:true});
       }
       else if (arg=="grn"){
-        this.navigationService.navigate(['/grn']);
+        this.navigationService.navigate(['/grn'],{clearHistory:true});
+      }
+      else if (arg=="cycle"){
+        this.navigationService.navigate(['/grn/cycle'],{clearHistory:true});
+      }
+      else if (arg=="cyclenolot"){
+        this.navigationService.navigate(['/grn/cyclenolot'],{clearHistory:true});
       }
       else if (arg=="Logout"){
         this.onLogOut();
