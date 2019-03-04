@@ -4,14 +4,18 @@ import { Routes } from "@angular/router";
 import { LoginComponent } from "./auth/login/login.component";
 import { MainPageComponent } from "./main-page/main-page.component";
 import { AuthguardService } from "./auth/authguard/auth-guard-service";
+import { ItemMasterComponent } from "./item-master/item/item-master.component";
 
 export const routes: Routes = [
     { path: "", redirectTo: "/login", pathMatch: "full" },
     { path: "login", component: LoginComponent },
     { path: "saleslist",canActivate: [AuthguardService],
             loadChildren: "./salesorder/salesorder.module#SalesorderModule"},
-    { path: "daily",canActivate: [AuthguardService],
-            loadChildren: "./production/production.module#ProductionModule"},
+    { path: "master",canActivate: [AuthguardService],
+             loadChildren: "./item-master/item-master.module#ItemMasterModule"}, 
+     { path: "daily",canActivate: [AuthguardService],
+             loadChildren: "./production/production.module#ProductionModule"},
+   //{ path: "daily",canActivate: [AuthguardService],component:ItemMasterComponent},
     { path: "grn",canActivate: [AuthguardService],
             loadChildren: "./good-receipt/good-receipt.module#GoodReciptModule"},
     { path: "main", component: MainPageComponent,canActivate: [AuthguardService] }

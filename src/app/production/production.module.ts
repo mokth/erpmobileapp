@@ -1,8 +1,9 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NativeScriptCommonModule } from 'nativescript-angular/common';
-import { DailyOutputComponent } from './daily-output/daily-output.component';
 import { NativeScriptFormsModule, NativeScriptRouterModule } from 'nativescript-angular';
+
 import { BarcodeScanner } from "nativescript-barcodescanner";
+import { DailyOutputComponent } from './daily-output/daily-output.component';
 import { prdroutes } from './production-routes';
 
 export function createBarcodeScanner() {

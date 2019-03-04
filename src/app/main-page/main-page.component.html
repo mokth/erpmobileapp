@@ -1,4 +1,4 @@
-<Page>
+<Page class="layoutBackgroundImageURL">
 <ActionBar title="WINCOM ERP MOBILE">
     <ActionItem (tap)="showSlideout()" ios.position="right">
         <StackLayout class="navbar_image_wrapper" ios:horizontalAlignment="right">
@@ -10,7 +10,7 @@
 
 <RadSideDrawer (drawerClosing)="onDrawerClosing()">
     <StackLayout tkDrawerContent>
-        <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,*,100" class="side-drawer-panel">
+        <GridLayout rows="auto,auto,auto,auto,auto,auto,*,100" class="side-drawer-panel">
             <StackLayout row="0">               
                <Label [text]="iconlogo" (tap)="onCloseMenu($event)" class="icon menu-container"></Label>
                 <!-- <Image src="res://rpslogo" class="slide-out-img" stretch="aspectFit"></Image> -->
@@ -30,23 +30,23 @@
              <StackLayout row="5" class="menu-container">
                 <Label text="Cycle-Count (No Lot)" (tap)="onTabMenu('cyclenolot')"></Label>
              </StackLayout>
-            <StackLayout row="6" class="menu-container">
+            <!-- <StackLayout row="6" class="menu-container">
                 <Label text="Customer" (tap)="onTabMenu('cust')"></Label>
-             </StackLayout>
-             <StackLayout row="7" class="menu-container">
+             </StackLayout> -->
+             <StackLayout row="6" class="menu-container">
                 <Label text="Item Codes" (tap)="onTabMenu('item')"></Label>
              </StackLayout>
-             <StackLayout row="8" class="menu-container">
+             <StackLayout row="7" class="menu-container">
                 <Label text=""></Label>
              </StackLayout>
-            <StackLayout row="9" class="menu-container">
+            <StackLayout row="8" class="menu-container">
                 <Button text="Logout" (tap)="onLogOut()" class="button-item"></Button>
             </StackLayout>
           
         </GridLayout>
     </StackLayout>
 
-    <StackLayout tkMainContent>
+    <StackLayout tkMainContent >
             <FlexboxLayout height="400" col="1" row="0" verticalAlignment="middle" alignItems="center" justifyContent="center">
               
             

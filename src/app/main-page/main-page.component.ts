@@ -48,25 +48,72 @@ export class MainPageComponent implements OnInit,AfterViewInit {
 
   onTabMenu(arg){
       if (arg=="saleslist"){
-        this.navigationService.navigate(['/saleslist']);
+        this.navigationService.navigate(['/saleslist'],
+        { animated: true, 
+          transition: 
+          {
+              name: 'flip', 
+              duration: 1000, 
+              curve: 'linear'
+          }
+        });        
       } else if (arg=="sales"){
         this.navigationService.navigate(['/sales']);
       } else if (arg=="cust"){
           this.navigationService.navigate(['/saleslist/lookcust']);
       } else if (arg=="item"){
-        this.navigationService.navigate(['/saleslist/lookitem']);
+        this.navigationService.navigate(['/master']);
       }
       else if (arg=="daily"){
-        this.navigationService.navigate(['/daily'],{clearHistory:true});
+        this.navigationService.navigate(['/daily'],
+        {
+           clearHistory:true,
+           animated: true, 
+            transition: 
+            {
+                name: 'flip', 
+                duration: 1000, 
+                curve: 'linear'
+            }  
+         });
       }
       else if (arg=="grn"){
-        this.navigationService.navigate(['/grn'],{clearHistory:true});
+        this.navigationService.navigate(['/grn'],
+        {
+           clearHistory:true,
+           animated: true, 
+           transition: 
+           {
+               name: 'flip', 
+               duration: 1000, 
+               curve: 'linear'
+           }  
+          });
       }
       else if (arg=="cycle"){
-        this.navigationService.navigate(['/grn/cycle'],{clearHistory:true});
+        this.navigationService.navigate(['/grn/cycle'],{
+          clearHistory:true,
+          animated: true, 
+          transition: 
+          {
+              name: 'flip', 
+              duration: 1000, 
+              curve: 'linear'
+          }  
+        });
       }
       else if (arg=="cyclenolot"){
-        this.navigationService.navigate(['/grn/cyclenolot'],{clearHistory:true});
+        this.navigationService.navigate(['/grn/cyclenolot'],
+        {
+          clearHistory:true,
+          animated: true, 
+          transition: 
+          {
+              name: 'flip', 
+              duration: 1000, 
+              curve: 'linear'
+          }  
+        });
       }
       else if (arg=="Logout"){
         this.onLogOut();
@@ -76,7 +123,16 @@ export class MainPageComponent implements OnInit,AfterViewInit {
 
     onLogOut(){
       this.auth.signOut();      
-      this.navigationService.navigate(['/login'],{clearHistory:true});
+      this.navigationService.navigate(['/login'],{
+        clearHistory:true,
+        animated: true, 
+        transition: 
+        {
+            name: 'flip', 
+            duration: 1000, 
+            curve: 'linear'
+        }  
+      });
      
     }
 }

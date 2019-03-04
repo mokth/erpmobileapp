@@ -51,6 +51,12 @@
     animation-fill-mode: forwards;
 }
 
+.layoutBackgroundImageURL{
+    background-image: url("res://mainlogo");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+} 
 @keyframes openDrawer {
     0% {
         opacity: 1;
@@ -132,6 +138,8 @@
     animation-name: moveInLeft;
     animation-duration: 1s;
     animation-timing-function: ease-out;
+    z-index: 100;
+    opacity: 1;
 }
 
 .sub-title{
@@ -143,4 +151,6 @@
     color:blue;
     letter-spacing: 0.1px;
     animation: moveInRight 1s ease-out;
+    z-index: 100;
+    opacity: 1;
 }

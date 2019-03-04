@@ -1,6 +1,10 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
 
 import { AuthService } from './auth-service';
 import { APP_CONFIG } from '../../config/app-config.module';
@@ -26,6 +30,10 @@ export class APIService {
      return headers
   }
 
+  getERPURL():string{
+    return this.config.erpEndpoint;
+  }
+
   getCustomer(): Observable<CustProfileLight> {
     const userid =this.auth.getUserID();
     const url = this.config.apiEndpoint + "api/customer/"+userid;
@@ -37,6 +45,22 @@ export class APIService {
     return this.http.get<ItemMaster>(url,{headers:this.getAuthHeader()});
   }
 
+  searchitem(item: Observable<string>) {
+    
+    return item.debounceTime(400)
+               .distinctUntilChanged()
+               .switchMap(term => this.searchItemEntries(term));
+  }
+
+  searchItemEntries(term) {
+    if(term==""){
+      return null;
+    }
+    let queryUrl: string = '?item='+term;
+    const userid =this.auth.getUserID();
+    const url = this.config.apiEndpoint + "api/itemmaster/search"+queryUrl;
+    return this.http.get<ItemMaster>(url,{headers:this.getAuthHeader()});
+  }
   getSalesOrder(): Observable<SalesOder> {
     const userid =this.auth.getUserID();
     const url = this.config.apiEndpoint + "api/salesorder/"+userid;

@@ -6,6 +6,7 @@ export type AppType = 'Ns' | 'Web';
 export interface AppConfig {
     appType: AppType;
     apiEndpoint: string;
+    erpEndpoint: string;
     loggingEnabled: boolean;
   //  loggingLevel: LoggingLevelEnum;
    // storageServiceClass: TypeProvider;

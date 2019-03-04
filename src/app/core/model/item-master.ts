@@ -10,4 +10,5 @@ export interface ItemMaster
      stdPackSize :number;
      defWarehouse :string;
      barcode :string;
+     imageUrl:string;
 }
