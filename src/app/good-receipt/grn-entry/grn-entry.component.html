@@ -1,6 +1,6 @@
 <ActionBar title="Good Receipt">
 </ActionBar>
-<Page class="page" #myContainer>
+<Page class="page" #myContainerGR>
     <StackLayout orientation="vertical" class="form">
         <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto" width="100%">
             <StackLayout row="0">
@@ -9,7 +9,7 @@
                         class="fas faclass-barcode"></Label>
             </StackLayout>  
             <FilterableListpicker
-                #spinWork blur="light" 
+                #spinWorkGR blur="light" 
                 hintText="Type to filter..." 
                 [source]="listitems"                 
                 (canceled)="cancelFilterableList($event)" 

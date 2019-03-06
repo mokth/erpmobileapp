@@ -8,6 +8,7 @@ import { NavigationService } from '../../../core/services/navigation.service';
 import { DataTable } from '../../../core/enums';
 import { Subject } from 'rxjs';
 import { TextField } from 'ui/text-field';
+import * as application from 'tns-core-modules/application';
 
 
 @Component({
@@ -18,6 +19,8 @@ import { TextField } from 'ui/text-field';
 
 export class ItemListComponent implements OnInit {
 	iconval: string;
+	iconHome:string;
+
 	search: string;
 	searchstr: string;
 	items: any;
@@ -36,7 +39,12 @@ export class ItemListComponent implements OnInit {
 
 	ngOnInit() {
 		this.iconval = String.fromCharCode(0xe986);
-		
+		this.iconHome = String.fromCharCode(0xf015);
+		if (application.android) {
+			application.android.on(application.AndroidApplication.activityBackPressedEvent, (args: any) => {
+			   args.cancel = false;
+			});
+		  }
 	}
 	// ngAfterViewInit() {
 
@@ -96,6 +104,8 @@ export class ItemListComponent implements OnInit {
 		);
 	}
 
-
+   onBack(e){
+	   this.navigationService.back();
+   }
 
 }

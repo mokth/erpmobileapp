@@ -1,18 +1,15 @@
-import * as ModalPicker from 'nativescript-modal-datetimepicker';
-import { SnackBar } from 'nativescript-snackbar';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { SnackBar } from 'nativescript-snackbar';
 import { BarcodeScanner } from 'nativescript-barcodescanner';
-import { Observable } from 'rxjs/Observable';
-
 import { fromEvent } from 'rxjs';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-
+import {debounceTime } from 'rxjs/operators';
+import * as ModalPicker from 'nativescript-modal-datetimepicker';
 
 import { APIService } from '../../core/services/api.service';
 import { NavigationService } from '../../core/services/navigation.service';
 import { splinObject, GRNPOItem, GRNReceive } from '../../core/model';
 import { AuthService } from '../../core/services/auth-service';
+import * as application from 'tns-core-modules/application';
 
 
 @Component({
@@ -25,8 +22,8 @@ import { AuthService } from '../../core/services/auth-service';
 export class GrnEntryComponent 
  implements OnInit,AfterViewInit,OnDestroy {
     
-  @ViewChild('spinWork') spinWork: ElementRef;
-  @ViewChild('myContainer') myContainer: ElementRef;
+  @ViewChild('spinWorkGR') spinWork: ElementRef;
+  @ViewChild('myContainerGR') myContainer: ElementRef;
   @ViewChild("revqrt") receiptQty: ElementRef;
   @ViewChild("dono") dono: ElementRef;
 
@@ -72,8 +69,9 @@ export class GrnEntryComponent
 
     this.$qtyListener= fromEvent(
        this.receiptQty.nativeElement, 'textChange')
-       .debounceTime(400)
-       .subscribe((event:any) => {
+       .pipe(
+         debounceTime(400)
+        ) .subscribe((event:any) => {
             if (this.fd_balance){
               const qty = +event.value;
               if (!this.onValidRecQty(qty)){
@@ -103,6 +101,12 @@ export class GrnEntryComponent
             }
           });
         });
+       //disable device back button on Android
+      if (application.android) {
+          application.android.on(application.AndroidApplication.activityBackPressedEvent, (args: any) => {
+             args.cancel = true;
+          });
+      }
   }
   
   ngOnDestroy(): void {

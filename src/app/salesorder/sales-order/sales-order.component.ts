@@ -14,6 +14,7 @@ import { NavigationService } from '../../core/services/navigation.service';
 import { UtilService, APIService } from '../../core/services';
 import { SalesOder, SOItem, CustProfileLight, ItemMaster } from '../../core/model';
 import { DataTable } from '../../core/enums';
+import * as application from 'tns-core-modules/application';
 
 @Component({
   selector: 'ns-sales-order',
@@ -105,6 +106,12 @@ export class SalesOrderComponent implements OnInit,OnDestroy {
             this.setItemDetail();
         }
     });
+
+    if (application.android) {
+      application.android.on(application.AndroidApplication.activityBackPressedEvent, (args: any) => {
+         args.cancel = true;
+      });
+    }
   }
   
   onItemLoading(args: ListViewEventData){

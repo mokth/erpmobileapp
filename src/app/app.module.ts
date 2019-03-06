@@ -26,6 +26,10 @@ import { ProductionModule } from "./production/production.module";
 import { routing } from "./app-routing.module";
 import { ItemMasterModule } from "./item-master/item-master.module";
 import { SettingComponent } from "./core/settings/setting/setting.component";
+
+import {registerElement} from "nativescript-angular/element-registry";
+registerElement("FilterableListpicker", () => require("nativescript-filterable-listpicker").FilterableListpicker);
+
 //registerElement("BarcodeScanner", () => require("nativescript-barcodescanner").BarcodeScannerView);
 
 // export function createBarcodeScanner() {

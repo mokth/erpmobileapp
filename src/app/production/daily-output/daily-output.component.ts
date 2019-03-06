@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import {registerElement} from "nativescript-angular/element-registry";
+
 
 import * as ModalPicker from 'nativescript-modal-datetimepicker';
 import { SnackBar } from 'nativescript-snackbar';
@@ -9,9 +9,9 @@ import { NavigationService } from '../../core/services/navigation.service';
 
 import { RefCode,DailyInput,splinObject } from '../../core/model';
 
-
 import { BarcodeScanner } from 'nativescript-barcodescanner';
-registerElement("FilterableListpicker", () => require("nativescript-filterable-listpicker").FilterableListpicker);
+import * as application from 'tns-core-modules/application';
+
 
 @Component({
   selector: 'ns-daily-output',
@@ -84,6 +84,12 @@ export class DailyOutputComponent implements OnInit {
             })
          }
       });
+
+      if (application.android) {
+        application.android.on(application.AndroidApplication.activityBackPressedEvent, (args: any) => {
+           args.cancel = true;
+        });
+      }
   }
 
   cancelFilterableList(e) {

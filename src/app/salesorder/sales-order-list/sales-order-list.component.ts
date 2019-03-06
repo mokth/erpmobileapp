@@ -6,6 +6,7 @@ import { UtilService, APIService } from '../../core/services';
 import { ListViewEventData } from 'nativescript-ui-listview';
 import { Color } from 'tns-core-modules/color/color';
 import { NavigationService } from "../../core/services/navigation.service";
+import * as application from 'tns-core-modules/application';
 
 @Component({
   selector: 'ns-sales-order-list',
@@ -32,6 +33,11 @@ export class SalesOrderListComponent implements OnInit {
       this.orderlist = resp;     
       this.isBusy=false;
     });   
+    if (application.android) {
+      application.android.on(application.AndroidApplication.activityBackPressedEvent, (args: any) => {
+         args.cancel = true;
+      });
+    }
   }
   
   onItemLoading(args: ListViewEventData){

@@ -6,6 +6,7 @@ import { AuthService } from '../../core/services/auth-service';
 import { NavigationService } from '../../core/services/navigation.service';
 import { CycleCountItem } from '../../core/model';
 import { SnackBar } from 'nativescript-snackbar';
+import * as application from 'tns-core-modules/application';
 
 @Component({
   selector: 'ns-cycle-count-nolot',
@@ -39,6 +40,11 @@ export class CycleCountNoLotComponent implements OnInit {
   ngOnInit() {
     this.item = new CycleCountItem();
     this.iconQR= String.fromCharCode(0xf029);
+    if (application.android) {
+      application.android.on(application.AndroidApplication.activityBackPressedEvent, (args: any) => {
+         args.cancel = true;
+      });
+    }
   }
   
   OnScan(){

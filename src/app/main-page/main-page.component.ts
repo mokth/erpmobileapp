@@ -1,15 +1,10 @@
 import { Component, OnInit, ViewChild, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular';
 import { RadSideDrawer, SideDrawerLocation } from 'nativescript-ui-sidedrawer';
-//import {screen} from "platform"
 
 import { NavigationService } from '../core/services/navigation.service';
 import { AuthService } from '../core/services/auth-service';
-//import { AndroidApplication, AndroidActivityBackPressedEventData } from 'tns-core-modules/application/application';
-//import * as application from "tns-core-modules/application";
-var frameModule = require("ui/frame");
-import {Page} from "ui/page";
-
+import * as application from 'tns-core-modules/application';
 
 
 @Component({
@@ -37,7 +32,12 @@ export class MainPageComponent implements OnInit,AfterViewInit {
 
   ngOnInit() {
     this.iconAdd = String.fromCharCode(0xe9bd);
-    this.iconlogo= String.fromCharCode(0xee92e);    
+    this.iconlogo= String.fromCharCode(0xee92e); 
+    if (application.android) {
+      application.android.on(application.AndroidApplication.activityBackPressedEvent, (args: any) => {
+         args.cancel = true;
+      });
+    }   
   }
 
   ngAfterViewInit() {
