@@ -1,0 +1,22 @@
+<ActionBar title="Settings"></ActionBar>
+    <GridLayout  backgroundColor="#D1F2EB">
+        <ScrollView>
+            <StackLayout backgroundColor="#E8F8F5" margin="10" verticalAlignment="center">
+                <StackLayout class="form" padding="15">
+                    <StackLayout class="input-field">
+                        <Label text="API Urk" class="label font-weight-bold m-b-5"></Label>
+                        <TextField class="input" [(ngModel)]="input.api"></TextField>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+                    <StackLayout class="input-field">
+                        <Label text="ERP Url" class="label font-weight-bold m-b-5"></Label>
+                        <TextField  class="input" [(ngModel)]="input.erp"></TextField>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+                    <Button class="btn btn-primary w-full" text="Save" (tap)="Save()"></Button>
+                    <Button class="btn btn-danger w-full" text="Cancel" (tap)="Cancel()"></Button>
+                    
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>

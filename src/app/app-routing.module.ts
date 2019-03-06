@@ -5,10 +5,12 @@ import { LoginComponent } from "./auth/login/login.component";
 import { MainPageComponent } from "./main-page/main-page.component";
 import { AuthguardService } from "./auth/authguard/auth-guard-service";
 import { ItemMasterComponent } from "./item-master/item/item-master.component";
+import { SettingComponent } from './core/settings/setting/setting.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "/login", pathMatch: "full" },
     { path: "login", component: LoginComponent },
+    { path: "setting", component: SettingComponent },
     { path: "saleslist",canActivate: [AuthguardService],
             loadChildren: "./salesorder/salesorder.module#SalesorderModule"},
     { path: "master",canActivate: [AuthguardService],

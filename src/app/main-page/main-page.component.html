@@ -10,7 +10,7 @@
 
 <RadSideDrawer (drawerClosing)="onDrawerClosing()">
     <StackLayout tkDrawerContent>
-        <GridLayout rows="auto,auto,auto,auto,auto,auto,*,100" class="side-drawer-panel">
+        <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,*,100" class="side-drawer-panel">
             <StackLayout row="0">               
                <Label [text]="iconlogo" (tap)="onCloseMenu($event)" class="icon menu-container"></Label>
                 <!-- <Image src="res://rpslogo" class="slide-out-img" stretch="aspectFit"></Image> -->
@@ -37,9 +37,12 @@
                 <Label text="Item Codes" (tap)="onTabMenu('item')"></Label>
              </StackLayout>
              <StackLayout row="7" class="menu-container">
+                <Label text="Settings" (tap)="onTabMenu('setting')"></Label>
+             </StackLayout>
+             <StackLayout row="8" class="menu-container">
                 <Label text=""></Label>
              </StackLayout>
-            <StackLayout row="8" class="menu-container">
+            <StackLayout row="9" class="menu-container">
                 <Button text="Logout" (tap)="onLogOut()" class="button-item"></Button>
             </StackLayout>
           
@@ -47,16 +50,16 @@
     </StackLayout>
 
     <StackLayout tkMainContent >
-            <FlexboxLayout height="400" col="1" row="0" verticalAlignment="middle" alignItems="center" justifyContent="center">
+            <!-- <FlexboxLayout height="400" col="1" row="0" verticalAlignment="middle" alignItems="center" justifyContent="center"> -->
               
-            
-            <StackLayout  orientation="vertical" width="100%" >
+        <GridLayout rows="*" width="100%">
+            <StackLayout verticalAlignment="middle" orientation="vertical" width="100%" >
                     <Label text="Wincom Solution" class="main-title"></Label> 
                 <Label text="NO MORE PAINFUL INTEGRATION"  class="sub-title"></Label>
                
             </StackLayout>
-           
-        </FlexboxLayout>
+        </GridLayout>   
+        <!-- </FlexboxLayout> -->
     </StackLayout>
 </RadSideDrawer>
 </Page>

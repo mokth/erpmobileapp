@@ -3,6 +3,7 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { SnackBar } from "nativescript-snackbar";
 import { UserInfo } from '../../core/model/userinfo';
 import { AuthService } from "../../core/services/auth-service";
+import { SQLService } from '../../core/services/sql-service';
 
 @Component({
   selector: 'ns-login',
@@ -17,11 +18,13 @@ export class LoginComponent implements OnInit {
 
   public constructor(private router: RouterExtensions,
                      private auth:AuthService,
+                     private sqlser:SQLService
                      ) {
       this.input = {
           "email": "",
           "password": ""
       }
+      sqlser.createDB();
   }
 
   public ngOnInit() {
@@ -32,10 +35,11 @@ export class LoginComponent implements OnInit {
 
   login() {
       if(this.input.email && this.input.password) {
-         this.signInServer();
-      } else {
-          (new SnackBar()).simple("All Fields Required!");
-      }
+          this.signInServer();
+       } else {
+           (new SnackBar()).simple("All Fields Required!");
+       }
+     
   }
 
   signInServer(){

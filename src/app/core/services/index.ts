@@ -3,6 +3,7 @@ import { APIService } from './api.service';
 import { UtilService } from './util-services';
 import { AuthService } from './auth-service';
 import { StoreService } from './store-service';
+import { SQLService } from './sql-service';
 
 export * from './api.service';
 export * from './util-services';
@@ -13,5 +14,6 @@ export const SERVICES = [
     UtilService,
     AuthService,
     StoreService,
+    SQLService,
     NavigationService
 ];

@@ -3,6 +3,7 @@ import { NativeScriptCommonModule } from 'nativescript-angular/common';
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import { SERVICES } from './services';
 
+
 @NgModule({
   declarations: [],
   imports: [
@@ -10,6 +11,9 @@ import { SERVICES } from './services';
   ],
   providers: [
     ...SERVICES
+  ],
+  exports:[
+    
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })

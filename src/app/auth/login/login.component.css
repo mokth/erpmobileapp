@@ -1,1 +1,7 @@
 /* Add mobile styles for the component here.  */
+.layoutBackgroundImageURL{
+    background-image: url("res://mainlogo");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}

@@ -25,6 +25,7 @@ import { AuthguardService } from "./auth/authguard/auth-guard-service";
 import { ProductionModule } from "./production/production.module";
 import { routing } from "./app-routing.module";
 import { ItemMasterModule } from "./item-master/item-master.module";
+import { SettingComponent } from "./core/settings/setting/setting.component";
 //registerElement("BarcodeScanner", () => require("nativescript-barcodescanner").BarcodeScannerView);
 
 // export function createBarcodeScanner() {
@@ -71,7 +72,8 @@ import { ItemMasterModule } from "./item-master/item-master.module";
     declarations: [
         AppComponent,     
         LoginComponent,
-        MainPageComponent
+        MainPageComponent,
+        SettingComponent 
     ],
     providers: [
         AuthguardService,

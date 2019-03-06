@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular';
 import { RadSideDrawer, SideDrawerLocation } from 'nativescript-ui-sidedrawer';
+//import {screen} from "platform"
+
 import { NavigationService } from '../core/services/navigation.service';
 import { AuthService } from '../core/services/auth-service';
 //import { AndroidApplication, AndroidActivityBackPressedEventData } from 'tns-core-modules/application/application';
@@ -20,8 +22,13 @@ export class MainPageComponent implements OnInit,AfterViewInit {
   iconlogo:String;
 
   constructor( private auth:AuthService,
-               private navigationService: NavigationService)
-   { }
+               private navigationService: NavigationService){
+   
+    //  console.log(screen.mainScreen.heightDIPs);
+    //  console.log(screen.mainScreen.widthDIPs);
+    //  console.log(screen.mainScreen.heightDIPs);
+    //  console.log(screen.mainScreen.heightPixels);
+   }
 
   ngOnInit() {
     this.iconAdd = String.fromCharCode(0xe9bd);
@@ -114,6 +121,18 @@ export class MainPageComponent implements OnInit,AfterViewInit {
               curve: 'linear'
           }  
         });
+      }
+      else if (arg=="setting"){
+        this.navigationService.navigate(['/setting'],
+        {
+           animated: true, 
+           transition: 
+           {
+               name: 'flip', 
+               duration: 1000, 
+               curve: 'linear'
+           }  
+          });
       }
       else if (arg=="Logout"){
         this.onLogOut();
