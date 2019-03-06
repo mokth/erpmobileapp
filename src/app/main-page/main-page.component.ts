@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular';
 import { RadSideDrawer, SideDrawerLocation } from 'nativescript-ui-sidedrawer';
 //import {screen} from "platform"
@@ -7,6 +7,10 @@ import { NavigationService } from '../core/services/navigation.service';
 import { AuthService } from '../core/services/auth-service';
 //import { AndroidApplication, AndroidActivityBackPressedEventData } from 'tns-core-modules/application/application';
 //import * as application from "tns-core-modules/application";
+var frameModule = require("ui/frame");
+import {Page} from "ui/page";
+
+
 
 @Component({
   selector: 'ns-main-page',
@@ -22,6 +26,7 @@ export class MainPageComponent implements OnInit,AfterViewInit {
   iconlogo:String;
 
   constructor( private auth:AuthService,
+              
                private navigationService: NavigationService){
    
     //  console.log(screen.mainScreen.heightDIPs);
@@ -38,7 +43,16 @@ export class MainPageComponent implements OnInit,AfterViewInit {
   ngAfterViewInit() {
     this.drawer = this.drawerComponent.sideDrawer;
     this.drawer.drawerLocation = SideDrawerLocation.Right;   
+   
   }
+
+  ngAfterViewChecked() {
+    // var controller = frameModule.topmost().android.controller;
+    // var navBar = controller.navigationBar;
+    // navBar.shadowImage = new Image();
+    // navBar.setBackgroundImageForBarMetrics(new Image(),null);
+    
+   }
 
   showSlideout() {
       this.drawer.mainContent.className = 'drawer-content-in';

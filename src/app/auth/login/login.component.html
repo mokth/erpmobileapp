@@ -1,5 +1,5 @@
 
-    <ActionBar title="WINCOM ERP"></ActionBar>
+    <!-- <ActionBar title="WINCOM ERP"></ActionBar> -->
     <GridLayout class="layoutBackgroundImageURL" backgroundColor="#CCCCCC">
         <ScrollView>
             <StackLayout margin="10" verticalAlignment="center">
@@ -17,6 +17,9 @@
                     <Button class="btn btn-primary w-full" text="Login" (tap)="login()"></Button>
                     <!-- <Label [nsRouterLink]="['/register']" text="Not a member? Register ." class="text-center footnote"></Label> -->
                      <Label [nsRouterLink]="['/setting']" horizontalAlignment="right" text="Settings" class="text-center footnote"></Label>
+                     <StackLayout>
+                        <Label  horizontalAlignment="center" text="Wincom Mobile-ERP" class="text-center footnote"></Label>
+                     </StackLayout>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

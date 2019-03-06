@@ -4,6 +4,7 @@ import { SnackBar } from "nativescript-snackbar";
 import { UserInfo } from '../../core/model/userinfo';
 import { AuthService } from "../../core/services/auth-service";
 import { SQLService } from '../../core/services/sql-service';
+import { Page } from 'ui/page';
 
 @Component({
   selector: 'ns-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   public constructor(private router: RouterExtensions,
                      private auth:AuthService,
+                     private page:Page,
                      private sqlser:SQLService
                      ) {
       this.input = {
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
       if(this.auth.isAuthenticated()) {
           this.router.navigate(["/main"], { clearHistory: true });
       }
+      this.page.actionBarHidden=true;
   }
 
   login() {

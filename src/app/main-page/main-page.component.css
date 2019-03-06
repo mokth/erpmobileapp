@@ -2,7 +2,10 @@
 .page {
     padding: 40px;
 }
+ ActionBar{
+    background-color: #E0FCEE;
 
+}
 .icon {
     font-family: 'IcoMoon-Free';
     font-size: 32px;
