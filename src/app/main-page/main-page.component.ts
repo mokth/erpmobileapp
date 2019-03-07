@@ -5,7 +5,7 @@ import { RadSideDrawer, SideDrawerLocation } from 'nativescript-ui-sidedrawer';
 import { NavigationService } from '../core/services/navigation.service';
 import { AuthService } from '../core/services/auth-service';
 import * as application from 'tns-core-modules/application';
-
+import { Page } from "tns-core-modules/ui/page";
 
 @Component({
   selector: 'ns-main-page',
@@ -19,11 +19,11 @@ export class MainPageComponent implements OnInit,AfterViewInit {
   private drawer: RadSideDrawer;
   iconAdd:String;
   iconlogo:String;
-
+  
   constructor( private auth:AuthService,
-              
+               private page: Page,
                private navigationService: NavigationService){
-   
+                this.page.actionBarHidden = true;
     //  console.log(screen.mainScreen.heightDIPs);
     //  console.log(screen.mainScreen.widthDIPs);
     //  console.log(screen.mainScreen.heightDIPs);
@@ -43,14 +43,17 @@ export class MainPageComponent implements OnInit,AfterViewInit {
   ngAfterViewInit() {
     this.drawer = this.drawerComponent.sideDrawer;
     this.drawer.drawerLocation = SideDrawerLocation.Right;   
-   
   }
 
   ngAfterViewChecked() {
-    // var controller = frameModule.topmost().android.controller;
-    // var navBar = controller.navigationBar;
-    // navBar.shadowImage = new Image();
-    // navBar.setBackgroundImageForBarMetrics(new Image(),null);
+   // const topmostFrame: Frame = topmost();
+   // var _actionbar = topmostFrame.currentPage.actionBar;
+    //console.dir(topmostFrame);
+   // console.dir(_actionbar);
+    //actionbar.backgroundImage = new LinearGradient();
+    //var navBar = controller.navigationBar;
+    //navBar.shadowImage = new Image();
+    //navBar.setBackgroundImageForBarMetrics(new Image(),null);
     
    }
 

@@ -3,7 +3,7 @@
     padding: 40px;
 }
  ActionBar{
-    background-color: #E0FCEE;
+    background-color:transparent;
 
 }
 .icon {
@@ -13,6 +13,12 @@
 
 .menu-item {
     padding-right: 40px;
+}
+
+.lable-item {
+    text-align:center;
+    color:red;
+    font-size: 36px;
 }
 
 .menu-container {
