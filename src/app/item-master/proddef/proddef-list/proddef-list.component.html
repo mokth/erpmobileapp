@@ -1,4 +1,4 @@
-<ActionBar title="Master Items">
+<ActionBar title="Product Defination">
 </ActionBar>
 <Page class="page">
     <StackLayout orientation="vertical">
@@ -27,10 +27,9 @@
                 </Button>
             </StackLayout>
             <StackLayout row="1" orientation="horizontal" width="100%" backgroundcolor="#566573">
-                <Label text="CODE" width="50%" class="caption"></Label>
-                <Label text="TYPE" width="18%" class="caption"></Label>
-                <Label text="CLASS" width="18%" class="caption"></Label>
-                <Label text="UOM" width="14%" class="caption"></Label>
+                <Label text="CODE" width="65%" class="caption"></Label>
+                <Label text="PackSize" width="20%" class="caption"></Label>
+                <Label text="UOM" width="15%" class="caption"></Label>
             </StackLayout>
             <StackLayout row="2" orientation="horizontal" width="100%" backgroundcolor="#566573">
                 <Label text="DESCRIPTION" width="100%" class="caption"></Label>
@@ -47,20 +46,19 @@
                     <ListView [items]="items">                          
                         <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">  
                             <GridLayout rows="auto,auto"
-                                        [class.selected]="item.iCode===selectedCode"
+                                        [class.selected]="item.icode===selectedCode"
                                         [class.even]="even"
                                         [class.odd]="odd"
                                         (tap)="onItemTap(item)"
                                         orientation="horizontal" width="100%">
                             
                                 <StackLayout row="0" orientation="horizontal" width="100%" >
-                                    <Label [text]="item.iCode"  width="50%"></Label>
-                                    <Label [text]="item.iType"  width="18%"></Label>
-                                    <Label [text]="item.iClass"  width="18%"></Label>
-                                    <Label [text]="item.sellingUOM"  width="14%"></Label>
+                                    <Label [text]="item.icode"  width="65%"></Label>
+                                    <Label [text]="item.packsize"  width="20%"></Label>
+                                    <Label [text]="item.uom"  width="15%"></Label>
                                 </StackLayout>
                                 <StackLayout row="1" orientation="horizontal" width="100%" >
-                                    <Label [text]="item.iDesc"  width="100%"></Label>
+                                    <Label [text]="item.idesc"  width="100%"></Label>
                                     <!-- <Label [text]="item.sellingPrice | number : '1.2-2'" width="20%" class="caption-number"></Label> -->
                                 </StackLayout>
                             </GridLayout>

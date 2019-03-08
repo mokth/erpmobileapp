@@ -7,9 +7,11 @@ import { AuthService } from './auth-service';
 import { APP_CONFIG } from '../../config/app-config.module';
 import { AppConfig, DailyInput, DailyWorkOrder, 
          RefCode, CustProfileLight, ItemMaster, 
-         SalesOder, GRNPOInfo, GRNPOItem, GRNReceive, CycleCountItem } 
+         SalesOder, GRNPOInfo, GRNPOItem,
+         GRNReceive, CycleCountItem,ProdDef,ProdDefDetail } 
          from '../model';
 import { SQLService } from './sql-service';
+
 
 
 @Injectable({
@@ -81,6 +83,34 @@ export class APIService {
     console.log(url);
     return this.http.get<ItemMaster>(url,{headers:this.getAuthHeader()});
   }
+
+  getProdDef(): Observable<ProdDef> {
+    const url = this.getAPIURL() + "api/itemmaster/proddef";
+    return this.http.get<ProdDef>(url,{headers:this.getAuthHeader()});
+  }
+
+  getProdDefDetail(prodcode:string): Observable<ProdDefDetail> {
+    const url = this.getAPIURL() + "api/itemmaster/prddefdetail/"+prodcode;
+    return this.http.get<ProdDefDetail>(url,{headers:this.getAuthHeader()});
+  }
+
+  searchPrdDef(item: Observable<string>) {
+    
+    return item.pipe(
+               debounceTime(400),
+               distinctUntilChanged(),
+               switchMap(term=>this.searchProdDefEntries(term))
+               );
+  }
+
+  searchProdDefEntries(term) {
+    let queryUrl: string = '?prodcode='+term;
+    const userid =this.auth.getUserID();
+    const url = this.getAPIURL() + "api/itemmaster/prddefsearch"+queryUrl;
+    console.log(url);
+    return this.http.get<ProdDef>(url,{headers:this.getAuthHeader()});
+  }
+
   getSalesOrder(): Observable<SalesOder> {
     const userid =this.auth.getUserID();
     const url = this.getAPIURL() + "api/salesorder/"+userid;

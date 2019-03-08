@@ -86,7 +86,28 @@ export class MainPageComponent implements OnInit,AfterViewInit {
       } else if (arg=="cust"){
           this.navigationService.navigate(['/saleslist/lookcust']);
       } else if (arg=="item"){
-        this.navigationService.navigate(['/master']);
+        this.navigationService.navigate(['/master'],
+        {
+          animated: true, 
+           transition: 
+           {
+               name: 'flip', 
+               duration: 1000, 
+               curve: 'linear'
+           }  
+        });
+      }
+      else if (arg=="proddef"){
+        this.navigationService.navigate(['/proddef'],
+        {
+          animated: true, 
+           transition: 
+           {
+               name: 'flip', 
+               duration: 1000, 
+               curve: 'linear'
+           }  
+        });
       }
       else if (arg=="daily"){
         this.navigationService.navigate(['/daily'],

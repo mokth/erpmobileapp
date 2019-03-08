@@ -1,23 +1,22 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ListViewEventData } from 'nativescript-ui-listview';
-import { Color } from 'tns-core-modules/color/color';
-import { SnackBar } from 'nativescript-snackbar';
-
-import { APIService, UtilService } from '../../../core/services';
-import { NavigationService } from '../../../core/services/navigation.service';
-import { DataTable } from '../../../core/enums';
+import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { TextField } from 'ui/text-field';
+import { ListViewEventData } from 'nativescript-ui-listview';
+import { Color } from 'tns-core-modules/color/color';
 import * as application from 'tns-core-modules/application';
 
+import { APIService } from '../../../core/services/api.service';
+import { UtilService } from '../../../core/services/util-services';
+import { NavigationService } from '../../../core/services/navigation.service';
 
 @Component({
-	selector: 'item-list',
-	templateUrl: './item-list.component.html',
-	styleUrls: ['./item-list.component.css']
+	selector: 'proddef-list',
+	templateUrl: './proddef-list.component.html',
+	styleUrls: ['./proddef-list.component.css']
 })
 
-export class ItemListComponent implements OnInit {
+export class ProddefListComponent implements OnInit {
+
 	iconval: string;
 	iconHome:string;
 
@@ -46,13 +45,11 @@ export class ItemListComponent implements OnInit {
 			});
 		  }
 	}
-	// ngAfterViewInit() {
 
-	// }
 	getItemMaster() {
 		this.isRefresh = true;
 		this.isBusy = false;
-		this.serv.searchitem(this.searchTerm$)
+		this.serv.searchPrdDef(this.searchTerm$)
 			.subscribe(resp => {
 				this.items = resp;
 				this.tempitems = resp;
@@ -78,31 +75,26 @@ export class ItemListComponent implements OnInit {
 		this.searchTerm$.next(textField.text);
 	}
 	onItemTap(item) {
-		console.log(item);
-		this.selectedCode = item.iCode;
-		this.selectedItem = item;
-		this.utilser.setLocalStore("itemdetail", JSON.stringify(item));
-		//this.navigationService.backToPreviousPage();
-		this.navigationService.navigate(["/master/itemdetail"]);
+		this.utilser.setLocalStore("proddef", JSON.stringify(item));
+		this.navigationService.navigate(["/master/proddefdetail"]);
+		
+		// console.log(`search prodcode def ${item.icode}`);
+		// this.serv.getProdDefDetail(item.icode)
+		// .subscribe((resp:any)=>{
+		// 	 console.log(resp.length);
+		// 	 console.log(resp);
+		// });
+		// this.selectedCode = item.iCode;
+		// this.selectedItem = item;
+		// this.utilser.setLocalStore("proddef", JSON.stringify(item));
+		// this.navigationService.navigate(["/master/itemdetail"]);
 	}
-
-	// onLongPress(item){
-	//   console.log('long press...')
-	//   this.selectedCode= item.iCode;
-	//   this.selectedItem = item;
-	//   this.utilser.fireEvent(DataTable.masteritem,item);
-	//   this.navigationService.backToPreviousPage();
-	// }
 
 	onSearchTap(e) {
 		const key = this.searchstr;
 		console.log(key);
-		this.items = this.tempitems.filter(item => item.iCode.includes(key) ||
-			item.iDesc.includes(key) ||
-			item.iType.includes(key) ||
-			item.iClass.includes(key) ||
-			item.iSubClass.includes(key) ||
-			item.sellingUOM.includes(key)
+		this.items = this.tempitems.filter(item => item.icode.includes(key) ||
+			item.idesc.includes(key)			
 		);
 	}
 

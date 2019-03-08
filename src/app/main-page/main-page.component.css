@@ -1,6 +1,7 @@
 /* Add mobile styles for the component here.  */
 .page {
     padding: 40px;
+    font-size: 24px;
 }
  ActionBar{
     background-color:transparent;

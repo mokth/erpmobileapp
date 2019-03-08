@@ -5,11 +5,15 @@ import { NativeScriptFormsModule, NativeScriptRouterModule } from 'nativescript-
 import { itemroutes } from './item-master-routes';
 import { ItemMasterComponent } from './item/item-master.component';
 import { ItemListComponent } from './item-lists/item-list/item-list.component';
+import { ProddefListComponent } from './proddef/proddef-list/proddef-list.component';
+import { ProddefDetailComponent } from './proddef/proddef-detail/proddef-detail.component';
 
 @NgModule({
   declarations: [
     ItemMasterComponent,
-    ItemListComponent
+    ItemListComponent,
+    ProddefListComponent,
+    ProddefDetailComponent
   ],
   imports: [
     NativeScriptCommonModule,
@@ -20,7 +24,9 @@ import { ItemListComponent } from './item-lists/item-list/item-list.component';
   providers:[],
   exports:[
     ItemMasterComponent,
-    ItemListComponent
+    ItemListComponent,
+    ProddefListComponent,
+    ProddefDetailComponent
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })
