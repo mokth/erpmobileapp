@@ -4,16 +4,18 @@ import { NativeScriptFormsModule, NativeScriptRouterModule } from 'nativescript-
 
 import { itemroutes } from './item-master-routes';
 import { ItemMasterComponent } from './item/item-master.component';
-import { ItemListComponent } from './item-lists/item-list/item-list.component';
+import { ItemListComponent } from './item-lists/item-list.component';
 import { ProddefListComponent } from './proddef/proddef-list/proddef-list.component';
 import { ProddefDetailComponent } from './proddef/proddef-detail/proddef-detail.component';
+import { ItemBalanceComponent } from './item-balance/item-balance.component';
 
 @NgModule({
   declarations: [
     ItemMasterComponent,
     ItemListComponent,
     ProddefListComponent,
-    ProddefDetailComponent
+    ProddefDetailComponent,
+    ItemBalanceComponent
   ],
   imports: [
     NativeScriptCommonModule,
@@ -26,7 +28,8 @@ import { ProddefDetailComponent } from './proddef/proddef-detail/proddef-detail.
     ItemMasterComponent,
     ItemListComponent,
     ProddefListComponent,
-    ProddefDetailComponent
+    ProddefDetailComponent,
+    ItemBalanceComponent
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })

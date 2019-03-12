@@ -12,3 +12,13 @@ export interface ItemMaster
      barcode :string;
      imageUrl:string;
 }
+
+export interface QtyBalance
+{
+    warehouse :string;
+    lotno :string;
+    status :string;
+    uom :string;
+    qty :number;
+    trxdate:Date;
+}

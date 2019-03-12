@@ -16,10 +16,16 @@ import { UtilService } from '../../core/services';
 export class ItemMasterComponent implements OnInit {
 	public item: any;
 	imageUrl:string;
+
+	iconStore: string;
+	iconHome:string;
+
 	constructor(private apiser:APIService,
 		        private utilser:UtilService,	        
 		        private navigationService: NavigationService) {
-	
+		
+	this.iconHome = String.fromCharCode(0xf022)+" Back";
+	this.iconStore = String.fromCharCode(0xf494)+" Stock";
 	const data = this.utilser.getLocalStore("itemdetail");
 	if (data){
 		this.item = JSON.parse(data);
@@ -38,5 +44,19 @@ export class ItemMasterComponent implements OnInit {
 
 	OnTap(e){
 		this.navigationService.backToPreviousPage();
+	}
+
+	OnStockTap(e){
+		this.navigationService.navigate(["/itembalance",this.item.iCode],
+		{
+			clearHistory:false,
+			animated: true, 
+			transition: 
+			{
+					name: 'flip', 
+					duration: 1000, 
+					curve: 'linear'
+			}  
+		});
 	}
 }

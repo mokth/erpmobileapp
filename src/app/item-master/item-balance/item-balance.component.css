@@ -7,17 +7,17 @@
     text-align:center;   
     margin-top: 30px;
 }
-.product-code {
-    font-size: 20px;
-    font-weight: 700;
-    color:#2C3E50 ;
-    padding-top: 20px;
-}
 .caption{
     color:white;
 }
 .caption-number{
     text-align:right;
+}
+
+.caption-number-total{
+    text-align:right;
+    font-weight: 700;
+    font-size: 25px;
 }
 .even {
  background-color: #F4F6F6;
@@ -31,6 +31,3 @@
 :disabled {
     opacity: 0.5;
   }
- .item-code {
-     font-weight: 700;
- }

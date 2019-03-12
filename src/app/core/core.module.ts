@@ -12,8 +12,7 @@ import { SERVICES } from './services';
   providers: [
     ...SERVICES
   ],
-  exports:[
-    
+  exports:[    
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })

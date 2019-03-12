@@ -17,9 +17,14 @@
 }
 
 .lable-item {
-    text-align:center;
-    color:red;
+    text-align:right;
+    color:#2C3E50 ;
     font-size: 36px;
+}
+.lable-footer{
+    color:black;
+    font-weight: 300;
+    font-size: 18px;
 }
 
 .menu-container {
@@ -141,9 +146,9 @@
     text-align: center;
     vertical-align: middle;
     width: 100%;
-    font-size: 36px;
+    font-size: 40px;
     font-weight: 900;
-    color:blue;
+    color:#1B4F72;
     letter-spacing: 0.05px;
     animation-name: moveInLeft;
     animation-duration: 1s;
@@ -156,9 +161,9 @@
     text-align: center;
     vertical-align: middle;
     width: 100%;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
-    color:blue;
+    color:#1F618D;
     letter-spacing: 0.1px;
     animation: moveInRight 1s ease-out;
     z-index: 100;

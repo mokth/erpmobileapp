@@ -15,7 +15,7 @@ export class ProddefDetailComponent implements OnInit {
 	public items: any;
 	
 	iconHome:string;
-
+    prodcode:string;
 	constructor(private apiser:APIService,
 		        private utilser:UtilService,	        
 		        private navigationService: NavigationService) {
@@ -23,6 +23,7 @@ export class ProddefDetailComponent implements OnInit {
 	const data = this.utilser.getLocalStore("proddef");
 	if (data){
 		const proddef = JSON.parse(data);
+		this.prodcode = proddef.icode;
 		const url= this.apiser.getProdDefDetail(proddef.icode)
 		.subscribe(resp=>{
 			this.items= resp;

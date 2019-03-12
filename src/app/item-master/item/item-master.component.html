@@ -41,15 +41,33 @@
                  </StackLayout>
             </StackLayout>  
             <StackLayout row="4" orientation="horizontal" width="100%">
+               <StackLayout width="50%">
+                    <Button class="btn-sm btn-active btn-primary" 
+                            id="btnSave" 
+                            text="Back" 
+                            (tap)="OnStockTap($event)"
+                            width="100%"                         
+                            height="40"                       
+                            >
+                            <FormattedString>
+                                <Span [text]="iconStore" class="fas faclass">
+                                </Span>                              
+                            </FormattedString>  
+                    </Button>
+              </StackLayout>
+              <StackLayout width="50%">
                 <Button class="btn-sm btn-active btn-primary" 
                         id="btnSave" 
-                        text="OK" 
                         (tap)="OnTap($event)"
                         width="100%"                         
                         height="40"                       
                         >
+                    <FormattedString>
+                        <Span [text]="iconHome" class="fas faclass">
+                        </Span>                        
+                    </FormattedString>  
                 </Button>
-               
+          </StackLayout>
             </StackLayout>     
         </GridLayout>
     </StackLayout>

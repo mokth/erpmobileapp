@@ -7,11 +7,10 @@ import { AuthService } from './auth-service';
 import { APP_CONFIG } from '../../config/app-config.module';
 import { AppConfig, DailyInput, DailyWorkOrder, 
          RefCode, CustProfileLight, ItemMaster, 
-         SalesOder, GRNPOInfo, GRNPOItem,
+         SalesOder, GRNPOInfo, GRNPOItem, QtyBalance,
          GRNReceive, CycleCountItem,ProdDef,ProdDefDetail } 
          from '../model';
 import { SQLService } from './sql-service';
-
 
 
 @Injectable({
@@ -82,6 +81,12 @@ export class APIService {
     const url = this.getAPIURL() + "api/itemmaster/search"+queryUrl;
     console.log(url);
     return this.http.get<ItemMaster>(url,{headers:this.getAuthHeader()});
+  }
+
+  
+  getItemBalance(icode:string): Observable<QtyBalance> {
+    const url = this.getAPIURL() + "api/itemmaster/balance/"+icode;
+    return this.http.get<QtyBalance>(url,{headers:this.getAuthHeader()});
   }
 
   getProdDef(): Observable<ProdDef> {

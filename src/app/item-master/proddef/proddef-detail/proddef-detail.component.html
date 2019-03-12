@@ -4,6 +4,7 @@
     <StackLayout orientation="vertical">
         <GridLayout rows="auto,auto,auto,auto,*">
             <StackLayout class="form" row="0" orientation="horizontal" width="100%">
+               <Label [text]="prodcode" class="product-code" width="80%" ></Label>
                <Button class="btn-rounded-sm btn-outline btn-active" 
                         id="btnBack"                       
                         (tap)="onBack($event)"
@@ -51,9 +52,9 @@
                                 </StackLayout>
                                 <StackLayout row="1" orientation="horizontal" width="100%" >
                                     <Label [text]="item.icode" class="item-code"  width="40%"></Label>
-                                    <Label [text]="item.stdqty"  width="20%"></Label>
-                                    <Label [text]="item.uom"  width="20%"></Label>
-                                    <Label [text]="item.wh"  width="20%"></Label>                                    
+                                    <Label [text]="item.stdqty" class="item-code" width="20%"></Label>
+                                    <Label [text]="item.uom" class="item-code" width="20%"></Label>
+                                    <Label [text]="item.wh" class="item-code" width="20%"></Label>                                    
                                 </StackLayout>
                                 <StackLayout row="2" orientation="horizontal" width="100%" >
                                     <Label [text]="item.idesc"  width="100%"></Label>

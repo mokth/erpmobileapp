@@ -3,9 +3,9 @@ import { ListViewEventData } from 'nativescript-ui-listview';
 import { Color } from 'tns-core-modules/color/color';
 import { SnackBar } from 'nativescript-snackbar';
 
-import { APIService, UtilService } from '../../../core/services';
-import { NavigationService } from '../../../core/services/navigation.service';
-import { DataTable } from '../../../core/enums';
+import { APIService, UtilService } from '../../core/services';
+import { NavigationService } from '../../core/services/navigation.service';
+import { DataTable } from '../../core/enums';
 import { Subject } from 'rxjs';
 import { TextField } from 'ui/text-field';
 import * as application from 'tns-core-modules/application';
@@ -32,8 +32,8 @@ export class ItemListComponent implements OnInit {
 	searchTerm$ = new Subject<string>();
 
 	constructor(private serv: APIService,
-				private utilser: UtilService,
-		        private navigationService: NavigationService) {
+			      	private utilser: UtilService,
+		          private navigationService: NavigationService) {
 			this.getItemMaster();
 	}
 
@@ -83,7 +83,17 @@ export class ItemListComponent implements OnInit {
 		this.selectedItem = item;
 		this.utilser.setLocalStore("itemdetail", JSON.stringify(item));
 		//this.navigationService.backToPreviousPage();
-		this.navigationService.navigate(["/master/itemdetail"]);
+		this.navigationService.navigate(["/master/itemdetail"],
+			{
+				clearHistory:false,
+				animated: true, 
+				transition: 
+				{
+						name: 'flip', 
+						duration: 1000, 
+						curve: 'linear'
+				}  
+			});
 	}
 
 	// onLongPress(item){
