@@ -19,7 +19,8 @@ export class ProddefListComponent implements OnInit {
 
 	iconval: string;
 	iconHome:string;
-
+	showError:boolean;
+	errmsg:string;
 	search: string;
 	searchstr: string;
 	items: any;
@@ -31,9 +32,10 @@ export class ProddefListComponent implements OnInit {
 	searchTerm$ = new Subject<string>();
 
 	constructor(private serv: APIService,
-				private utilser: UtilService,
-		        private navigationService: NavigationService) {
-			this.getItemMaster();
+							private utilser: UtilService,
+							private navigationService: NavigationService) {
+		this.showError = false;
+		this.getItemMaster();
 	}
 
 	ngOnInit() {
@@ -49,11 +51,28 @@ export class ProddefListComponent implements OnInit {
 	getItemMaster() {
 		this.isRefresh = true;
 		this.isBusy = false;
+		// this.serv.searchPrdDef(this.searchTerm$)
+		// 	.subscribe((resp:any) => {
+		// 		console.log(resp);
+		// 		this.items = resp.value;
+		// 		this.tempitems = resp;
+		// 		this.isBusy = false;
+		// 	});
+		
 		this.serv.searchPrdDef(this.searchTerm$)
-			.subscribe(resp => {
-				this.items = resp;
+			.subscribe((resp:any) => {
+				//console.log(resp);
+				this.showError=false;
+				this.items = resp.value;
 				this.tempitems = resp;
 				this.isBusy = false;
+			},
+			(err)=>{
+				this.showError=true;
+				this.errmsg =err.statusText;
+				this.isBusy = false;
+				//console.log('error');
+				//console.log(err);
 			});
 
 	}

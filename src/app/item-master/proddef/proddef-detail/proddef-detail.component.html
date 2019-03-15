@@ -14,14 +14,21 @@
                     </FormattedString>  
                 </Button>
             </StackLayout>
-            <StackLayout row="1" orientation="horizontal" width="100%" backgroundcolor="#566573">
+            <StackLayout row="1" orientation="horizontal" width="100%">
+                <Label [text]="errmsg" 
+                       width="100%" 
+                       visibility="{{ showError ? 'visible' : 'collapsed' }}"
+                       class="err-msg"></Label>
+                
+            </StackLayout>
+            <StackLayout row="2" orientation="horizontal" width="100%" backgroundcolor="#566573">
                 <Label text="SEQ" width="10%" class="caption"></Label>
                 <Label text="CENTER" width="20%" class="caption"></Label>
                 <Label text="CENTER CODE" width="40%" class="caption"></Label>
                 <Label text="PROCESS" width="20%" class="caption"></Label>
                 <Label text="SEQ" width="10%" class="caption"></Label>
             </StackLayout>
-            <StackLayout row="2" orientation="horizontal" width="100%" backgroundcolor="#566573">
+            <StackLayout row="3" orientation="horizontal" width="100%" backgroundcolor="#566573">
                 <Label text="ITEM" width="40%" class="caption"></Label>
                 <Label text="STD QTY" width="20%" class="caption"></Label>
                 <Label text="UOM" width="20%" class="caption"></Label>

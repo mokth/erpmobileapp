@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
-import { SnackBar } from "nativescript-snackbar";
+//import { SnackBar } from "nativescript-snackbar";
 import { UserInfo } from '../../core/model/userinfo';
 import { AuthService } from "../../core/services/auth-service";
 import { SQLService } from '../../core/services/sql-service';
@@ -17,11 +17,15 @@ export class LoginComponent implements OnInit {
   public input: any;
   user:UserInfo;
 
+  showError:boolean;
+  errmsg:string;
+  
   public constructor(private router: RouterExtensions,
                      private auth:AuthService,
                      private page:Page,
                      private sqlser:SQLService
                      ) {
+      this.showError =false
       this.input = {
           "email": "",
           "password": ""
@@ -38,9 +42,11 @@ export class LoginComponent implements OnInit {
 
   login() {
       if(this.input.email && this.input.password) {
+          this.showError =false;
           this.signInServer();
        } else {
-           (new SnackBar()).simple("All Fields Required!");
+         this.showError =true;
+         this.errmsg = "All Fields Required!";           
        }
      
   }
@@ -55,17 +61,25 @@ export class LoginComponent implements OnInit {
       };
 
       this.auth.signIn(this.user).subscribe(
-       (resp)=>{
-          console.log(resp);
-          if (resp.ok=='yes'){
-            this.auth.saveToken(resp.data);
-            this.router.navigate(["/main"], { clearHistory: true });
-          }else {
-            (new SnackBar()).simple("Invalid User ID / password.");
-            this.auth.removeToken();              
-        }
-         
-       });
+          (resp)=>{
+              console.log(resp);
+              if (resp.ok=='yes'){
+                this.showError =false;
+                this.auth.saveToken(resp.data);
+                this.router.navigate(["/main"], { clearHistory: true });
+              }else {
+                //(new SnackBar()).simple("Invalid User ID / password.");
+                this.showError =true;
+                this.errmsg = "Invalid User ID / password.";
+                this.auth.removeToken();              
+            }
+            
+          },
+          (err)=>{
+            console.log(err);
+            this.showError =true;
+            this.errmsg =err.status+'  '+err.statusText;
+          });
   }
 
 }

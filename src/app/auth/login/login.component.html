@@ -14,6 +14,12 @@
                         <TextField secure="true" class="input" [(ngModel)]="input.password"></TextField>
                         <StackLayout class="hr-light"></StackLayout>
                     </StackLayout>
+                    <StackLayout>
+                        <Label [text]="errmsg" 
+                               width="100%" 
+                               visibility="{{ showError ? 'visible' : 'collapsed' }}"
+                               class="err-msg"></Label>                        
+                    </StackLayout>
                     <Button class="btn btn-primary w-full" text="Login" (tap)="login()"></Button>
                     <!-- <Label [nsRouterLink]="['/register']" text="Not a member? Register ." class="text-center footnote"></Label> -->
                      <Label [nsRouterLink]="['/setting']" horizontalAlignment="right" text="Settings" class="text-center footnote"></Label>

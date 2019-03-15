@@ -24,6 +24,11 @@ export class DailyOutputComponent implements OnInit {
   @ViewChild('spinWork') spinWork: ElementRef;
   @ViewChild('myContainer') myContainer: ElementRef;
 
+  showError:boolean;
+  showspin:boolean;
+  showspin2:boolean;
+  errmsg:string;
+  
   iconQR:string;
   iconSpin:string;
   listitems:splinObject[]=[];
@@ -52,6 +57,9 @@ export class DailyOutputComponent implements OnInit {
   constructor(private apiser:APIService,
               private barcodeScanner: BarcodeScanner,
               private navigationService: NavigationService) {
+     this.showError = false;
+     this.showspin =false;
+     this.showspin2 =false;
      this.fd_date = new Date();
      this.fd_time = new Date();
   }
@@ -59,37 +67,59 @@ export class DailyOutputComponent implements OnInit {
   ngOnInit() {
      this.iconQR= String.fromCharCode(0xf029);
      this.iconSpin = String.fromCharCode(0xf150);
-     this.apiser.getDailyWorkOrders().subscribe(
-        (resp)=>{
-          this.wolist= resp;
-          this.wolist.map(x=>{
-            if (this.listitems.findIndex(y=>y.title==x.scheCode)< 0){
-               this.listitems.push({
-                  title:x.scheCode
-               });
-            }
-          });
-      });
-      this.apiser.getProdRefCodes().subscribe(resp=>{
-         this.refcodes = resp;
-         if (this.refcodes){
-            this.refcodes.map(x=>{
-                if (x.codeType=="mac"){
-                   this.maccodes.push(x); 
-                }else if (x.codeType=="opr"){
-                   this.oprcodes.push({
-                      title:x.code
-                   });                   
-                }
-            })
-         }
-      });
-
-      if (application.android) {
+     
+     this.getWorkOrder();
+     this.getWorkOperators();
+          
+     if (application.android) {
         application.android.on(application.AndroidApplication.activityBackPressedEvent, (args: any) => {
            args.cancel = true;
         });
       }
+  }
+
+  getWorkOrder(){
+    this.apiser.getDailyWorkOrders().subscribe(
+      (resp:any)=>{
+        this.showError=false;
+        this.wolist= resp.value;
+        this.wolist.map(x=>{
+          if (this.listitems.findIndex(y=>y.title==x.scheCode)< 0){
+             this.listitems.push({
+                title:x.scheCode
+             });
+          }
+        });
+        this.showspin =true;
+      },
+      (err)=>{
+        this.showspin =false;
+        this.showError=true;
+        this.errmsg ="Error fetching Work Orders from server." ;          
+      });
+  }
+
+  getWorkOperators(){
+    this.apiser.getProdRefCodes().subscribe((resp:any)=>{
+      this.refcodes = resp.value;
+      if (this.refcodes){
+           this.refcodes.map(x=>{
+                if (x.codeType=="mac"){
+                    this.maccodes.push(x); 
+                }else if (x.codeType=="opr"){
+                    this.oprcodes.push({
+                      title:x.code
+                    });                   
+                }        
+          });
+          this.showspin2 =true;
+      }
+    },
+    (err)=>{
+      this.showspin2 =false;
+      this.showError=true;
+      this.errmsg ="Error fetching data from server." ;          
+    });    
   }
 
   cancelFilterableList(e) {
@@ -307,15 +337,22 @@ export class DailyOutputComponent implements OnInit {
   
   OnSaveTap(e){
     let daily:DailyInput = this.populateDailyInput();
-    this.apiser.postDailyInput(daily).subscribe(resp=>{
-      console.log(resp);
-      if (resp.ok=="yes"){
-        (new SnackBar()).simple("Successfully uploaded...");
-        this.resetInput();
-      }else{
-        (new SnackBar()).simple("Error "+resp.error);
-      }
-    });
+    this.apiser.postDailyInput(daily).subscribe((resp:any)=>{
+        console.log(resp);
+        const data= resp.value;
+        this.showError=true;
+        if (data.ok=="yes"){          
+          this.errmsg = "Successfully uploaded...";
+          this.resetInput();
+        }else{
+          this.errmsg = data.error;          
+        }
+      },
+      (err)=>{
+				this.showError=true;
+				this.errmsg = err.statusText;
+			});
+
   }
 
   resetInput(){

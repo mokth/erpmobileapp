@@ -1,17 +1,22 @@
 .page{
     padding: 40px;  
  }
-.icon {
-    font-family: 'IcoMoon-Free' ;
-    font-size: 20;
-    text-align:center;   
-    margin-top: 30px;
+ .item-code {
+    font-weight: 700;
 }
+
 .product-code {
     font-size: 20px;
     font-weight: 700;
     color:#2C3E50 ;
     padding-top: 20px;
+}
+/* 
+.icon {
+    font-family: 'IcoMoon-Free' ;
+    font-size: 20;
+    text-align:center;   
+    margin-top: 30px;
 }
 .caption{
     color:white;
@@ -30,7 +35,5 @@
 }
 :disabled {
     opacity: 0.5;
-  }
- .item-code {
-     font-weight: 700;
- }
+  } */
+ 

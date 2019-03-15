@@ -13,20 +13,28 @@ import { NavigationService } from '../../../core/services/navigation.service';
 export class ProddefDetailComponent implements OnInit {
 
 	public items: any;
-	
+	showError:boolean;
+	errmsg:string;
+
 	iconHome:string;
     prodcode:string;
 	constructor(private apiser:APIService,
 		        private utilser:UtilService,	        
 		        private navigationService: NavigationService) {
+	this.showError =false;
 	this.iconHome = String.fromCharCode(0xf015);
 	const data = this.utilser.getLocalStore("proddef");
 	if (data){
 		const proddef = JSON.parse(data);
 		this.prodcode = proddef.icode;
 		const url= this.apiser.getProdDefDetail(proddef.icode)
-		.subscribe(resp=>{
-			this.items= resp;
+		.subscribe((resp:any)=>{
+			this.showError =false;	
+			this.items= resp.value;
+		},
+		(err)=>{
+			this.showError =true;			
+			this.errmsg =err.statusText;
 		})
 				
 	}

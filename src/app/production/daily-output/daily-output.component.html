@@ -1,13 +1,20 @@
-<ActionBar title="Daily Output">
+<ActionBar title="Daily Production Output">
 </ActionBar>
 <Page class="page" #myContainer>
     <StackLayout orientation="vertical" class="form">
-        <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,,auto" width="100%">
-                <StackLayout row="0">
+        <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" width="100%">
+            <StackLayout row="0">
                     <Label [text]="iconQR"  
                            (tap)="OnScan()"
                            class="fas faclass-barcode"></Label>
-                </StackLayout>
+            </StackLayout>
+            <StackLayout row="1" orientation="horizontal" width="100%">
+                <Label [text]="errmsg" 
+                       width="100%" 
+                       visibility="{{ showError ? 'visible' : 'collapsed' }}"
+                       class="err-msg"></Label>
+                
+            </StackLayout>
             <FilterableListpicker
                  #spinWork blur="light" 
                  hintText="Type to filter..." 
@@ -15,7 +22,7 @@
                  (canceled)="cancelFilterableList($event)" 
                  (itemTapped)="itemTapped($event)">
            </FilterableListpicker> 
-            <StackLayout row="1" orientation="horizontal"  width="100%">
+            <StackLayout row="2" orientation="horizontal"  width="100%">
                 <StackLayout class="input-field" width="29%">
                     <Label text="Date" class="label font-weight-bold m-b-5"></Label>
                     <GridLayout columns="*,auto" >
@@ -60,6 +67,7 @@
                                 <Label col="1"
                                        [text]="iconSpin"
                                        (tap)="showPicker('wo')"
+                                       visibility="{{ showspin ? 'visible' : 'collapsed' }}"
                                        class="fas faclass-spinner">
                                 </Label>
                            </GridLayout>                           
@@ -74,7 +82,7 @@
                     </FilterableListpicker> -->
                 </GridLayout>
             </StackLayout>
-            <StackLayout row="2" orientation="horizontal"  width="100%">
+            <StackLayout row="3" orientation="horizontal"  width="100%">
                 <StackLayout class="input-field" width="100%">
                     <Label text="Product" class="label font-weight-bold m-b-5"></Label>
                     <TextField class="input" 
@@ -85,7 +93,7 @@
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
             </StackLayout>
-            <StackLayout row="3" orientation="horizontal"  width="100%">
+            <StackLayout row="4" orientation="horizontal"  width="100%">
                 <GridLayout  width="50%">
                     <StackLayout class="input-field">
                         <Label text="Work Center" class="label font-weight-bold m-b-5"></Label>
@@ -96,8 +104,10 @@
                                            required
                                            class="input" > 
                                 </TextField>
-                                <Label col="1" [text]="iconSpin"  width="10%"
+                                <Label col="1" [text]="iconSpin" 
+                                        width="10%"
                                        (tap)="showPicker('center')"
+                                       visibility="{{ showspin ? 'visible' : 'collapsed' }}"
                                        class="fas faclass-spinner">
                                 </Label>
                         </GridLayout>
@@ -123,6 +133,7 @@
                                     </TextField>
                                     <Label col="1" [text]="iconSpin" 
                                            (tap)="showPicker('process')"
+                                           visibility="{{ showspin ? 'visible' : 'collapsed' }}"
                                            class="fas faclass-spinner">
                                     </Label>
                             </GridLayout>
@@ -137,7 +148,7 @@
                     </FilterableListpicker> -->
                 </GridLayout>   
             </StackLayout> 
-            <StackLayout row="4" orientation="horizontal"  width="100%">
+            <StackLayout row="5" orientation="horizontal"  width="100%">
                     <GridLayout  width="50%">
                         <StackLayout class="input-field">
                             <Label text="Plan Machine" class="label font-weight-bold m-b-5"></Label>
@@ -150,6 +161,7 @@
                                     </TextField>
                                     <Label col="1" [text]="iconSpin"  width="10%"
                                            (tap)="showPicker('planMac')"
+                                           visibility="{{ showspin2 ? 'visible' : 'collapsed' }}"
                                            class="fas faclass-spinner">
                                     </Label>
                             </GridLayout>
@@ -173,6 +185,7 @@
                                     </TextField>
                                     <Label col="1" [text]="iconSpin"  
                                            (tap)="showPicker('actMac')" 
+                                           visibility="{{ showspin2 ? 'visible' : 'collapsed' }}"
                                            class="fas faclass-spinner">
                                     </Label>
                                 </GridLayout>
@@ -187,7 +200,7 @@
                         </FilterableListpicker> -->
                     </GridLayout>   
             </StackLayout>           
-            <StackLayout row="5" orientation="horizontal"  width="100%">
+            <StackLayout row="6" orientation="horizontal"  width="100%">
                 <GridLayout  width="50%">
                     <StackLayout class="input-field">
                         <Label text="Operator" class="label font-weight-bold m-b-5"></Label>
@@ -198,6 +211,7 @@
                             </TextField>
                             <Label col="1" [text]="iconSpin"  width="10%"
                                 (tap)="showPicker('operator')" 
+                                visibility="{{ showspin2 ? 'visible' : 'collapsed' }}"
                                 class="fas faclass-spinner">
                             </Label>
                         </GridLayout>
@@ -222,7 +236,7 @@
                         <StackLayout class="hr-light"></StackLayout>
                     </StackLayout>
             </StackLayout>
-            <StackLayout row="6" orientation="horizontal"  width="100%">
+            <StackLayout row="7" orientation="horizontal"  width="100%">
                     <StackLayout class="input-field" width="50%">
                             <Label text="Reject Qty" class="label font-weight-bold m-b-5"></Label>
                             <TextField class="input" keyboardType="number"  [(ngModel)]="fd_reject" ></TextField>
@@ -234,7 +248,7 @@
                             <StackLayout class="hr-light"></StackLayout>
                      </StackLayout>
                 </StackLayout>
-            <StackLayout row="7" orientation="horizontal" width="100%">
+            <StackLayout row="8" orientation="horizontal" width="100%">
                     <Button class="btn-sm btn-active" 
                             id="btnSave" 
                             text="Save" 
