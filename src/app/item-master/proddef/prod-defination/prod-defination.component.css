@@ -1,0 +1,42 @@
+.page {
+    padding: 40px;
+}
+
+.title {
+    color: white;
+}
+
+.title-right {
+    color: white;
+    text-align: right;
+}
+
+.caption {
+    color: black;
+}
+
+.caption-right {
+    color: black;
+    text-align: right;
+}
+
+.caption-small {
+    color: black;
+    font-size: 14px;
+}
+
+
+.caption-small-right {
+    color: black;
+    font-size: 14px;
+    text-align: right;
+}
+
+.even {
+    background-color: #F4F6F6;
+    color: #6C6C6D;
+}
+
+.old {
+    color: black;
+}

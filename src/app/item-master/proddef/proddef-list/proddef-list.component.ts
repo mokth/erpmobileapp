@@ -95,7 +95,17 @@ export class ProddefListComponent implements OnInit {
 	}
 	onItemTap(item) {
 		this.utilser.setLocalStore("proddef", JSON.stringify(item));
-		this.navigationService.navigate(["/master/proddefdetail"]);
+		//this.navigationService.navigate(["/master/proddefdetail"]);
+		this.navigationService.navigate(["/master/proddef2"],
+		{
+			animated: true, 
+			 transition: 
+			 {
+				 name: 'flip', 
+				 duration: 1000, 
+				 curve: 'linear'
+			 }  
+		  });		
 		
 		// console.log(`search prodcode def ${item.icode}`);
 		// this.serv.getProdDefDetail(item.icode)

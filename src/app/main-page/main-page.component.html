@@ -8,7 +8,7 @@
 </ActionBar>  -->
     <RadSideDrawer (drawerClosing)="onDrawerClosing()">
         <StackLayout tkDrawerContent>
-            <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,*,100" class="side-drawer-panel">
+            <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto,*,100" class="side-drawer-panel">
                 <StackLayout row="0">
                     <Label [text]="iconlogo" (tap)="onCloseMenu($event)" class="icon menu-container"></Label>
                     <!-- <Image src="res://rpslogo" class="slide-out-img" stretch="aspectFit"></Image> -->
@@ -37,13 +37,16 @@
                 <StackLayout row="7" class="menu-container">
                     <Label text="Product Defination" (tap)="onTabMenu('proddef')"></Label>
                 </StackLayout>
+                <!-- <StackLayout row="8" class="menu-container">
+                    <Label text="Product Defination 2" (tap)="onTabMenu('proddef2')"></Label>
+                </StackLayout> -->
                 <StackLayout row="8" class="menu-container">
                     <Label text="Settings" (tap)="onTabMenu('setting')"></Label>
                 </StackLayout>
                 <StackLayout row="9" class="menu-container">
                     <Label text=""></Label>
                 </StackLayout>
-                <StackLayout row="9" class="menu-container">
+                <StackLayout row="10" class="menu-container">
                     <Button text="Logout" (tap)="onLogOut()" class="button-item"></Button>
                 </StackLayout>
 

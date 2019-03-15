@@ -21,6 +21,7 @@ export class ProddefDetailComponent implements OnInit {
 	constructor(private apiser:APIService,
 		        private utilser:UtilService,	        
 		        private navigationService: NavigationService) {
+	this.iconHome = String.fromCharCode(0xf015)+" Back";	
 	this.showError =false;
 	this.iconHome = String.fromCharCode(0xf015);
 	const data = this.utilser.getLocalStore("proddef");

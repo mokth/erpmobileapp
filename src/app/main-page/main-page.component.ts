@@ -109,6 +109,18 @@ export class MainPageComponent implements OnInit,AfterViewInit {
            }  
         });
       }
+      else if (arg=="proddef2"){
+        this.navigationService.navigate(['/proddef2'],
+        {
+          animated: true, 
+           transition: 
+           {
+               name: 'flip', 
+               duration: 1000, 
+               curve: 'linear'
+           }  
+        });
+      }
       else if (arg=="daily"){
         this.navigationService.navigate(['/daily'],
         {

@@ -89,14 +89,19 @@ export class APIService {
     return this.http.get<QtyBalance>(url,{headers:this.getAuthHeader()});
   }
 
-  getProdDef(): Observable<ProdDef> {
-    const url = this.getAPIURL() + "api/itemmaster/proddef";
-    return this.http.get<ProdDef>(url,{headers:this.getAuthHeader()});
-  }
+  // getProdDef(): Observable<ProdDef> {
+  //   const url = this.getAPIURL() + "api/itemmaster/proddef";
+  //   return this.http.get<ProdDef>(url,{headers:this.getAuthHeader()});
+  // }
 
   getProdDefDetail(prodcode:string): Observable<ProdDefDetail> {
-    const url = this.getAPIURL() + "api/itemmaster/prddefdetail/"+prodcode;
+    const url = this.getAPIURL() + "api/proddef/prddefdetail/"+prodcode;
     return this.http.get<ProdDefDetail>(url,{headers:this.getAuthHeader()});
+  }
+
+  getProdDefination(prodcode:string): Observable<any> {
+    const url = this.getAPIURL() + "api/proddef/defination/"+prodcode;
+    return this.http.get<any>(url,{headers:this.getAuthHeader()});
   }
 
   searchPrdDef(item: Observable<string>) {
@@ -111,7 +116,7 @@ export class APIService {
   searchProdDefEntries(term) {
     let queryUrl: string = '?prodcode='+term;
     const userid =this.auth.getUserID();
-    const url = this.getAPIURL() + "api/itemmaster/prddefsearch"+queryUrl;
+    const url = this.getAPIURL() + "api/proddef/prddefsearch"+queryUrl;
     console.log(url);
     return this.http.get<ProdDef>(url,{headers:this.getAuthHeader()});
   }
