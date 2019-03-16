@@ -4,9 +4,9 @@
   <GridLayout rows="*,auto">   
     <TabView row="0" id="tabViewContainer">
         <StackLayout *tabItem="{title: 'Center'}">
-            <StackLayout>
-                <GridLayout rows="auto,auto,*">
-                    <StackLayout row="0" orientation="horizontal" width="100%" backgroundcolor="#566573">
+            <StackLayout class="tab-view">
+               <GridLayout rows="auto,auto,*">
+                    <!-- <StackLayout row="0" orientation="horizontal" width="100%" backgroundcolor="#566573">
                         <Label text="CEMTER" width="30%" class="title"></Label>
                         <Label text="ITEM CODE" width="40%" class="title"></Label>
                         <Label text="SIZE" width="10%" class="title"></Label>
@@ -15,25 +15,34 @@
                     </StackLayout>
                     <StackLayout row="1" orientation="horizontal" width="100%" backgroundcolor="#566573">
                         <Label text="DESCRIPTION" width="100%" class="title"></Label>
-                    </StackLayout>
+                    </StackLayout> -->
                     <ScrollView row="2">
                         <ListView [items]="listwc">
                             <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
-                                <GridLayout rows="auto,auto" 
+                                <GridLayout rows="auto,auto,auto" 
                                             [class.even]="even"
                                             [class.odd]="odd" 
                                             orientation="horizontal"
                                             width="100%">
 
                                     <StackLayout row="0" orientation="horizontal" width="100%">
-                                            <Label [text]="item.wccode" width="30%" class="caption"></Label>
-                                            <Label [text]="item.wcicode" width="40%" class="caption"></Label>
-                                            <Label [text]="item.packsize" width="10%" class="caption"></Label>
-                                            <Label [text]="item.wcuom" width="10%" class="caption"></Label>
-                                            <Label [text]="item.seqno" width="10%" class="caption"></Label>
+                                            <Label [text]="item.seqno" width="8%" class="caption"></Label>
+                                            <Label text="CENTER: " width="18%" class="caption-title"></Label>
+                                            <Label [text]="item.wccode" width="48%" class="caption"></Label>
+                                            <Label text="SIZE :" width="10%" class="caption-title"></Label>
+                                            <Label [text]="item.packsize" width="16%" class="caption"></Label>
                                     </StackLayout>
                                     <StackLayout row="1" orientation="horizontal" width="100%">
-                                        <Label [text]="item.idesc" width="100%"></Label>
+                                            <Label [text]="" width="8%" class="caption"></Label>
+                                            <Label text="ITEM CODE: " width="18%" class="caption-title"></Label>
+                                            <Label [text]="item.wcicode" width="48%" class="caption"></Label>
+                                            <Label text="UOM : " width="10%" class="caption-title"></Label>
+                                            <Label [text]="item.wcuom" width="16%" class="caption"></Label>
+
+                                    </StackLayout>
+                                    <StackLayout row="2" orientation="horizontal" width="100%">
+                                            <Label [text]="" width="8%" class="caption"></Label>
+                                        <Label [text]="item.idesc" class="caption-desc" width="92%"></Label>
                                         <!-- <Label [text]="item.sellingPrice | number : '1.2-2'" width="20%" class="caption-number"></Label> -->
                                     </StackLayout>
                                 </GridLayout>
@@ -41,19 +50,13 @@
                         </ListView>
                         <!-- </PullToRefresh> -->
                     </ScrollView>
-                </GridLayout>
+               </GridLayout>
             </StackLayout>
         </StackLayout>
         <StackLayout *tabItem="{title: 'Process'}">
-                <StackLayout>
-                        <GridLayout rows="auto,*">
-                            <StackLayout row="0" orientation="horizontal" width="100%" backgroundcolor="#566573">
-                                <Label text="CEMTER" width="30%" class="title"></Label>
-                                <Label text="PROCESS" width="30%" class="title"></Label>
-                                <Label text="FINAL" width="20%" class="title"></Label>                            
-                                <Label text="SEQ" width="20%" class="title"></Label>
-                            </StackLayout>                        
-                            <ScrollView row="1">
+            <StackLayout class="tab-view">
+                <GridLayout rows="*">
+                            <ScrollView row="0">
                                 <ListView [items]="listproc">
                                     <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
                                         <GridLayout rows="auto,auto" 
@@ -63,32 +66,31 @@
                                                     width="100%">
             
                                             <StackLayout row="0" orientation="horizontal" width="100%">
-                                                    <Label [text]="item.wccode" width="30%" class="caption"></Label>
-                                                    <Label [text]="item.process" width="30%" class="caption"></Label>
-                                                    <Label [text]="item.final" width="20%" class="caption"></Label>
-                                                    <Label [text]="item.seqno" width="20%" class="caption"></Label>
+                                                    <Label [text]="item.seqno" width="8%" class="caption"></Label>
+                                                    <Label text="PROCESS: " width="18%" class="caption-title"></Label>
+                                                    <Label [text]="item.process" width="22%" class="caption"></Label>
+                                                    <Label text="CENTER :" width="18%" class="caption-title"></Label>
+                                                    <Label [text]="item.wccode" width="22%" class="caption"></Label>
+                                            </StackLayout>        
+                                            <StackLayout row="1" orientation="horizontal" width="100%">
+                                                    <Label [text]="" width="8%" class="caption"></Label>
+                                                    <Label text="FINAL: " width="12%" class="caption-title"></Label>
+                                                    <Label [text]="item.final" width="10%" class="caption"></Label>
+                                                    <Label text="WC ITEM:" width="15%" class="caption-title"></Label>
+                                                    <Label [text]="item.wcicode" width="55%" class="caption"></Label>
                                             </StackLayout>                                       
                                         </GridLayout>
                                     </ng-template>
                                 </ListView>
                                 <!-- </PullToRefresh> -->
                             </ScrollView>
-                        </GridLayout>
-                    </StackLayout>
+                </GridLayout>
+            </StackLayout>
         </StackLayout>
         <StackLayout *tabItem="{title: 'Machine'}">
-            <StackLayout>
-                        <GridLayout rows="auto,auto,*">
-                            <StackLayout row="0" orientation="horizontal" width="100%" backgroundcolor="#566573">
-                                <Label text="CEMTER" width="30%" class="title"></Label>
-                                <Label text="PROCESS" width="30%" class="title"></Label>
-                                <Label text="MACHINE" width="30%" class="title"></Label>                            
-                                <Label text="SEQ" width="10%" class="title"></Label>
-                            </StackLayout>
-                            <StackLayout row="1" orientation="horizontal" width="100%" backgroundcolor="#566573">
-                                <Label text="DESCRIPTION" width="100%" class="title"></Label>
-                            </StackLayout>
-                            <ScrollView row="2">
+            <StackLayout class="tab-view">
+                <GridLayout rows="*">
+                            <ScrollView row="0">
                                 <ListView [items]="listmac">
                                     <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
                                         <GridLayout rows="auto,auto" 
@@ -98,62 +100,64 @@
                                                     width="100%">
             
                                             <StackLayout row="0" orientation="horizontal" width="100%">
-                                                    <Label [text]="item.wccode" width="30%" class="caption"></Label>
-                                                    <Label [text]="item.process" width="30%" class="caption"></Label>
-                                                    <Label [text]="item.machine" width="30%" class="caption"></Label>                                                
-                                                    <Label [text]="item.seqno" width="10%" class="caption"></Label>
+                                                    <Label [text]="item.seqno" width="8%" class="caption"></Label>
+                                                    <Label text="MACHINE: " width="18%" class="caption-title"></Label>
+                                                    <Label [text]="item.machine" width="38%" class="caption"></Label>
+                                                    <Label text="CENTER:" width="16%" class="caption-title"></Label>
+                                                    <Label [text]="item.wccode" width="20%" class="caption"></Label>
                                             </StackLayout>
                                             <StackLayout row="1" orientation="horizontal" width="100%">
-                                                <Label [text]="item.macname" class="caption" width="100%"></Label>
-                                                <!-- <Label [text]="item.sellingPrice | number : '1.2-2'" width="20%" class="caption-number"></Label> -->
+                                                    <Label [text]="" width="8%" class="caption"></Label>
+                                                    <Label text="NAME: " width="18%" class="caption-title"></Label>
+                                                    <Label [text]="item.macname" width="38%" class="caption-desc"></Label>
+                                                    <Label text="PROCESS:" width="16%" class="caption-title"></Label>
+                                                    <Label [text]="item.process" width="20%" class="caption"></Label>
                                             </StackLayout>
+                                           
                                         </GridLayout>
                                     </ng-template>
                                 </ListView>
                                 <!-- </PullToRefresh> -->
                             </ScrollView>
-                        </GridLayout>
+                </GridLayout>
             </StackLayout>
         </StackLayout>
         <StackLayout *tabItem="{title: 'BOM'}">
-                <StackLayout>
-                        <GridLayout rows="auto,auto,*">
-                            <StackLayout row="0" orientation="horizontal" width="100%" backgroundcolor="#566573">
-                                    <Label text="ITEM CODE" width="40%" class="title"></Label> 
-                                <Label text="PROCESS" width="20%" class="title"></Label>                            
-                                <Label text="WH" width="20%" class="title"></Label>                            
-                                <Label text="QTY" width="20%" class="title-right"></Label>
-                            </StackLayout>
-                            <StackLayout row="1" orientation="horizontal" width="100%" backgroundcolor="#566573">
-                                <Label text="DESCRIPTION" width="90%" class="title"></Label>
-                                <Label text="UOM" width="10%" class="title"></Label>
-                            </StackLayout>
-                            <ScrollView row="2">
+            <StackLayout class="tab-view">
+                <GridLayout rows="*">                            
+                            <ScrollView row="0">
                                 <ListView [items]="listbom">
                                     <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
-                                        <GridLayout rows="auto,auto" 
+                                        <GridLayout rows="auto,auto,auto" 
                                                     [class.even]="even"
                                                     [class.odd]="odd" 
                                                     orientation="horizontal"
                                                     width="100%">
             
                                             <StackLayout row="0" orientation="horizontal" width="100%">
-                                                    <Label [text]="item.icode" width="40%" class="caption"></Label>                            
-                                                    <Label [text]="item.process" width="20%" class="caption"></Label>
-                                                    <Label [text]="item.wh" width="20%" class="caption-small"></Label>
-                                                    <Label [text]="item.stdqty| number: '.2'" width="20%" class="caption-right"></Label>
+                                                    <Label text="MATERIAL: " width="18%" class="caption-title"></Label>
+                                                    <Label [text]="item.icode" width="48%" class="caption"></Label>
+                                                    <Label text="CENTER:" width="16%" class="caption-title"></Label>
+                                                    <Label [text]="item.wccode" width="18%" class="caption"></Label>
                                             </StackLayout>
                                             <StackLayout row="1" orientation="horizontal" width="100%">
-                                                <Label [text]="item.idesc" class="caption" width="90%"></Label>
-                                                <Label [text]="item.uom" width="10%" class="caption-small-right"></Label>
-                                                <!-- <Label [text]="item.sellingPrice | number : '1.2-2'" width="20%" class="caption-number"></Label> -->
+                                                    <Label text="W/HOUSE: " width="18%" class="caption-title"></Label>
+                                                    <Label [text]="item.wh" width="48%" class="caption"></Label>
+                                                    <Label text="PROCESS:" width="16%" class="caption-title"></Label>
+                                                    <Label [text]="item.process" width="18%" class="caption"></Label>
                                             </StackLayout>
+                                            <StackLayout row="2" orientation="horizontal" width="100%">
+                                                    <Label [text]="item.idesc" width="66%" class="caption-desc"></Label>
+                                                    <Label text="QTY:" width="10%" class="caption-title"></Label>
+                                                    <Label [text]="item.stdqty" width="16%" class="caption-small-right"></Label>
+                                                    <Label [text]="item.uom" width="10%" class="caption-xsmall-right"></Label>
+                                            </StackLayout>                                           
                                         </GridLayout>
                                     </ng-template>
                                 </ListView>
                                 <!-- </PullToRefresh> -->
                             </ScrollView>
-                        </GridLayout>
+                </GridLayout>
             </StackLayout>
         </StackLayout>
     </TabView>

@@ -1,7 +1,9 @@
 .page {
     padding: 40px;
 }
-
+.tab-view{
+  padding-top: 30px;  
+}
 .title {
     color: white;
 }
@@ -13,6 +15,18 @@
 
 .caption {
     color: black;
+    font-size: 14px;
+}
+.caption-title {
+    color: darkslateblue;
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+.caption-desc{
+    color: darkslategray;
+    font-size: 14px;
+    font-style: italic;
 }
 
 .caption-right {
@@ -25,10 +39,15 @@
     font-size: 14px;
 }
 
-
 .caption-small-right {
     color: black;
     font-size: 14px;
+    text-align: right;
+}
+
+.caption-xsmall-right {
+    color: black;
+    font-size: 10px;
     text-align: right;
 }
 
