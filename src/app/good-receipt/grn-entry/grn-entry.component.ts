@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { SnackBar } from 'nativescript-snackbar';
+import { SnackBar } from "@nstudio/nativescript-snackbar";
 import { BarcodeScanner } from 'nativescript-barcodescanner';
 import { fromEvent } from 'rxjs';
 import {debounceTime } from 'rxjs/operators';
@@ -22,10 +22,10 @@ import * as application from 'tns-core-modules/application';
 export class GrnEntryComponent 
  implements OnInit,AfterViewInit,OnDestroy {
     
-  @ViewChild('spinWorkGR') spinWork: ElementRef;
-  @ViewChild('myContainerGR') myContainer: ElementRef;
-  @ViewChild("revqrt") receiptQty: ElementRef;
-  @ViewChild("dono") dono: ElementRef;
+  @ViewChild('spinWorkGR',{static: false}) spinWork: ElementRef;
+  @ViewChild('myContainerGR',{static: false}) myContainer: ElementRef;
+  @ViewChild("revqrt",{static: false}) receiptQty: ElementRef;
+  @ViewChild("dono",{static: false}) dono: ElementRef;
 
   polist:any;
   poitemlist:any;

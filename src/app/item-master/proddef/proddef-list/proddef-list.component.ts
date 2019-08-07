@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { TextField } from 'ui/text-field';
+import { TextField } from 'tns-core-modules/ui/text-field';
 import { ListViewEventData } from 'nativescript-ui-listview';
 import { Color } from 'tns-core-modules/color/color';
 import * as application from 'tns-core-modules/application';

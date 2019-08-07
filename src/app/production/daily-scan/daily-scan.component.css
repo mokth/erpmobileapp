@@ -1,0 +1,29 @@
+/* Add mobile styles for the component here.  */
+
+
+.form{
+    padding: 15px;
+    padding-top: 30px;
+}
+
+.faclass-barcode{
+    font-size: 50px;
+    font-weight: 500;
+    height: 250px;
+    width: 100%;
+    text-align: center;
+}
+.lb-spin{
+    color:black;
+}
+
+.isInvalid{
+    background-color: lightgrey;
+    color: grey;
+}
+
+.labeltext {
+    color:red ;
+    font-size: 18;
+    
+}

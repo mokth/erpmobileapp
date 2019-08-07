@@ -15,8 +15,9 @@ export const routes: Routes = [
             loadChildren: "./salesorder/salesorder.module#SalesorderModule"},
     { path: "master",canActivate: [AuthguardService],
              loadChildren: "./item-master/item-master.module#ItemMasterModule"}, 
-     { path: "daily",canActivate: [AuthguardService],
+    { path: "daily",canActivate: [AuthguardService],
              loadChildren: "./production/production.module#ProductionModule"},
+   
    //{ path: "daily",canActivate: [AuthguardService],component:ItemMasterComponent},
     { path: "grn",canActivate: [AuthguardService],
             loadChildren: "./good-receipt/good-receipt.module#GoodReciptModule"},

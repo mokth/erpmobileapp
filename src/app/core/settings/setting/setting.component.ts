@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular';
-import { SnackBar } from 'nativescript-snackbar';
+import { SnackBar } from "@nstudio/nativescript-snackbar";
+
 
 import { AuthService } from '../../services/auth-service';
 import { SQLService } from '../../services/sql-service';

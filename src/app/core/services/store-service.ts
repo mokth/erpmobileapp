@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import * as ApplicationSettings from 'application-settings';
+//import * as ApplicationSettings from 'application-settings';
 import * as localStroage from 'nativescript-localstorage';
 
+import * as  ApplicationSettings from 'tns-core-modules/application-settings'
 import { AuthTerm } from "../enums";
 
 @Injectable({

@@ -4,7 +4,8 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { UserInfo } from '../../core/model/userinfo';
 import { AuthService } from "../../core/services/auth-service";
 import { SQLService } from '../../core/services/sql-service';
-import { Page } from 'ui/page';
+import { Page } from 'tns-core-modules/ui/page';
+
 
 @Component({
   selector: 'ns-login',

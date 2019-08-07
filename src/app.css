@@ -124,10 +124,22 @@ ActivityIndicator {
 }
 .caption-number{
   text-align:right;
+  color:white;
+}
+.data-number {
+  text-align:right;
+}
+.data-small {
+  font-size: 12px;
+  text-align:center;
+  padding-top: 10px;
 }
 .even {
-background-color: #F4F6F6;
+ background-color: #F4F6F6;
 
+}
+.odd {
+  color:#566573 ;
 }
 
 .selected {

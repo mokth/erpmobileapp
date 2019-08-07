@@ -5,7 +5,6 @@ import { APIService } from '../../core/services';
 import { AuthService } from '../../core/services/auth-service';
 import { NavigationService } from '../../core/services/navigation.service';
 import { CycleCountItem } from '../../core/model';
-import { SnackBar } from 'nativescript-snackbar';
 import * as application from 'tns-core-modules/application';
 
 @Component({

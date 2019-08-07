@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 
 import * as ModalPicker from 'nativescript-modal-datetimepicker';
-import { SnackBar } from 'nativescript-snackbar';
+import { SnackBar } from "@nstudio/nativescript-snackbar";
 
 import { APIService } from '../../core/services';
 import { NavigationService } from '../../core/services/navigation.service';
@@ -21,8 +21,8 @@ import * as application from 'tns-core-modules/application';
 })
 export class DailyOutputComponent implements OnInit {
  
-  @ViewChild('spinWork') spinWork: ElementRef;
-  @ViewChild('myContainer') myContainer: ElementRef;
+  @ViewChild('spinWork',{static: false}) spinWork: ElementRef;
+  @ViewChild('myContainer',{static: false}) myContainer: ElementRef;
 
   showError:boolean;
   showspin:boolean;
@@ -53,7 +53,9 @@ export class DailyOutputComponent implements OnInit {
   fd_good:number;
   fd_reject:number;
   fd_scrap:number;
-
+   
+  isScan:boolean;
+  isSaving:boolean;
   constructor(private apiser:APIService,
               private barcodeScanner: BarcodeScanner,
               private navigationService: NavigationService) {
@@ -131,6 +133,7 @@ export class DailyOutputComponent implements OnInit {
       console.log(this._lookoption)
       switch(this._lookoption) {
         case "wo":
+          this.isScan=false;
           this.fd_wo = args.selectedItem.title;     
           this.wolist.filter(w=>w.scheCode==this.fd_wo)
               .map(x=>{
@@ -312,7 +315,7 @@ export class DailyOutputComponent implements OnInit {
  }
 
  checkValidScanResult(scanText:string){
-  let data= scanText.split('+');
+  let data= scanText.split('\n');
   if (data.length>5){        
     let workorder = this.wolist.filter
                      (x=>x.scheCode==data[0] &&
@@ -321,13 +324,15 @@ export class DailyOutputComponent implements OnInit {
                          x.wciCode == data[3] &&
                          x.nextProcess==data[4]);
       if (workorder){                   
+          this.isScan=false;
           this.fd_wo=data[0];
           this.fd_wccode=data[2];
           this.fd_procee=data[4];
           this.fd_macplan =data[5];
           this.fd_macact =data[5];
           this.fd_prod =data[5];
-          this.fd_operator="";       
+          this.fd_operator="";   
+
       }else{
         (new SnackBar()).simple("Work Order info not found...");
       }
@@ -336,6 +341,10 @@ export class DailyOutputComponent implements OnInit {
  }
   
   OnSaveTap(e){
+    if (this.isSaving){
+      return;
+    }
+    this.isSaving =true;
     let daily:DailyInput = this.populateDailyInput();
     this.apiser.postDailyInput(daily).subscribe((resp:any)=>{
         console.log(resp);
@@ -347,28 +356,32 @@ export class DailyOutputComponent implements OnInit {
         }else{
           this.errmsg = data.error;          
         }
+        this.isSaving =false;
       },
       (err)=>{
 				this.showError=true;
-				this.errmsg = err.statusText;
+        this.errmsg = err.statusText;
+        this.isSaving =false;
 			});
 
   }
 
   resetInput(){
-    this.fd_good=0;
+    this.fd_wo="";
+    this.fd_prod="";
+    this.fd_wccode="";
+    this.fd_procee="";
+    this.fd_macplan="";
     this.fd_macact="";
     this.fd_operator="";
-    this.fd_procee="";
-    this.fd_prod="";
+    this.fd_good=0;
     this.fd_reject=0;
     this.fd_scrap=0;
-    this.fd_wccode="";
-    this.fd_wo="";
   }
-  
+    
   OnCancelTap(e){
-    this.navigationService.navigate(['/main'],{clearHistory:true});
+    console.log('back to list....');
+    this.navigationService.navigate(['/daily/dailylist'],{clearHistory:true});
   }
 
   populateDailyInput():DailyInput{
@@ -385,7 +398,7 @@ export class DailyOutputComponent implements OnInit {
         daily.qtyAct = this.fd_good|| 0;
         daily.qtyScrap = this.fd_scrap || 0;
         daily.qtyReject = this.fd_reject || 0;
-       
+        daily.status="NEW";
 
         let workorder = this.wolist.filter(x=>x.scheCode==daily.scheCode &&
                                               x.wcCode==daily.wCCode &&

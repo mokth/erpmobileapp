@@ -12,14 +12,14 @@
 <Page class="page">
     <StackLayout orientation="vertical">
         <GridLayout rows="auto,auto,auto,*" >
-            <StackLayout row="0"  class="grid-title" orientation="horizontal" width="100%">
-                <Label text="Date" width="26%" class="caption-title"></Label>
-                <Label text="Order #" width="35%" class="caption-title"></Label>
-                <Label text="Status" width="15%" class="caption-title"></Label>
-                <Label text="Amount" width="24%" class="caption-title-number"></Label>
+            <StackLayout row="0"  class="grid-title" orientation="horizontal" width="100%" backgroundcolor="#566573">
+                <Label text="Date" width="26%" class="caption"></Label>
+                <Label text="Order #" width="35%" class="caption"></Label>
+                <Label text="Status" width="15%" class="caption"></Label>
+                <Label text="Amount" width="24%" class="caption-number"></Label>
             </StackLayout>
-            <StackLayout row="1"  class="grid-title" orientation="horizontal" width="100%">
-                <Label text="Customer Code / Name" width="100%" class="caption-left"></Label>
+            <StackLayout row="1"  class="grid-title" orientation="horizontal" width="100%" backgroundcolor="#566573">
+                <Label text="Customer Code / Name" width="100%" class="caption"></Label>
             </StackLayout>
             <StackLayout *ngIf="isBusy" row="2" orientation="vertical" width="100%">
                     <ActivityIndicator #activityIndicator [busy]="isBusy" 
@@ -27,26 +27,29 @@
                                    height="100%" 
                                    class="activity-indicator"></ActivityIndicator>
             </StackLayout>    
-            <ScrollView row="3" tkExampleTitle tkToggleNavButton>
-                <ListView [items]="orderlist">                          
-                    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">  
-                        <GridLayout rows="auto,auto" 
-                                    [class.even]="even"
-                                    (tap)="onItemTap(item)">
-                            <StackLayout row="0"                                       
-                                     orientation="horizontal" width="100%">
-                                    <Label [text]="item.sodate | date: 'dd-MMM-yy'" width="26%" class="caption-left"></Label>
-                                    <Label [text]="item.sono+'-'+item.custrel" width="35%" class="caption"></Label>
-                                    <Label [text]="item.status" width="15%" class="caption-small"></Label>
-                                    <Label [text]="item.amount | number : '1.2-2'" width="24%" class="caption-number"></Label>
-                            </StackLayout>
-                            <StackLayout row="1" >
-                                    <Label [text]="item.custcode+' / '+ item.custname" width="100%" class="caption"></Label>
-                            </StackLayout>
-                        </GridLayout>
-                    </ng-template>                        
-                </ListView>
-            </ScrollView>
+            <!-- <ScrollView row="3" tkExampleTitle tkToggleNavButton> -->
+                <!-- <PullToRefresh  (refresh)="refreshList($event)"> -->
+                    <RadListView row="3" #listView [items]="dataItems" pullToRefresh="true" (pullToRefreshInitiated)="refreshList($event)">                          
+                        <ng-template tkListItemTemplate  let-item="item" let-i="index" let-odd="odd" let-even="even">  
+                            <GridLayout rows="auto,auto" 
+                                        [class.even]="even"
+                                        [class.odd]="odd"
+                                        (tap)="onItemTap(item)">
+                                <StackLayout row="0"                                       
+                                        orientation="horizontal" width="100%">
+                                        <Label [text]="item.sodate | date: 'dd-MMM-yy'" width="26%" ></Label>
+                                        <Label [text]="item.sono+'-'+item.custrel" width="35%"></Label>
+                                        <Label [text]="item.status" width="15%" class="data-small"></Label>
+                                        <Label [text]="item.amount | number : '1.2-2'" width="24%" class="data-number"></Label>
+                                </StackLayout>
+                                <StackLayout row="1" >
+                                        <Label [text]="item.custcode+' / '+ item.custname" width="100%" ></Label>
+                                </StackLayout>
+                            </GridLayout>
+                        </ng-template>                        
+                    </RadListView>
+                <!-- </PullToRefresh> -->
+            <!-- </ScrollView> -->
             <!-- <StackLayout row="4" orientation="horizontal" width="100%">
                 <Button class="btn btn-primary btn-active" with="100%" id="button" (tap)="onBack($event)">
                     <FormattedString>

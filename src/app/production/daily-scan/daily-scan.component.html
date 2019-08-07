@@ -1,0 +1,290 @@
+<ActionBar title="Daily Production Output">
+</ActionBar>
+<Page class="page" #myContainer>
+    <StackLayout orientation="vertical" class="form">
+        <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" width="100%">
+            <StackLayout row="0">
+                    <Label [text]="iconQR"  
+                           (tap)="OnScan()"
+                           class="fas faclass-barcode"></Label>
+            </StackLayout>
+            <StackLayout row="1" orientation="horizontal" width="100%">
+                <Label [text]="errmsg" 
+                       width="100%" 
+                       visibility="{{ showError ? 'visible' : 'collapsed' }}"
+                       class="err-msg"></Label>
+                
+            </StackLayout>
+            <FilterableListpicker
+                 #spinWork blur="light" 
+                 hintText="Type to filter..." 
+                 [source]="listitems"                 
+                 (canceled)="cancelFilterableList($event)" 
+                 (itemTapped)="itemTapped($event)">
+           </FilterableListpicker> 
+            <StackLayout row="2" orientation="horizontal"  width="100%">
+                <StackLayout class="input-field" width="29%">
+                    <Label text="Date" class="label font-weight-bold m-b-5"></Label>
+                    <GridLayout columns="*,auto" >
+                        <TextField class="input"
+                                   editable="false" 
+                                   required
+                                   text="{{fd_date | date:'dd-MM-yyyy'}}">
+                        </TextField>   
+                        <Label col="1" [text]="iconSpin"
+                               (tap)="pickDate()"
+                               class="fas faclass-spinner">
+                        </Label>
+                   </GridLayout>        
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
+                <StackLayout class="input-field" width="16%">
+                    <Label text="Time"  class="label font-weight-bold m-b-5"></Label>
+                    <GridLayout columns="*,auto" > 
+                        <TextField class="input"
+                                   editable="false" 
+                                   required
+                                   text="{{fd_time | date:'HH:mm'}}">
+                        </TextField>   
+                        <Label col="1" [text]="iconSpin"
+                               (tap)="pickTime()"
+                               class="fas faclass-spinner">
+                        </Label>
+                   </GridLayout>        
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
+                <GridLayout width="50%">
+                    <StackLayout class="input-field">
+                            <Label text="Work Order" class="label font-weight-bold m-b-5">
+                            </Label>                            
+                           <GridLayout columns="*" >
+                                <TextField col="0" 
+                                          #wo="ngModel"
+                                          [(ngModel)]="fd_wo" 
+                                          required
+                                           editable="false"
+                                          class="input" >                                
+                                </TextField>
+                                <!-- <Label col="1"
+                                       [text]="iconSpin"
+                                       (tap)="showPicker('wo')"
+                                       visibility="collapsed"
+                                       class="fas faclass-spinner">
+                                </Label> -->
+                           </GridLayout>                           
+                            <StackLayout class="hr-light m-b-0 m-t-0 "></StackLayout>
+                    </StackLayout>               
+                   <!-- <FilterableListpicker
+                            #spinWork blur="light" 
+                            hintText="Type to filter..." 
+                            [source]="listitems" 
+                            (canceled)="cancelFilterableList($event)" 
+                            (itemTapped)="itemTapped($event)">
+                    </FilterableListpicker> -->
+                </GridLayout>
+            </StackLayout>
+            <StackLayout row="3" orientation="horizontal"  width="100%">
+                <StackLayout class="input-field" width="100%">
+                    <Label text="Product" class="label font-weight-bold m-b-5"></Label>
+                    <TextField class="input" 
+                               #prod="ngModel"
+                                editable="false"
+                               [(ngModel)]="fd_prod"
+                               required>
+                    </TextField>
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout row="4" orientation="horizontal"  width="100%">
+                <GridLayout  width="50%">
+                    <StackLayout class="input-field">
+                        <Label text="Work Center" class="label font-weight-bold m-b-5"></Label>
+                        <GridLayout columns="*">
+                                <TextField col="0" 
+                                           #wccode="ngModel"
+                                            editable="false"
+                                           [(ngModel)]="fd_wccode" 
+                                           required
+                                           class="input" > 
+                                </TextField>
+                                <!-- <Label col="1" [text]="iconSpin" 
+                                        width="10%"
+                                       (tap)="showPicker('center')"
+                                       visibility="{{ showspin ? 'visible' : 'collapsed' }}"
+                                       class="fas faclass-spinner">
+                                </Label> -->
+                        </GridLayout>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+                    <!-- <FilterableListpicker
+                            #spinCenter blur="light" 
+                            hintText="Work Center..." 
+                           
+                            (canceled)="cancelFilterableList($event)" 
+                            (itemTapped)="itemTapped($event)">
+                    </FilterableListpicker> -->
+                </GridLayout>    
+                <GridLayout  width="50%">
+                    <StackLayout class="input-field">                    
+                            <Label text="Work Process" class="label font-weight-bold m-b-5"></Label>
+                            <GridLayout columns="*">
+                                    <TextField col="0" 
+                                       #procee="ngModel"
+                                       [(ngModel)]="fd_procee" 
+                                        editable="false"
+                                       required
+                                       class="input" >                                
+                                    </TextField>
+                                    <!-- <Label col="1" [text]="iconSpin" 
+                                           (tap)="showPicker('process')"
+                                           visibility="{{ showspin ? 'visible' : 'collapsed' }}"
+                                           class="fas faclass-spinner">
+                                    </Label> -->
+                            </GridLayout>
+                            <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+                    <!-- <FilterableListpicker
+                        #spinProcess blur="light" 
+                        hintText="Work Process..." 
+                        [source]="listitems" 
+                        (canceled)="cancelFilterableList($event)" 
+                        (itemTapped)="itemTapped($event)">
+                    </FilterableListpicker> -->
+                </GridLayout>   
+            </StackLayout> 
+            <StackLayout row="5" orientation="horizontal"  width="100%">
+                    <GridLayout  width="50%">
+                        <StackLayout class="input-field">
+                            <Label text="Plan Machine" class="label font-weight-bold m-b-5"></Label>
+                            <GridLayout columns="*">
+                                    <TextField col="0" 
+                                              #macplan="ngModel"
+                                              required
+                                              editable="false"
+                                              [(ngModel)]="fd_macplan" 
+                                              class="input" >                                
+                                    </TextField>
+                                    <!-- <Label col="1" [text]="iconSpin"  width="10%"
+                                           (tap)="showPicker('planMac')"
+                                           visibility="{{ showspin2 ? 'visible' : 'collapsed' }}"
+                                           class="fas faclass-spinner">
+                                    </Label> -->
+                            </GridLayout>
+                            <StackLayout class="hr-light"></StackLayout>
+                        </StackLayout>
+                        <!-- <FilterableListpicker
+                            #spinMacPlan blur="light" 
+                            hintText="Machine..." 
+                            [source]="listitems" 
+                            (canceled)="cancelFilterableList($event)" 
+                            (itemTapped)="itemTapped($event)">
+                        </FilterableListpicker> -->
+                    </GridLayout>    
+                    <GridLayout  width="50%">
+                        <StackLayout class="input-field">                    
+                                <Label text="Act Machine" class="label font-weight-bold m-b-5"></Label>
+                                <GridLayout columns="*,auto">
+                                    <TextField col="0" 
+                                             [(ngModel)]="fd_macact" 
+                                             editable="false"
+                                              class="input" >                                
+                                    </TextField>
+                                    <Label col="1" [text]="iconSpin"  
+                                           (tap)="showPicker('actMac')" 
+                                           visibility="{{ showspin2 ? 'visible' : 'collapsed' }}"
+                                           class="fas faclass-spinner">
+                                    </Label>
+                                </GridLayout>
+                                <StackLayout class="hr-light"></StackLayout>
+                        </StackLayout>
+                        <!-- <FilterableListpicker
+                            #spinMacAct blur="light" 
+                            hintText="Machine..." 
+                            [source]="listitems" 
+                            (canceled)="cancelFilterableList($event)" 
+                            (itemTapped)="itemTapped($event)">
+                        </FilterableListpicker> -->
+                    </GridLayout>   
+            </StackLayout>           
+            <StackLayout row="6" orientation="horizontal"  width="100%">
+                <GridLayout  width="50%">
+                    <StackLayout class="input-field">
+                        <Label text="Operator" class="label font-weight-bold m-b-5"></Label>
+                        <GridLayout columns="*,auto">
+                            <TextField col="0" 
+                                      [(ngModel)]="fd_operator" 
+                                      editable="false"
+                                       class="input" >                                
+                            </TextField>
+                            <Label col="1" [text]="iconSpin"  width="10%"
+                                (tap)="showPicker('operator')" 
+                                visibility="{{ showspin2 ? 'visible' : 'collapsed' }}"
+                                class="fas faclass-spinner">
+                            </Label>
+                        </GridLayout>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+                    <!-- <FilterableListpicker
+                        #spinOperator blur="light" 
+                        hintText="Operator..." 
+                        [source]="listitems" 
+                        (canceled)="cancelFilterableList($event)" 
+                        (itemTapped)="itemTapped($event)">
+                    </FilterableListpicker> -->
+                </GridLayout>    
+                <StackLayout class="input-field" width="50%">
+                        <Label text="Output Qty" class="label font-weight-bold m-b-5"></Label>
+                        <TextField class="input"
+                                   #good="ngModel"
+                                   key keyboardType="number"
+                                   required 
+                                   [(ngModel)]="fd_good"
+                                   ></TextField>
+                        <StackLayout class="hr-light"></StackLayout>
+                    </StackLayout>
+            </StackLayout>
+            <StackLayout row="7" orientation="horizontal"  width="100%">
+                    <StackLayout class="input-field" width="50%">
+                            <Label text="Reject Qty" class="label font-weight-bold m-b-5"></Label>
+                            <TextField class="input" keyboardType="number"  [(ngModel)]="fd_reject" ></TextField>
+                            <StackLayout class="hr-light"></StackLayout>
+                     </StackLayout>   
+                    <StackLayout class="input-field" width="50%">
+                            <Label text="Scrap Qty" class="label font-weight-bold m-b-5"></Label>
+                            <TextField class="input" keyboardType="number" [(ngModel)]="fd_scrap" ></TextField>
+                            <StackLayout class="hr-light"></StackLayout>
+                     </StackLayout>
+                </StackLayout>
+            <StackLayout row="8" orientation="horizontal" width="100%">
+                    <Button class="btn-sm btn-active" 
+                            id="btnSave" 
+                            text="Save" 
+                            (tap)="OnSaveTap($event)"
+                            width="50%"                         
+                            height="40"
+                            [ngClass]="{'btn-primary': wo.valid && 
+                                                     wccode.valid &&  
+                                                     procee.valid && 
+                                                     macplan.valid && 
+                                                     prod.valid && 
+                                                     good.valid
+                                       }"
+                            [isEnabled]="wo.valid && 
+                                        wccode.valid &&  
+                                        procee.valid && 
+                                        macplan.valid && 
+                                        prod.valid && 
+                                        good.valid"
+                            >
+                    </Button>
+                    <Button class="btn-sm text-danger btn-active" 
+                            id="btnCancel" 
+                            text="Cancel" 
+                            (tap)="OnCancelTap($event)"
+                            width="50%" 
+                            height="40">
+                    </Button>
+                </StackLayout>                
+        </GridLayout>
+    </StackLayout>
+</Page>

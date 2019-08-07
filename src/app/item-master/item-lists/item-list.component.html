@@ -42,7 +42,7 @@
                                    class="activity-indicator"></ActivityIndicator>
             </StackLayout> 
             <ScrollView row="5">
-                <!-- <PullToRefresh [refreshing]="isRefresh" (refresh)="refreshList($event)"> -->
+                 <!-- <PullToRefresh  (refresh)="refreshList($event)"> -->
                     <ListView [items]="items">                          
                         <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">  
                             <GridLayout rows="auto,auto"
@@ -65,7 +65,7 @@
                             </GridLayout>
                         </ng-template>                        
                     </ListView>
-                <!-- </PullToRefresh> -->
+                <!-- </PullToRefresh>  -->
           </ScrollView>
           <!-- <ActivityIndicator [busy]="isRefresh" rowSpan="3"></ActivityIndicator> -->
         </GridLayout>

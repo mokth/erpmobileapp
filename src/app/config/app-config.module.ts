@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
  const appConfig:AppConfig = {
      appType: "Ns",
      apiEndpoint: "http://wincom2cloud.com/ERP6Service/",
-     erpEndpoint: "http://wincom2cloud.com/erpv4/",
+     erpEndpoint: "https://www.wincom2cloud.com/erpv4/",
      loggingEnabled: true
  }
 

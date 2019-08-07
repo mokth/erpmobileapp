@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ListViewEventData } from 'nativescript-ui-listview';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { ObservableArray } from "tns-core-modules/data/observable-array";
-import { SnackBar } from "nativescript-snackbar";
+import { SnackBar } from "@nstudio/nativescript-snackbar";
 import { Color } from 'tns-core-modules/color/color';
 import { ActivatedRoute } from '@angular/router';
 import {BarcodeScanner} from 'nativescript-barcodescanner';

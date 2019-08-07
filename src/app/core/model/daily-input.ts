@@ -16,4 +16,6 @@ export class DailyInput {
   public qtyReject:number;
   public operatorAct:string;
   public operator:string;
+  public status:string;
+  public userid:string;
 }

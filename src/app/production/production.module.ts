@@ -5,13 +5,19 @@ import { NativeScriptFormsModule, NativeScriptRouterModule } from 'nativescript-
 import { BarcodeScanner } from "nativescript-barcodescanner";
 import { DailyOutputComponent } from './daily-output/daily-output.component';
 import { prdroutes } from './production-routes';
+import { DailyScanComponent } from './daily-scan/daily-scan.component';
+import { DailyListComponent } from './daily-list/daily-list.component';
 
 export function createBarcodeScanner() {
   return new BarcodeScanner();
 }
 
 @NgModule({
-  declarations: [DailyOutputComponent],
+  declarations: [
+    DailyOutputComponent,
+    DailyScanComponent,
+    DailyListComponent
+  ],
   imports: [
     NativeScriptCommonModule,
     NativeScriptFormsModule,

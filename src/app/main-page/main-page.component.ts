@@ -15,7 +15,7 @@ import { Page } from "tns-core-modules/ui/page";
 })
 export class MainPageComponent implements OnInit,AfterViewInit {
 
-  @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
+  @ViewChild(RadSideDrawerComponent,{static: false}) public drawerComponent: RadSideDrawerComponent;
   private drawer: RadSideDrawer;
   iconAdd:String;
   iconlogo:String;
@@ -122,9 +122,24 @@ export class MainPageComponent implements OnInit,AfterViewInit {
         });
       }
       else if (arg=="daily"){
-        this.navigationService.navigate(['/daily'],
+        console.log('dailyscan2');
+        this.navigationService.navigate(['/daily/dailyscan'],
         {
            clearHistory:true,
+           animated: true, 
+            transition: 
+            {
+                name: 'flip', 
+                duration: 1000, 
+                curve: 'linear'
+            }  
+         });
+      }
+      else if (arg=="dailylist"){
+        
+        this.navigationService.navigate(['/daily/dailylist'],
+        {
+           clearHistory:false,
            animated: true, 
             transition: 
             {

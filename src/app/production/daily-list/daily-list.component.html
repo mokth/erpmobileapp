@@ -1,0 +1,46 @@
+<ActionBar title="Daily Production List">
+   <grid-layout columns="auto,*">
+        <Label col="0" [text]="iconlogo" class="fas faclass action-image" (tap)="onNavBtnTap()"></Label>
+        <Label col="1" text="Daily Production List"  class="action-label"></Label>
+   </grid-layout>   
+</ActionBar>
+<Page class="page">
+    <ScrollView>
+          <grid-layout rows="auto,*">
+                <ListView row="0" [items]="items">
+                        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                                <GridLayout rows="auto,auto,auto,auto,*" orientation="horizontal" width="100%">
+                                        <StackLayout row="0" orientation="horizontal" width="100%">
+                                                <Label [text]="item.date | date: 'dd/MM hh:mma'" width="30%"></Label>
+                                                <Label [text]="item.scheCode" width="38%"></Label>
+                                                <Label text="Good" class="text-bold" width="12%"></Label>
+                                                <Label [text]="item.qtyAct" class="item-qty" width="20%"></Label>
+                                        </StackLayout>
+                                        <StackLayout row="1" orientation="horizontal" width="100%">
+                                                <Label [text]="item.status" [class.stat-posted]="item.status=='POSTED'"
+                                                        [class.stat-new]="item.status!='POSTED'" width="30%"></Label>
+                                                <Label [text]="item.prodCode" width="38%"></Label>
+                                                <Label text="Reject" class="text-red" width="12%"></Label>
+                                                <Label [text]="item.qtyReject" class="item-qty-red" width="20%"></Label>
+                                        </StackLayout>
+                                        <StackLayout row="2" orientation="horizontal" width="100%">
+                                                <Label [text]="item.operatorAct" width="30%"></Label>
+                                                <Label [text]="item.wcCode" width="38%"></Label>
+                                                <Label text="Scrap" class="text-red" width="12%"></Label>
+                                                <Label [text]="item.qtyScrap" class="item-qty-red" width="20%"></Label>
+                                        </StackLayout>
+                                        <StackLayout row="3" orientation="horizontal" width="100%">
+                                                <Label [text]="item.machineCodeAct" width="30%"></Label>
+                                                <Label [text]="item.processCode" width="40%"></Label>
+                                        </StackLayout>
+                                </GridLayout>
+                        </ng-template>
+                </ListView>             
+                <FAB:fab (tap)="onNewDaily()"
+                         row="1" 
+                         icon="res://icon"
+                         rippleColor="#f1f1f1" 
+                         class="fab-button" />
+        </grid-layout>
+    </ScrollView>
+</Page>

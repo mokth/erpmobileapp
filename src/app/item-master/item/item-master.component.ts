@@ -36,7 +36,8 @@ export class ItemMasterComponent implements OnInit {
 		   let imgurl:string =this.item.imageUrl;
 				imgurl =imgurl.replace('~','/').replace('\\','/');
 		   this.imageUrl = url+imgurl;	
-		}		
+		}	
+		console.log(this.imageUrl);	
 	}
 }
 

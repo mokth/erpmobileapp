@@ -62,12 +62,13 @@
                                           #wo="ngModel"
                                           [(ngModel)]="fd_wo" 
                                           required
+                                           editable="false"
                                           class="input" >                                
                                 </TextField>
                                 <Label col="1"
                                        [text]="iconSpin"
                                        (tap)="showPicker('wo')"
-                                       visibility="{{ showspin ? 'visible' : 'collapsed' }}"
+                                       visibility="collapsed"
                                        class="fas faclass-spinner">
                                 </Label>
                            </GridLayout>                           
@@ -87,6 +88,7 @@
                     <Label text="Product" class="label font-weight-bold m-b-5"></Label>
                     <TextField class="input" 
                                #prod="ngModel"
+                                editable="false"
                                [(ngModel)]="fd_prod"
                                required>
                     </TextField>
@@ -100,6 +102,7 @@
                         <GridLayout columns="*,auto">
                                 <TextField col="0" 
                                            #wccode="ngModel"
+                                            editable="false"
                                            [(ngModel)]="fd_wccode" 
                                            required
                                            class="input" > 
@@ -128,6 +131,7 @@
                                     <TextField col="0" 
                                        #procee="ngModel"
                                        [(ngModel)]="fd_procee" 
+                                        editable="false"
                                        required
                                        class="input" >                                
                                     </TextField>
@@ -156,6 +160,7 @@
                                     <TextField col="0" 
                                               #macplan="ngModel"
                                               required
+                                              editable="false"
                                               [(ngModel)]="fd_macplan" 
                                               class="input" >                                
                                     </TextField>
@@ -181,6 +186,7 @@
                                 <GridLayout columns="*,auto">
                                     <TextField col="0" 
                                              [(ngModel)]="fd_macact" 
+                                             editable="false"
                                               class="input" >                                
                                     </TextField>
                                     <Label col="1" [text]="iconSpin"  
@@ -207,6 +213,7 @@
                         <GridLayout columns="*,auto">
                             <TextField col="0" 
                                       [(ngModel)]="fd_operator" 
+                                      editable="false"
                                        class="input" >                                
                             </TextField>
                             <Label col="1" [text]="iconSpin"  width="10%"

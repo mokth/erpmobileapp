@@ -155,12 +155,19 @@ export class APIService {
   }
 
   postDailyInput(daily:DailyInput):Observable<any>{
+    daily.userid = this.auth.getUserID();
     let headers = new HttpHeaders()
     .set('Content-Type',"application/json")
     .set('Authorization', this.auth.tokenGetter());
     let body: string = JSON.stringify(daily);
     const url = this.getAPIURL() + "api/dailyprod/create";
     return this.http.post(url, body, { headers: headers });
+  }
+
+  getDailyInput(): Observable<any> {
+    const userid =this.auth.getUserID();
+    const url = this.getAPIURL() + "api/DailyProd/trxs/"+userid;
+    return this.http.get<any>(url,{headers:this.getAuthHeader()});
   }
 
   getGRNPOlist(): Observable<GRNPOInfo> {
